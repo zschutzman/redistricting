@@ -10,4 +10,4 @@ The labelled units will be in the `geopandas` dataframe called `df_vtd`
 
 Works by assigning each unit in `<units>.shp` the value in `<dist_column>` corresponding to the shape in `<dists>.shp` with which it has maximum overlap.
 
-`areal_interpolation.py` is from Will Adler with the Princeton Gerrymandering Project
+`areal_interpolation.py` is from Will Adler with the Princeton Gerrymandering Project, and this code does almost nothing beyond that.
