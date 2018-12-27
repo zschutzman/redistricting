@@ -110,7 +110,8 @@ def flow(curve, steps):
 	Performs the discretized curve-shortening flow on the input curve for the given 
 	number of steps.
 	"""
-	print("Flowing the curve: {}".format(curve))
+	#print("Flowing the curve: {}".format(curve))
 	for i in range(steps):
 		curve = flow_step(curve)
-	print("Finished flowing")
+	#print("Finished flowing")
+	return curve

@@ -1,0 +1,23 @@
+   <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  </head>
+
+  <body>
+ <button onclick="decrement()"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider">
+    <button onclick="increment()"> NEXT </button><br />
+   <button onclick="bwd()"> PLAY BACK </button> <button onclick="fwd()"> PLAY FWD </button>  
+<svg height="400" width="400" id='flowbox'>
+    <polygon id="distflow" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+</svg>
+  </body>
+
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="curve.js"></script>
+  <script src="ppdata.js"></script>
+  <script src="csf.js"></script>

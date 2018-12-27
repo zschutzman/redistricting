@@ -35,6 +35,7 @@ def subdivide_curve(curve, threshold=0.0):
 def normalize_curve(curve, norm):
 	region = geom.Polygon(close_curve(curve))
 	scale_factor = np.sqrt(norm / region.area)
+	print(region.area)
 	return np.array([scale_factor * pt for pt in curve])
 
 def curve_from_shapefile(filename, tolerance=0): 
