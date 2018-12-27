@@ -33,6 +33,8 @@ texas = curve_utils.curve_from_shapefile(os.path.join('shapefiles','Texas outlin
 coords = texas.exterior.coords.xy
 xmin = min(coords[0])
 ymin = min(coords[1])
+xmax = max(coords[0])
+ymax = max(coords[1])
 curve = np.array([[x-xmin,y-ymin] for (x,y) in zip(coords[0], coords[1])])
 curve = curve_utils.subdivide_curve(curve_utils.subdivide_curve(curve, threshold=0), threshold=0)
 
@@ -116,7 +118,7 @@ with open("curve.html",'w') as outfile:
 curves = [c.tolist() for c in curves]
 
 
-
+curves = [[x,y] for (x,y) in zip(curves,stepcounter)]
 
 
 

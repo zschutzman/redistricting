@@ -4,7 +4,10 @@ var polyline= document.getElementById('distflow');
 
 var slider = document.getElementById('slider');
 
+var flowcount = document.getElementById("flowcount");
+
 slider.setAttribute("max",curve_anim.length-1);
+
 
 var moving = "n";
 
@@ -41,15 +44,17 @@ var curstep = 10//curve_anim.length-1;
 
 function draw_step(k){
 	if (k>=curve_anim.length || k<0){return;}
+	console.log(curve_anim[k])
 	slider.setAttribute("value",k);
+	flowcount.innerHTML = curve_anim[k][1];
 	console.log(slider)
 
 	polyline.points.clear()
-	var centroid = center(curve_anim[k]);
+	var centroid = center(curve_anim[k][0]);
 	centroid[0] = centroid[0]*30;
 	centroid[1] = 140-centroid[1]*30
-	for (var i=0;i<curve_anim[k].length; i++){
-		var c = curve_anim[k][i]
+	for (var i=0;i<curve_anim[k][0].length; i++){
+		var c = curve_anim[k][0][i]
 
 
 
