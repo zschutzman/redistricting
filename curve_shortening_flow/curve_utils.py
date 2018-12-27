@@ -46,3 +46,7 @@ def curve_from_shapefile(filename, tolerance=0):
 	shape_data = gpd.read_file(filename)
 	curve_outline = shape_data['geometry'][0]
 	return curve_outline.simplify(tolerance)
+
+def curve_from_dataframe(df, index, tolerance = 0):
+	curve_outline = df.loc[index]['geometry']
+	return curve_outline.simplify(tolerance)
