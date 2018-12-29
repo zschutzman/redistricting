@@ -31,11 +31,11 @@ plt.plot([], [])
 # Set up the curve whose flow we will animate
 # curve = np.array([[0,0],[1,1],[1,2],[0,3],[-1,2],[-1,1]])
 #texas = curve_utils.curve_from_shapefile(os.path.join('shapefiles','Texas outline','Texas_State_Boundary.shp'), tolerance=.00)
-
-cds = gpd.read_file(os.path.join('shapefiles','uscd','cd_us.shp')).to_crs({'init': 'epsg:3395'})
+cds = gpd.read_file(os.path.join('shapefiles','nc12','nc12.shp')).to_crs({'init': 'epsg:3395'})
+#cds = gpd.read_file(os.path.join('shapefiles','uscd','cd_us.shp')).to_crs({'init': 'epsg:3395'})
 for countdists in range(len(cds)):
     
-    if cds.loc[countdists]['STATEFP'] not in ['02', '15']: continue #['23', '42', '36', '24', 
+    if cds.loc[countdists]['STATEFP'] in ['02', '15']: continue #['23', '42', '36', '24', 
     elif type(curve_utils.curve_from_dataframe(cds, countdists, tolerance = 1000)) == shapely.geometry.multipolygon.MultiPolygon: 
         print(cds.loc[countdists]['GEOID'])
     #     continue
@@ -129,6 +129,7 @@ for countdists in range(len(cds)):
         while polsby_popper(np.append(curve, np.array([curve[0]]), axis=0)) - prev_pp < .005 and polsby_popper(np.append(curve, np.array([curve[0]]), axis=0)) < .998:
             counter+=1
             curve = gd.flow(curve,1)
+            if prev_pp > .9 and len(curve < 400): curve = curve_utils.subdivide_curve(curve)
             if len(curve) < 200: curve = curve_utils.subdivide_curve(curve)
 
             curve = curve_utils.normalize_curve(curve, area)
@@ -207,12 +208,12 @@ for countdists in range(len(cds)):
     print(len(curves[0]))
 
     #print(len(curves))
-    with open("flow_shapes/{}_curve.js".format(districtname),'w') as outfile:
+    with open("flow_shapes/12-{}_curve.js".format(districtname),'w') as outfile:
         json.dump(curves,outfile)
 
 
 
-    with open("flow_shapes/{}_curve.js".format(districtname), 'r') as original: data = original.read()
-    with open("flow_shapes/{}_curve.js".format(districtname), 'w') as modified: modified.write("var curve_anim = " + data)
+    with open("flow_shapes/12-{}_curve.js".format(districtname), 'r') as original: data = original.read()
+    with open("flow_shapes/12-{}_curve.js".format(districtname), 'w') as modified: modified.write("var curve_anim = " + data)
 
     print(stepcounter)
