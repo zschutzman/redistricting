@@ -7,9 +7,9 @@ var democompsvgs = [document.getElementById('demoflowcomp1'),document.getElement
 
 var demoplotsvg = document.getElementById('demoplotspace');
 var demoplotlines = [document.getElementById('demoflowplot1'),document.getElementById('demoflowplot2'),document.getElementById('demoflowplot3')]
-var democompcurves = [md3,md3,md3];
+var democompcurves = [md3,tx35,ok1];
 var demovissteps = [0,0,0];
-var demomaxsteps = [md3.length-1,md3.length-1,md3.length-1];
+var demomaxsteps = [md3.length-1,tx35.length-1,ok1.length-1];
 var demodirections = [1,1,1];
 
 
@@ -91,7 +91,6 @@ for (var i=0;i<democompcurves[ind-1].length;i++){
 function demodrawcomp(k,ind){
 
 	democomppolys[ind-1].points.clear()
-	console.log(democompcurves[ind-1][k])
 	var centroid = center(democompcurves[ind-1][k][0]);
 
 	for (var i=0;i<democompcurves[ind-1][k][0].length; i++){
