@@ -294,26 +294,55 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 
 
 
-	<div class="chart two-columns center">
+	<div class="chart thre-columns center">
 
 		<div>
 			<button onclick="compdist('12-3701',1);"> NC-01 </button> <br />
   			<button onclick="compdist('12-3702',2);"> NC-02 </button>  <br />
-  			<button onclick="compdist('12-3703',3);"> NC-03 </button>  <br />
+  			<button onclick="compdist('12-3703',3);"> NC-03 </button> <br />
+  		</div>
+  		<div>
 			<svg height="200" width="200" id='flowcomp1'>
 			<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
 			</svg>
+
+
+
 				<svg height="200" width="200" id='flowcomp2'>
 			<polygon id="dflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
 			</svg>
+
+
+
 				<svg height="200" width="200" id='flowcomp3'>
-			<polygon id="dflowc3" points="" style="fill:#11ee99;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			<polygon id="dflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg> <br />
+
+
+			<svg height="200" width="200" id='showcomp1'>
+			<polygon id="dshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
 			</svg>
+
+			<svg height="200" width="200" id='showcomp2'>
+			<polygon id="dshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg>
+
+			<svg height="200" width="200" id='showcomp3'>
+			<polygon id="dshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg>
+
 		</div>
 
 
 
 		<div>
+			<svg height="600" width = "600" id="plotspace">
+			<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:2;fill:none;stroke-opacity:.3" />
+			<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:2;fill:none;stroke-opacity:.3" />
+			<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:2;fill:none;stroke-opacity:.3" />
+
+
+			</svg>
 		</div>
 
 
