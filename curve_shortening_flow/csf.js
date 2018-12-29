@@ -5,6 +5,7 @@ var polyline= document.getElementById('distflow');
 var slider = document.getElementById('slider');
 
 var flowcount = document.getElementById("flowcount");
+var hold = false;
 
 slider.setAttribute("max",curve_anim.length-1);
 
@@ -52,7 +53,7 @@ script.onload = function () {
     console.log(curve_anim.length)
     redraw();
 };
-script.src = fn + "_curve.js";
+script.src = "flow_shapes/" + fn + "_curve.js";
 
 var old = document.getElementById("districtfn")
 old.parentNode.removeChild(old);
@@ -61,6 +62,13 @@ script.id = "districtfn"
 document.head.appendChild(script);
 
 }
+
+
+
+
+
+
+
 function redraw(){
 
 	stop = true
@@ -74,8 +82,8 @@ function redraw(){
 
 function draw_step(k){
 	if (k>=curve_anim.length || k<0){return;}
-	slider.setAttribute("value",k);
-	flowcount.innerHTML = "CSF Steps: " + curve_anim[k][1] + " PP Score: " + curve_anim[k][2].toString().slice(0,6) + " Frame: " + k;
+	slider.value = k;
+	flowcount.innerHTML = "CSF Steps: " + curve_anim[k][1] + " Perim: " + (1/Math.sqrt(curve_anim[k][2])).toString().slice(0,6) + " Frame: " + k;
 
 	polyline.points.clear()
 	var centroid = center(curve_anim[k][0]);
@@ -128,7 +136,7 @@ async function fwd(){
   while (curstep < curve_anim.length-1 && stop == false){
   	increment()
   	stop = false
-  await sleep(200);
+  await sleep(30);
 }
 }
 
@@ -137,6 +145,9 @@ async function bwd(){
   while (curstep > 0 && stop == false){
   	decrement()
   	stop = false
-  await sleep(150);
+  await sleep(30);
 }
 }
+
+
+
