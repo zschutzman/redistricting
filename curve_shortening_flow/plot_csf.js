@@ -1,8 +1,6 @@
 var compsvgs = [document.getElementById('flowcomp1'),document.getElementById('flowcomp2'),document.getElementById('flowcomp3')];
-var democompsvgs = [document.getElementById('demoflowcomp1'),document.getElementById('demoflowcomp2'),document.getElementById('demoflowcomp3')];
 
 var comppolys = [document.getElementById('dflowc1'),document.getElementById('dflowc2'),document.getElementById('dflowc3')];
-var democomppolys = [document.getElementById('demodflowc1'),document.getElementById('demodflowc2'),document.getElementById('demodflowc3')];
 
 
 
@@ -14,11 +12,7 @@ var plotlines = [document.getElementById('flowplot1'),document.getElementById('f
 
 
 
-var democompsvgshows = [document.getElementById('demoshowcomp1'),document.getElementById('demoshowcomp2'),document.getElementById('demoshowcomp3')]
-var democomppolyshows = [document.getElementById('demodshowc1'),document.getElementById('demodshowc2'),document.getElementById('demodshowc3')];
 
-var demoplotsvg = document.getElementById('demoplotspace');
-var demoplotlines = [document.getElementById('demoflowplot1'),document.getElementById('demoflowplot2'),document.getElementById('demoflowplot3')]
 
 
 
@@ -31,10 +25,7 @@ var directions = [1,1,1];
 
 
 
-var democompcurves = [-2,-2,-2];
-var demovissteps = [0,0,0];
-var demomaxsteps = [-1,-1,-1];
-var demodirections = [1,1,1];
+
 
 
 

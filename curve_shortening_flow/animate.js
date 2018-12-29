@@ -14,7 +14,6 @@ var animstep = 0;
 
 
 
-console.log(md3);
 
 
 

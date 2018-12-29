@@ -1,22 +1,23 @@
-function democompdist(fn,ind){
-var script = document.createElement('script');
-
-script.onload = function () {
-    democompcurves[ind-1] = curve_anim.slice();
-    demomaxsteps[ind-1] = curve_anim.length-1
-    democompinit();
 
 
-};
-script.src = "flow_shapes/" + fn + "_curve.js";
+var democompsvgshows = [document.getElementById('demoshowcomp1'),document.getElementById('demoshowcomp2'),document.getElementById('demoshowcomp3')]
+var democomppolyshows = [document.getElementById('demodshowc1'),document.getElementById('demodshowc2'),document.getElementById('demodshowc3')];
+var democomppolys = [document.getElementById('demodflowc1'),document.getElementById('demodflowc2'),document.getElementById('demodflowc3')];
+var democompsvgs = [document.getElementById('demoflowcomp1'),document.getElementById('demoflowcomp2'),document.getElementById('demoflowcomp3')];
 
-var old = document.getElementById("loadfn")
-old.parentNode.removeChild(old);
- 
-script.id = "loadfn"
-document.head.appendChild(script);
+var demoplotsvg = document.getElementById('demoplotspace');
+var demoplotlines = [document.getElementById('demoflowplot1'),document.getElementById('demoflowplot2'),document.getElementById('demoflowplot3')]
+var democompcurves = [md3,md3,md3];
+var demovissteps = [0,0,0];
+var demomaxsteps = [md3.length-1,md3.length-1,md3.length-1];
+var demodirections = [1,1,1];
 
-}
+
+
+
+
+
+
 
 function democompinit(){
 
@@ -90,7 +91,7 @@ for (var i=0;i<democompcurves[ind-1].length;i++){
 function demodrawcomp(k,ind){
 
 	democomppolys[ind-1].points.clear()
-
+	console.log(democompcurves[ind-1][k])
 	var centroid = center(democompcurves[ind-1][k][0]);
 
 	for (var i=0;i<democompcurves[ind-1][k][0].length; i++){
@@ -194,9 +195,4 @@ async function demoanimate_comps3(c){
 	}
 
 
-async function demo_init(){
-await democompdist("2403",1);
-await democompdist("4835",2)
-await democompdist("3901",3)
-}
-demo_init();
+democompinit();
