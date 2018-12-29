@@ -298,8 +298,8 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 
 		<div>
 			<button onclick="compdist('12-3701',1);"> NC-01 </button> <br />
-  			<button onclick="compdist('12-3702',2);"> NC-02 </button>  <br />
-  			<button onclick="compdist('12-3703',3);"> NC-03 </button> <br />
+  			<button onclick="compdist('12-3712',2);"> NC-02 </button>  <br />
+  			<button onclick="compdist('2403',3);"> NC-03 </button> <br />
   		</div>
   		<div>
 			<svg height="200" width="200" id='flowcomp1'>
@@ -336,12 +336,27 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 
 
 		<div>
-			<svg height="600" width = "600" id="plotspace">
-			<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:2;fill:none;stroke-opacity:.3" />
-			<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:2;fill:none;stroke-opacity:.3" />
-			<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:2;fill:none;stroke-opacity:.3" />
+			<svg height="530" width = "500" id="plotspace">
+			<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
+			<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
+			<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
 
+			<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim1 -->
+			<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim2 -->
 
+			<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim3 -->
+
+			<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> <!-- perim4 -->
+			<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim4 -->
+			<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim5 -->
+
+			<text x="0" y="499" fill="black">perimeter = 1</text>
+			<text x="0" y="399" fill="black">perimeter = 2</text>
+			<text x="0" y="299" fill="black">perimeter = 3</text>
+			<text x="0" y="199" fill="black">perimeter = 4</text>
+			<text x="0" y="99" fill="black">perimeter = 5</text>
+
+			<text x="75" y="515" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
 			</svg>
 		</div>
 
