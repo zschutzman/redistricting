@@ -285,9 +285,15 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 
 <section>
 	<h3>Comparing Plots</h3>
-	<h1>take nc12, md03, and me02 and compare the plots</h1>
+	<p>
+	To demonstrate this measure, we'll compare the plots of three districts.  Below are images of the three districts as well as animations showing 
+	the progress of the curve-shortening flow procedure.  The plots on the right have the number of steps on the horizontal axis and the perimeter 
+	of the figure at that step on the vertical axis.  From left to right, these are "worst offenders" MD-03 and TX-35, 
+	as well as OK-01.  There are a few things to observe here.  First, the plot for OK-01 is below the other two at every point, and it requires 
+	far fewer steps of curve-shortening flow to become something (almost) circular.  These demonstrate that, with respect to our measure, OK-01 is 
+	much more compact than the other two districts. 
 
-</section>
+</p>
 
 
 
@@ -334,6 +340,11 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 			<polyline id="demoflowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
 			<polyline id="demoflowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
 
+			<circle id="demotrack1" cx="0" cy="0" r="5" stroke="black" stroke-width="3" />
+			<circle id="demotrack2" cx="0" cy="0" r="5" stroke="black" stroke-width="3"/>
+			<circle id="demotrack3" cx="0" cy="0" r="5" stroke="black" stroke-width="3"/>
+
+
 			<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim1 -->
 			<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim2 -->
 
@@ -357,10 +368,19 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 
 	</div>
 
+<p>
+	Second, we can look at the <em>shapes</em> of the three plots.  We observed that OK-01's plot drops very quickly 
+	as it takes relatively few curve-shortening flow steps to transform it into a circle.  It's original form 
+	can be described as two joined rectangles with some irregularities at the boundary.  MD-03's plot falls 
+	at a slower rate, which reflects the fact that the bizarreness of its geometry is not limited to its boundary, 
+	as once the curve-shortening flow smooths it out, what we're left with is something that looks like a snakey 'Y'. 
+	TX-35's plot falls quickly at the beginning but then slows down, being outpaced by MD-03.  This is because the 
+	boundary smoothing reduces a lot of the district's perimeter, but the long, thin strip which stretches to the southwest 
+	requires many steps to pull inward.
+</p>
 
 
-
-
+</section>
 
 
 
