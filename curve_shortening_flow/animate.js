@@ -44,7 +44,7 @@ async function anim_step(k){
 
 
 async function animate_md3() {
-	while (true){
+	while (false){
 
 	while (animstep < md3.length-1 ){
 		await anim_step(animstep);

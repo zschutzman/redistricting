@@ -9,7 +9,9 @@ var hold = false;
 
 slider.setAttribute("max",curve_anim.length-1);
 
+var plotme = [];
 
+var maincurve = curve_anim.slice();
 var sfactor = 0;
 
 var moving = "n";
@@ -44,13 +46,14 @@ function sleep(ms) {
 
 
 
-var curstep = 0//curve_anim.length-1;
+var curstep = 0//maincurve.length-1;
 
 function loadfile(fn){
 var script = document.createElement('script');
 
 script.onload = function () {
-    console.log(curve_anim.length)
+	maincurve = curve_anim.slice()
+    console.log(maincurve.length)
     redraw();
 };
 script.src = "flow_shapes/" + fn + "_curve.js";
@@ -72,7 +75,7 @@ document.head.appendChild(script);
 function redraw(){
 
 	stop = true
-	slider.setAttribute("max",curve_anim.length-1);
+	slider.setAttribute("max",maincurve.length-1);
 	curstep = 0
 	
 	draw_step(curstep)
@@ -81,15 +84,15 @@ function redraw(){
 
 
 function draw_step(k){
-	if (k>=curve_anim.length || k<0){return;}
+	if (k>=maincurve.length || k<0){return;}
 	slider.value = k;
-	flowcount.innerHTML = "CSF Steps: " + curve_anim[k][1] + " Perim: " + (1/Math.sqrt(curve_anim[k][2])).toString().slice(0,6) + " Frame: " + k;
+	flowcount.innerHTML = "CSF Steps: " + maincurve[k][1] + " Perim: " + (1/Math.sqrt(maincurve[k][2])).toString().slice(0,6) + " Frame: " + k;
 
 	polyline.points.clear()
-	var centroid = center(curve_anim[k][0]);
+	var centroid = center(maincurve[k][0]);
 
-	for (var i=0;i<curve_anim[k][0].length; i++){
-		var c = curve_anim[k][0][i]
+	for (var i=0;i<maincurve[k][0].length; i++){
+		var c = maincurve[k][0][i]
 
 
 
@@ -117,7 +120,7 @@ function decrement(){
 function increment(){
 	stop = true
 
-	if (curstep == curve_anim.length){return;}
+	if (curstep == maincurve.length){return;}
 	curstep++;
 	draw_step(curstep)
 }
@@ -133,7 +136,7 @@ slider.oninput = function() {
 
 async function fwd(){
 	stop = false
-  while (curstep < curve_anim.length-1 && stop == false){
+  while (curstep < maincurve.length-1 && stop == false){
   	increment()
   	stop = false
   await sleep(30);
