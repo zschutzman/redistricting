@@ -56,11 +56,11 @@ for countdists in range(len(cds)):
         print(coords)
 
     else:
-        continue
+        
         tolct = 0
         curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = 0)
 
-        coords = curve[biggest].exterior.coords.xy
+        coords = curve.exterior.coords.xy
         while (len(coords[0])) > 800:
             tolct +=1
             curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = tolct)
