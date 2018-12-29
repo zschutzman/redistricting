@@ -199,10 +199,26 @@ of curvature.  Intuitively, curvature measures how "bendy" the boundary is at a 
 squiggly portion of the boundary, then the curvature is large. If our point is in a portion that looks like a straight line, 
 then the curvature is small.  
 </p>
+
 <p>
 Formally, we measure curvature in the following way. First, we can look at the neighborhood of our point on the boundary 
 and imagine that it's a small segment on the circumference of a circle with some radius $r$, called the <em>osculating circle</em>.
-<h1>do figure</h1>
+<p>
+	In this small illustration, a step of curve-shortening flow will move the point with the small blue circle outward and the point with the large yellow circle inward, i the directions of the arrows.
+	Since the blue circle is smaller than the yellow circle, the first point will be moved <em>further</em> than the second.
+</p>
+<svg width="500" height="500" style="display:block;margin:auto">
+<marker id="arrow10-8-right" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
+<marker id="arrow15-12-right" markerHeight="12" markerUnits="strokeWidth" markerWidth="15" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
+<marker id="arrow10-8-left" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="3" refY="0" viewBox="0 -5 20 20"><path d="M 15 -5 L 0 0 L 15 5 z" fill="black"></path></marker>
+<path d="M212,159c-27.888475542099997,13.992692090399999,-69.68871306930001,68.4430015008,-76,99s89.61905540859999,170.43824234020002,146,172s204.0812088449,-164.5476653,150,-193s-144.7883684341,86.7144426754,-166,49s94.67112781549997,-103.9538692097,70,-132s-96.4359509484,-9.240284403099992,-124,5Z" style="stroke: black; stroke-width: 2px;fill:#ddd;" id="e2_areaS3"></path>
+<circle id="e3_circle" cx="280" cy="277" style="fill:#2272e0;fill-opacity:.3;stroke:black;stroke-width:1px;" r="17.2429" transform=""></circle>
+<line id="e4_line" x1="266.539" y1="287.937" x2="302.539" y2="257.812" style="stroke:black;fill:none;stroke-width:1px;marker-end:url(#arrow10-8-right);" transform=""></line>
+<line id="e5_line" x1="258.164" y1="278.437" x2="274.914" y2="298.687" style="stroke:black;fill:none;stroke-width:1px;" transform=""></line>	
+<circle id="e6_circle" cx="282.414" cy="388.812" style="fill:khaki;stroke:black;stroke-width:1px;" r="40.9228" transform=""></circle>
+<line id="e7_line" x1="280.414" y1="336.562" x2="282.414" y2="429.562" style="stroke: black; fill: none; stroke-width: 1px;marker-start:url(#arrow10-8-left);" transform=""></line>
+<line id="e8_line" x1="315.719" y1="430.594" x2="246.719" y2="430.219" style="stroke:black;fill:none;stroke-width:1px;" transform=""></line>
+</svg>
 Then, the curvature at that point is $1/r$ if it's a point of <em>positive curvature</em> or $-1/r$ if it's a point of 
 <em>negative curvature</em>.  If we're truly looking at a point on a line segment, then we say that the curvature is zero.
 </p>
@@ -213,8 +229,6 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 	run the process; it should never grow a new appendage or suddenly develop a jagged boundary.
 
 
-
-<h1>do figure </h1>
 
 </p>
 
