@@ -1,54 +1,340 @@
-   <!DOCTYPE html>
-  <html lang="en">
-  <head>
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--     <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-128973402-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  <body>
- <button onclick="decrement()"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider">
-    <button onclick="increment()"> NEXT </button>
-   <button onclick="bwd()"> PLAY BACK </button> <button onclick="fwd()"> PLAY FWD </button>  <div id = "flowcount"></div>
-<svg height="400" width="400" id='flowbox'>
-    <polygon id="distflow" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-</svg>
+      gtag("config", "UA-128973402-1");
+  </script> -->
+  <title>
+  	District-Shortening Flow <!-- | Metric Geometry and Gerrymandering Group -->
+  </title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--     <meta
+      name="description"
+      content="A nonpartisan research organization studying applications of geometry and computing to U.S. redistricting."
+      /> -->
+<!--     <link rel="canonical" href="https://www.mggg.org/metagraph/" />
+-->    <link
+href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Lora:400,400i,700|Source+Sans+Pro:300,400"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="style.css" />
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+crossorigin="anonymous"
+/>
+<script
+defer
+src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+crossorigin="anonymous"
+></script>
+<script
+defer
+src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+crossorigin="anonymous"
+onload="renderMathInElement(document.body, {delimiters: [
+	{left: '$', right: '$', display: false}
+	]});"
+	></script>
+</head>
+
+<body>
+<!--     <div class="banner">
+      <a href="/">
+        <img
+          class="logo"
+          src="favicon"
+          alt="Metric Geometry and Gerrymandering Group"
+        />
+      </a>
+  </div> -->
+  <header>
+
+        <img width="450" src="imgs/gerryconstruct.png?raw=true" alt="A 7-by-7 grid" >
+
+        <summary>
+          THIS PAGE IS UNDER CONSTRUCTION
+        </summary>
 
 
 
 
-<div>
+  	<h1>District-Shortening Flow</h1>
+  	<p class="subtitle">
+  		using differential geometry to analyze compactness
+  	</p>
+  	<!--       <img width="200" src="imgs/blankgrid.png?raw=true" alt="A 4-by-4 grid" /> -->
+  	<summary>
+  		This project uses interactive widgets and visualizations to explore the 
+  		use of <em> curve-shortening flow </em> to analyze the geometric shape of 
+  		electoral districts.
+  	</summary>
+  </header>
 
-<button onclick="loadfile('2301');"> ME01 </button>
-<button onclick="loadfile('2302');"> ME02 </button> <br />
-<button onclick="loadfile('4201');"> PA01 </button>
-<button onclick="loadfile('4202');"> PA02 </button>
-<button onclick="loadfile('4203');"> PA03 </button>
-<button onclick="loadfile('4204');"> PA04 </button>
-<button onclick="loadfile('4205');"> PA05 </button>
-<button onclick="loadfile('4206');"> PA06 </button>
-<button onclick="loadfile('4207');"> PA07 </button>
-<button onclick="loadfile('4208');"> PA08 </button>
-<button onclick="loadfile('4209');"> PA09 </button>
-<button onclick="loadfile('4210');"> PA10 </button>
-<button onclick="loadfile('4211');"> PA11 </button>
-<button onclick="loadfile('4212');"> PA12 </button>
-<button onclick="loadfile('4213');"> PA13 </button>
-<button onclick="loadfile('4214');"> PA14 </button>
-<button onclick="loadfile('4215');"> PA15 </button>
-<button onclick="loadfile('4216');"> PA16 </button>
-<button onclick="loadfile('4217');"> PA17 </button>
-<button onclick="loadfile('4218');"> PA18 </button>
+  <main>
+  	<section>
+
+  		<h3> A case for "multiscale compactness" </h3>
+  		<p>
+  			While the gemoetric shape of a district is not the measure by which 
+  			gerrymandering is defined, it often drives the popular narrative around 
+  			what districts are and are not gerrymandered.  A quick Google search for 
+  			a term like "most gerrymandered districts" will return a litany of articles 
+  			naming-and-shaming districts like the Illinois-4th ("The Earmuffs"), the 
+  			previous iteration of the North Carolina-12th ("The River"), and the 
+  			Maryland-3rd ("The Praying Mantis").  While all three of these districts 
+  			were (allegedly) drawn with some electoral intent, most of the press 
+  			surrounding them is about their contorted shapes rather than their 
+  			effect on the outcomes of elections.
+  		</p>
+  		<p>
+  			One of the most popular measures of compactness is called the <em>Polsby-Popper score</em>. 
+  			One formulation of this is as $ \frac{4\pi \mathrm{Area}}{\mathrm{Perimeter}^2}$, and it has 
+  			several attractive mathematical properties.  It's always a number 
+  			between zero and one, and it's one exactly when the shape we're looking at is a circle. 
+  			This score also varies continuously as the boundary of the shape is pulled and stretched.  
+  			In other words, two shapes which differ by a microscopic amount will have almost the same score.  
+  			Another nice property is that it is <em> scale-invariant </em>, meaning that blowing up a shape 
+  			doesn't change it's Polsby-Popper score.  This means that it's appropriate to use this score to examine 
+  			districts of different sizes.
+  		</p>
+  		<p>
+  			However, this score has some drawbacks which make its use in redistricting applications 
+  			somewhat questionable.  First, it's very sensitive to small changes in the shape's boundary. 
+  			A circle with a ragged boundary will have a much worse Polsby-Popper score than a snakey shape. 
+  			<h1> do figure </h1>
+  			This is a problem because many boundaries in political geography, such as city lines as 
+  			well as coastlines and rivers are natural choices to use as district borders, but they tend to 
+  			be jagged, which distorts the Polsby-Popper score.  This also means that the score is sensitive 
+  			to the <em> resolution of measurement </em>.  As maps become more detailled, things like coastlines 
+  			look more and more rough, and so the same district's Polsby-Popper score may vary by a factor of 
+  			as much as three depending on how precise the geographic measurements are. Richard Barnes and Justin Solomon explore this in more detail 
+  			<a href="https://arxiv.org/abs/1803.02857"> in their paper, here</a>.
+  		</p>
+  		<p>
+  			One way to avoid some of these issues is to try to keep more information about the shape 
+  			of the district in our compactness score.  The Polsby-Popper score (and others) assign a single 
+  			number to each district, but we can use some more sophisticated math to develop methods which 
+  			assign a <em> vector </em> of numbers to each district and satisfy a few reasonable properties:
+
+
+  			<ul>
+  				<li>
+  					<h4>Discrimative</h4> There should be a meaningful way of <em> ordering </em> districts based on the entries of the vector. 
+  					For example, if we sort all of our districts by the first entry, the resulting order should say something 
+  					about the relative compactness of the districts.
+  				</li>
+  				<li>
+  					<h4>Explainable</h4> The measure should be easy to communicate to the parties invested in the redistricting process, 
+  					including lawyers, politicians, interestd citizens, as well as mathematicians.
+  				</li>
+  				<li>
+  					<h4>Stable</h4> Two similar shapes should be assigned similar vectors.
+  				</li>				
+  				<li>
+  					<h4>Computable</h4> There should be an efficient algorithm for computing these scores, ideally from 
+  					data available to the public.
+  				</li>
+  			</ul>
+  			<h1> cite tv paper? </h1>
+  			We'll use a small twist on a technique from differential geometry called <em>curve-shortening flow</em> to develop a 
+  			multiscale compactness measure which satisfies these criteria.
+  		</p>
+
+
+  	</section>
+  	<section>
+  		<h3> Curve-Shortening Flow </h3>
+
+  		<p>
+  		What is curve-shortening flow? For those who care about such things, we'll restrict our attention to simple, closed 
+  		curves in the plane.  Given such a curve, curve-shortening flow is a process which shrinks the region so that its 
+  		<em> area </em> decreases at a constant rate and its <em> length </em> (<em>perimeter</em>) decreases as quickly as possible.  
+  		This process will transform the boundary of any kind of region we might think of to a "round point" (the limit of a circle as 
+  		you take its radius to zero).  We can intuitively think of curve-shortening flow as slowly "ironing out" the boundary of our region,
+  		where it eliminates small wrinkles very quickly and takes a little bit longer to adjust large deformities.  Our small twist 
+  		is that we also rescale the region at every step so that the area remains fixed.  Therefore, this process will slowly transform any shape 
+  		into a circle of the same area.
+  	</p>
+  	<p>
+  		Here's a brief animation of this transformation applied to MD-03, played forwards (district to circle) and backwards (circle to district).
+</p>
+
+
+  	<div class="chart center" style="max-width:250px;max-height:250px;background:none;border:none">
+
+  		<div>
+  			<svg height="200" width="200" id='animbox'>
+  			<polygon id="animflow" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+  			</svg>
+
+  		</div>
+
+
+  	</div>
+
+
+
+<p>
+The procedure to perform curve-shortening flow is pretty straightforward. At each point on the boundary of our region, 
+we'll find the tangent line and move that point inward in the direction perpendicular to the tangent. How far to move it 
+will depend on the <em> curvature </em> of the boundary at the point.  The last missing piece is to articulate a defintion 
+of curvature.  Intuitively, curvature measures how "bendy" the boundary is at a particular point.  If our point lies in a very 
+squiggly portion of the boundary, then the curvature is large. If our point is in a portion that looks like a straight line, 
+then the curvature is small.  
+</p>
+<p>
+Formally, we measure curvature in the following way. First, we can look at the neighborhood of our point on the boundary 
+and imagine that it's a small segment on the circumference of a circle with some radius $r$, called the <em>osculating circle</em>.
+<h1>do figure</h1>
+Then, the curvature at that point is $1/r$ if it's a point of <em>positive curvature</em> or $-1/r$ if it's a point of 
+<em>negative curvature</em>.  If we're truly looking at a point on a line segment, then we say that the curvature is zero.
+</p>
+<p>
+	We can make two observations about the behavior of curve-shortening flow on a shape.  First, since points on really 
+	curvy portions of the boundary are moved further, it should smooth out the boundary very quickly.  Second, since indentations 
+	in the shape are pushed outward and appendages sticking out get pulled inward, the shape will get progressively "nicer" as we 
+	run the process; it should never grow a new appendage or suddenly develop a jagged boundary.
+
+
+
+<h1>do figure </h1>
+
+</p>
 
 
 
 
-	</div>
-  </body>
+ 	</section>
+
+
+
+<section>
+
+<h3> Algorithmics </h3>
+<p>
+	The next concern is whether we can actually run curve-shortening flow on a real shape, or if 
+	it just exists as a theoretical construct.  The procedure we described above applies to smooth 
+	curves and technically requires we compute the curvature at every one of an infinite number of points, 
+	which is no-good if we're concerned with developing something practical.  Furthermore, we conveniently 
+	ignored how the procedure operates at points on the boundary which are not smooth, such as vertices of a 
+	polygon.  Since the boundaries of districts are described as polygons in geographic shapefiles, 
+	this behavior is more than simply a technicality.
+</p>
+<p>
+	To solve this, we need both a sensible replacement for the tangent line at a point as well as a good 
+	way to define curvature for things that aren't, well, <em>curved</em>.  The first is easy.  Recall from 
+	differential calculus that the tangent line at a point is the limit of secant lines through pairs of points, 
+	one on each side of our point, as these two points move closer to our point.  So, instead of using a tangent line, 
+	we can use the line passing through two points very close to our point.  As we use more and more points to describe 
+	the boundary of our shape, this secant becomes a better and better approximation of the true tangent line.
+</p>
+<p>
+	For curvature, we're going to do something similar.  If we're close enough to our point, these secant lines are 
+	chords of the osculating circle which meet the radius perpendicularly.  Since we can measure both the length of this 
+	chord, which is the distance between our two nearby points, as well as the distance of our point from the chord, we can 
+	recover the radius of the osculating circle.  Now, even if we can no longer define such a circle at the vertex of a polygon, 
+	both of these distances are still well-defined, so there is some number we can assign to that point which is analogous 
+	to curvature in the smooth case.  It's also easy to see that this number will still be zero if we look at a straight line 
+	segment and it grows as the angle becomes more and more acute.
+	</p>
+</section>
+
+<section>
+	<h3> Turining Curve-Shortening Flow into a Compactness Measure </h3>
+	<p>
+		We've given an explanation of curve-shortening flow and described how one might be able to implement an 
+		algorithm to compute it, we can move on to designing a <em> compactness score </em> which can be derived 
+		from it.  First, since we're playing around with things that depend on distances, we're going to assume that 
+		all of the regions we might want to examine have the same area.  In our version of curve-shortening flow, 
+		we keep the area of the region fixed
+
+	</p>
+</section>
 
 
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script id = "districtfn" src="2301_curve.js"></script>
-  <script src="ppdata.js"></script>
-  <script src="csf.js"></script>
+
+  	<div class="chart center">
+  		<div>
+  			<button onclick="decrement()"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider">
+  			<button onclick="increment()"> NEXT </button> 
+  			<button onclick="bwd()"> PLAY BACK </button> <button onclick="fwd()"> PLAY FWD </button>  <div id = "flowcount"></div></p>
+  			<svg height="400" width="400" id='flowbox'>
+  				<polygon id="distflow" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
+  		</div>
+  		<div>
+  			<button onclick="loadfile('12-3701');"> NC-01 </button> 
+  			<button onclick="loadfile('12-3702');"> NC-02 </button> 
+  			<button onclick="loadfile('12-3703');"> NC-03 </button> 
+  			<button onclick="loadfile('12-3704');"> NC-04 </button> 
+  			<button onclick="loadfile('12-3705');"> NC-05 </button> 
+  			<button onclick="loadfile('12-3706');"> NC-06 </button> 
+  			<button onclick="loadfile('12-3707');"> NC-07 </button> 
+  			<button onclick="loadfile('12-3708');"> NC-08 </button> 
+  			<button onclick="loadfile('12-3709');"> NC-09 </button> 
+  			<button onclick="loadfile('12-3710');"> NC-10 </button> 
+  			<button onclick="loadfile('12-3711');"> NC-11 </button> 
+  			<button onclick="loadfile('12-3712');"> NC-12 </button> 
+  			<button onclick="loadfile('12-3713');"> NC-13 </button> <br /> <br />
+  		</div>
+  	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </main>
+
+
+  <footer>
+  	<p>
+  		This page was created by
+  		<a href="http://zachschutzman.com/"><b>Zachary Schutzman</b></a> based
+  		on work at the
+        <a href="http://gerrydata.org">Voting Rights Data Institute</a><!--,  and is
+        being edited and maintained by MGGG -->. The code to generate the figures is 
+        based on Patrick Girardet's implementation of Curve-Shortening Flow and the 
+        project includes joint work with Michelle Feng, Patrick, Natalia Hajlasz, 
+        Sloan Nietert, and Justin Solomon.
+    </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script id = "districtfn" src="flow_shapes/0200_curve.js"></script>
+<script src="md03.js"></script>
+<script src="csf.js"></script>
+<script src="animate.js"></script>
+</body>
+</html>
