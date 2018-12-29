@@ -263,12 +263,31 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 		algorithm to compute it, we can move on to designing a <em> compactness score </em> which can be derived 
 		from it.  First, since we're playing around with things that depend on distances, we're going to assume that 
 		all of the regions we might want to examine have the same area.  In our version of curve-shortening flow, 
-		we keep the area of the region fixed
+		we keep the area of the region fixed and the perimeter decreases monotonically until the region becomes 
+		a circle, we might conjecture that regions which are more compact become circles more quickly than non-compact ones.  
+		Let's fix our area to be $\frac{1}{4\pi}$, which seems an odd choice, except that it makes the circle we get at the 
+		end of the process have circumference equal to one.
+	</p>
+	<p>
+		Our measure will be the plot of "number of curve-shortening flow steps" against the "perimeter of the figure at each step". 
+		We'll take a second to argue that this satisfies all four of our desiderata.  This page serves as explanation and in the 
+		previous section, we described a method to compute the curve-shortening flow procedure, which covers the first two items.  
+		The measure is stable since any small perturbation in a shape will be quickly smoothed out by the curve-shortening flow procedure, 
+		meaning that we get almost identical plots for two very similar shapes.  The final criterion is that the measure be discriminative, 
+		and we can at the very least argue semi-formally that it's <em>at least </em> as discriminative as the Polsby-Popper score, since this 
+		plot lets us recover the Polsby-Popper score.  Since we've normalized the area of these shapes very particularly, the Polsby-Popper score 
+		of a region is exactly $1/\mathrm{Perimeter}$ after we've run zero steps of curve-shortening flow.  We'll see below that we can glean 
+		much more information that just the Polsby-Popper score from these plots, but since it's at least as good as a standard measure, 
+		we can be satisfied that our plots are not meaningless.
 
 	</p>
 </section>
 
+<section>
+	<h3>Comparing Plots</h3>
+	<h1>take nc12, md03, and me02 and compare the plots</h1>
 
+</section>
 
 
 
