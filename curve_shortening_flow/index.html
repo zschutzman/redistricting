@@ -291,10 +291,94 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 
 
 
+	<div class="chart two-columns center">
+
+
+  		<div>
+			<svg height="200" width="200" id='demoflowcomp1'>
+			<polygon id="demodflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg>
 
 
 
-	<div class="chart thre-columns center">
+				<svg height="200" width="200" id='demoflowcomp2'>
+			<polygon id="demodflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg>
+
+
+
+				<svg height="200" width="200" id='demoflowcomp3'>
+			<polygon id="demodflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg> <br />
+
+
+			<svg height="200" width="200" id='demoshowcomp1'>
+			<polygon id="demodshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg>
+
+			<svg height="200" width="200" id='demoshowcomp2'>
+			<polygon id="demodshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg>
+
+			<svg height="200" width="200" id='demoshowcomp3'>
+			<polygon id="demodshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+			</svg>
+
+		</div>
+
+
+
+		<div>
+			<svg height="530" width = "500" id="demoplotspace">
+			<polyline id="demoflowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
+			<polyline id="demoflowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
+			<polyline id="demoflowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
+
+			<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim1 -->
+			<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim2 -->
+
+			<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim3 -->
+
+			<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> <!-- perim4 -->
+			<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim4 -->
+			<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> <!-- perim5 -->
+
+			<text x="0" y="499" fill="black">perimeter = 1</text>
+			<text x="0" y="399" fill="black">perimeter = 2</text>
+			<text x="0" y="299" fill="black">perimeter = 3</text>
+			<text x="0" y="199" fill="black">perimeter = 4</text>
+			<text x="0" y="99" fill="black">perimeter = 5</text>
+
+			<text x="75" y="515" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
+			</svg>
+		</div>
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="chart three-columns center">
 
 		<div>
 			<button onclick="compdist('12-3701',1);"> NC-01 </button> <br />
@@ -429,6 +513,6 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 <script src="csf.js"></script>
 <script src="animate.js"></script>
 <script src="plot_csf.js"></script>
-
+<script src="demo_plot_csf.js"></script>
 </body>
 </html>

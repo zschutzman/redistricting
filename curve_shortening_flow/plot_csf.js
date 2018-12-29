@@ -1,15 +1,41 @@
 var compsvgs = [document.getElementById('flowcomp1'),document.getElementById('flowcomp2'),document.getElementById('flowcomp3')];
+var democompsvgs = [document.getElementById('demoflowcomp1'),document.getElementById('demoflowcomp2'),document.getElementById('demoflowcomp3')];
+
 var comppolys = [document.getElementById('dflowc1'),document.getElementById('dflowc2'),document.getElementById('dflowc3')];
+var democomppolys = [document.getElementById('demodflowc1'),document.getElementById('demodflowc2'),document.getElementById('demodflowc3')];
+
+
+
 var compsvgshows = [document.getElementById('showcomp1'),document.getElementById('showcomp2'),document.getElementById('showcomp3')]
 var comppolyshows = [document.getElementById('dshowc1'),document.getElementById('dshowc2'),document.getElementById('dshowc3')];
 
 var plotsvg = document.getElementById('plotspace');
 var plotlines = [document.getElementById('flowplot1'),document.getElementById('flowplot2'),document.getElementById('flowplot3')]
 
+
+
+var democompsvgshows = [document.getElementById('demoshowcomp1'),document.getElementById('demoshowcomp2'),document.getElementById('demoshowcomp3')]
+var democomppolyshows = [document.getElementById('demodshowc1'),document.getElementById('demodshowc2'),document.getElementById('demodshowc3')];
+
+var demoplotsvg = document.getElementById('demoplotspace');
+var demoplotlines = [document.getElementById('demoflowplot1'),document.getElementById('demoflowplot2'),document.getElementById('demoflowplot3')]
+
+
+
+
 var compcurves = [-2,-2,-2];
 var vissteps = [0,0,0];
 var maxsteps = [-1,-1,-1];
 var directions = [1,1,1];
+
+
+
+
+var democompcurves = [-2,-2,-2];
+var demovissteps = [0,0,0];
+var demomaxsteps = [-1,-1,-1];
+var demodirections = [1,1,1];
+
 
 
 function compdist(fn,ind){
@@ -98,19 +124,6 @@ for (var i=0;i<compcurves[ind-1].length;i++){
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -148,13 +161,13 @@ async function animate_comps1(c){
 
 				 drawcomp(vissteps[0],1)
 				vissteps[0]++;
-				await sleep(20000/maxsteps[0])
+				await sleep(50)
 			}
 
 			if (directions[0] ==-1){
 				 drawcomp(vissteps[0],1)
 				vissteps[0]--;
-				await sleep(20000/maxsteps[0])
+				await sleep(50)
 
 			}
 
@@ -174,13 +187,13 @@ async function animate_comps2(c){
 
 				 drawcomp(vissteps[1],2)
 				vissteps[1]++;
-				await sleep(10000/maxsteps[1])
+				await sleep(50)
 			}
 
 			if (directions[1] ==-1){
 				 drawcomp(vissteps[1],2)
 				vissteps[1]--;
-				await sleep(10000/maxsteps[1])
+				await sleep(50)
 
 			}
 
@@ -200,13 +213,13 @@ async function animate_comps3(c){
 
 				 drawcomp(vissteps[2],3)
 				vissteps[2]++;
-				await sleep(10000/maxsteps[2])
+				await sleep(50)
 			}
 
 			if (directions[2] ==-1){
 				 drawcomp(vissteps[2],3)
 				vissteps[2]--;
-				await sleep(10000/maxsteps[2])
+				await sleep(50)
 
 			}
 
@@ -215,11 +228,7 @@ async function animate_comps3(c){
 	}
 	}
 
-
-
-
-
-
+//////////////////////////
 
 
 
