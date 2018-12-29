@@ -35,16 +35,32 @@ plt.plot([], [])
 cds = gpd.read_file(os.path.join('shapefiles','uscd','cd_us.shp')).to_crs({'init': 'epsg:3395'})
 for countdists in range(len(cds)):
     
-    if cds.loc[countdists]['STATEFP'] != '42': continue
-    elif type(curve_utils.curve_from_dataframe(cds, countdists, tolerance = 1000)) == shapely.geometry.multipolygon.MultiPolygon: continue
-    #elif type(curve_utils.curve_from_dataframe(cds, countdists, tolerance = 1000))
-    else:
+    if cds.loc[countdists]['STATEFP'] not in ['02', '15']: continue #['23', '42', '36', '24', 
+    elif type(curve_utils.curve_from_dataframe(cds, countdists, tolerance = 1000)) == shapely.geometry.multipolygon.MultiPolygon: 
+        print(cds.loc[countdists]['GEOID'])
+    #     continue
+    # #elif type(curve_utils.curve_from_dataframe(cds, countdists, tolerance = 1000))
+    # else:
+    #     continue
         districtname = cds.loc[countdists]['GEOID']
         curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = 0)
-
-        coords = curve.exterior.coords.xy
-
+        biggest = 0
+        for i in range(len(curve)):
+            if curve[biggest].area < curve[i].area: biggest = i
+        coords = curve[biggest].exterior.coords.xy
         tolct = 0
+        while (len(coords[0])) > 800:
+            tolct +=1
+            curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = tolct)[biggest]
+            coords = curve.exterior.coords.xy
+        print(coords)
+
+    else:
+        continue
+        tolct = 0
+        curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = 0)
+
+        coords = curve[biggest].exterior.coords.xy
         while (len(coords[0])) > 800:
             tolct +=1
             curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = tolct)
@@ -54,143 +70,149 @@ for countdists in range(len(cds)):
 
 
 
-        xmin = min(coords[0])
-        ymin = min(coords[1])
-        xmax = max(coords[0])
-        ymax = max(coords[1])
-        curve = np.array([[x-xmin,-y + ymax] for (x,y) in zip(coords[0], coords[1])])
-        #curve = curve_utils.subdivide_curve(curve_utils.subdivide_curve(curve, threshold=0), threshold=0)
+    xmin = min(coords[0])
+    ymin = min(coords[1])
+    xmax = max(coords[0])
+    ymax = max(coords[1])
+    curve = np.array([[x-xmin,-y + ymax] for (x,y) in zip(coords[0], coords[1])])
+    #curve = curve_utils.subdivide_curve(curve_utils.subdivide_curve(curve, threshold=0), threshold=0)
 
 
-        xmin = np.min(curve[:,0])
-        xmax = np.max(curve[:,0])
-        ymin = np.min(curve[:,1])
-        ymax = np.max(curve[:,1])
+    xmin = np.min(curve[:,0])
+    xmax = np.max(curve[:,0])
+    ymin = np.min(curve[:,1])
+    ymax = np.max(curve[:,1])
 
 
-        tightdim = max(xmax,ymax)
-        scalefactor = 400/tightdim
-        print("SCALING: ",tightdim,scalefactor,xmin,xmax,ymin,ymax)
-        pp_data = np.empty((0,2), float)
+    tightdim = max(xmax,ymax)
+    scalefactor = 400/tightdim
+    print("SCALING: ",tightdim,scalefactor,xmin,xmax,ymin,ymax)
+    pp_data = np.empty((0,2), float)
 
-        curves = []
-        area = 100#3*geom.Polygon(curve_utils.close_curve(curve)).area
-        curve = curve_utils.normalize_curve(curve, area)
-        #curve = curve_utils.subdivide_curve(curve_utils.subdivide_curve(curve, threshold=0), threshold=0)
+    curves = []
+    area = 50#3*geom.Polygon(curve_utils.close_curve(curve)).area
+    curve = curve_utils.normalize_curve(curve, area)
+    #curve = curve_utils.subdivide_curve(curve_utils.subdivide_curve(curve, threshold=0), threshold=0)
+    
+
+    stepcounter = []
+    # initialization function: plot the background of each frame
+    curves.append(curve)
+
+    def init():
+        line1.set_data([], [])
+        line2.set_data([], [])
+        pp_score.set_text('')
+        # step_num.set_text('')
+        return [line1, line2]
+
+    c_len = 0
+    prev_pp = 0.
+    counter = 0
+    def animate(i):
+        print("FRAME {}".format(i))
+        global curve
+        global pp_data
+        global c_len 
+        global prev_pp
+        global curves
+        global counter
+        global area
+        global stepcounter
+        print(prev_pp)
+        if len(curve) <= 4 or prev_pp > .999:
+        	return line1, line2, pp_score
+
+
         
 
-        stepcounter = []
-        # initialization function: plot the background of each frame
-        curves.append(curve)
+        while polsby_popper(np.append(curve, np.array([curve[0]]), axis=0)) - prev_pp < .005 and polsby_popper(np.append(curve, np.array([curve[0]]), axis=0)) < .998:
+            counter+=1
+            curve = gd.flow(curve,1)
+            if len(curve) < 200: curve = curve_utils.subdivide_curve(curve)
 
-        def init():
-            line1.set_data([], [])
-            line2.set_data([], [])
-            pp_score.set_text('')
-            # step_num.set_text('')
-            return [line1, line2]
-
-        c_len = 0
-        prev_pp = 0.
-        counter = 0
-        def animate(i):
-            print("FRAME {}".format(i))
-            global curve
-            global pp_data
-            global c_len 
-            global prev_pp
-            global curves
-            global counter
-            global area
-            global stepcounter
-            print(prev_pp)
-            if len(curve) <= 4 or prev_pp > .999:
-            	return line1, line2, pp_score
-            numsteps = math.floor(3*math.ceil(i/30)**4)
-
-            counter += numsteps
-            stepcounter.append(counter)
-            curve = gd.flow(curve,numsteps)
             curve = curve_utils.normalize_curve(curve, area)
-            curves.append(curve)
-            if len(curve) != c_len:
-            	c_len = len(curve)
-            	print("New length: {}".format(c_len))
-            if len(curve) < 150: curve = curve_utils.subdivide_curve(curve)
-            curve_x, curve_y = np.append(curve[:,0], curve[0,0]), np.append(curve[:,1], curve[0,1])
-            line1.set_data(curve_x, curve_y)
-            pp = max(prev_pp,polsby_popper(np.append(curve, np.array([curve[0]]), axis=0)))
-            if pp == prev_pp:  curve = curve_utils.subdivide_curve(curve)
-            prev_pp = pp
-            pp_data = np.append(pp_data, np.array([[i, pp]]), axis=0)
-            line2.set_data(pp_data[:,0], pp_data[:,1])
-            pp_score.set_text("Step #: {}\nPolsby-Popper score:\n {}".format(i, pp))
-            print(curve.shape)
-            # step_num.set_text("Step #:\n {}".format(i))
-            return line1, line2, pp_score
+
+        stepcounter.append(counter)
+        curves.append(curve)
+        if len(curve) != c_len:
+        	c_len = len(curve)
+        	print("New length: {}".format(c_len))
+        if len(curve) < 200: curve = curve_utils.subdivide_curve(curve)
+        curve_x, curve_y = np.append(curve[:,0], curve[0,0]), np.append(curve[:,1], curve[0,1])
+        line1.set_data(curve_x, curve_y)
+        pp = max(prev_pp,polsby_popper(np.append(curve, np.array([curve[0]]), axis=0)))
+        if pp == prev_pp:  curve = curve_utils.subdivide_curve(curve)
+        prev_pp = pp
+        pp_data = np.append(pp_data, np.array([[i, pp]]), axis=0)
+        line2.set_data(pp_data[:,0], pp_data[:,1])
+        pp_score.set_text("Step #: {}\nPolsby-Popper score:\n {}".format(i, pp))
+        print(curve.shape)
+        # step_num.set_text("Step #:\n {}".format(i))
+        return line1, line2, pp_score
 
 
 
 
 
-        def polsby_popper(closed_curve): 
-        	region = geom.Polygon(closed_curve)
-        	return (4 * np.pi * region.area) / (region.length ** 2)
+    def polsby_popper(closed_curve): 
+    	region = geom.Polygon(closed_curve)
+    	return (4 * np.pi * region.area) / (region.length ** 2)
 
-        #call the animator.  blit=True means only re-draw the parts that have changed.
-        #anim = animation.FuncAnimation(fig, animate, init_func=init,
-        #                              frames=67, interval=1, blit=True)
+    #call the animator.  blit=True means only re-draw the parts that have changed.
+    #anim = animation.FuncAnimation(fig, animate, init_func=init,
+    #                              frames=67, interval=1, blit=True)
 
-        #Writer = animation.writers['ffmpeg']
-        #ffmpeg = Writer(fps=5, metadata=dict(artist='Me'), bitrate=1800)
-        #anim.save('global_curves.mp4', writer=ffmpeg)
-        #with open("curve.html",'w') as outfile:
-        #    outfile.write(anim.to_html5_video())
-        #for i in range(2000):
-        #    animate(i)
-
-
-        amstp = 0
-        while prev_pp < .998:
-            animate(amstp)
-            amstp +=1
+    #Writer = animation.writers['ffmpeg']
+    #ffmpeg = Writer(fps=5, metadata=dict(artist='Me'), bitrate=1800)
+    #anim.save('global_curves.mp4', writer=ffmpeg)
+    #with open("curve.html",'w') as outfile:
+    #    outfile.write(anim.to_html5_video())
+    #for i in range(2000):
+    #    animate(i)
 
 
-
-        curves = [curve_utils.normalize_curve(c, scalefactor**2) for c in curves]
-        
+    amstp = 0
+    while polsby_popper(np.append(curve, np.array([curve[0]]), axis=0)) < .998:
+        animate(amstp)
+        amstp +=1
 
 
 
-        curve = curves[0]
-        xmin = np.min(curve[:,0])
-        xmax = np.max(curve[:,0])
-        ymin = np.min(curve[:,1])
-        ymax = np.max(curve[:,1])
-
-        tightdim = max(xmax,ymax)
-        scalefactor = 350/tightdim
-
-        curves = [scalefactor*c for c in curves]
-
-
-        curves = [c.tolist() for c in curves]
+    curves = [curve_utils.normalize_curve(c, scalefactor**2) for c in curves]
+    
 
 
 
+    curve = curves[0]
+    xmin = np.min(curve[:,0])
+    xmax = np.max(curve[:,0])
+    ymin = np.min(curve[:,1])
+    ymax = np.max(curve[:,1])
 
-        curves = [[x,y] for (x,y) in zip(curves,stepcounter)]
-        curves = [c+[s] for (c,s) in zip(curves, pp_data[:,1].tolist())]
+    tightdim = max(xmax,ymax)
+    scalefactor = 350/tightdim
 
-        print(len(curves[0]))
-
-        #print(len(curves))
-        with open("{}_curve.js".format(districtname),'w') as outfile:
-            json.dump(curves,outfile)
+    curves = [scalefactor*c for c in curves]
 
 
+    curves = [c.tolist() for c in curves]
 
-        with open("{}_curve.js".format(districtname), 'r') as original: data = original.read()
-        with open("{}_curve.js".format(districtname), 'w') as modified: modified.write("var curve_anim = " + data)
 
-        print(stepcounter)
+
+
+    curves = [[x,y] for (x,y) in zip(curves,stepcounter)]
+    curves = [c+[s] for (c,s) in zip(curves, pp_data[:,1].tolist())]
+
+    print(len(curves[0]))
+
+    #print(len(curves))
+    with open("flow_shapes/{}_curve.js".format(districtname),'w') as outfile:
+        json.dump(curves,outfile)
+
+
+
+    with open("flow_shapes/{}_curve.js".format(districtname), 'r') as original: data = original.read()
+    with open("flow_shapes/{}_curve.js".format(districtname), 'w') as modified: modified.write("var curve_anim = " + data)
+
+    print(stepcounter)
