@@ -16,7 +16,6 @@ function compdist(fn,ind){
 var script = document.createElement('script');
 
 script.onload = function () {
-    console.log(curve_anim.length)
     compcurves[ind-1] = curve_anim.slice();
     maxsteps[ind-1] = curve_anim.length-1
     compinit();
@@ -56,7 +55,6 @@ if (compcurves[2] != -2){
 
 
 function draw_init(k,ind){
-	console.log(plotlines[ind-1].points)
 	comppolys[ind-1].points.clear()
 	comppolyshows[ind-1].points.clear()
 	plotlines[ind-1].points.clear()
@@ -91,9 +89,8 @@ for (var i=0;i<compcurves[ind-1].length;i++){
 
 	var point = plotspace.createSVGPoint();
 
-	point.x = compcurves[ind-1][i][1]/100;
-	point.y = 700-(400*(1/Math.sqrt(compcurves[ind-1][i][2])));
-
+	point.x = compcurves[ind-1][i][1]/20;
+	point.y = 600-(100*(1/Math.sqrt(compcurves[ind-1][i][2])));
 	plotlines[ind-1].points.appendItem(point);
 
 
