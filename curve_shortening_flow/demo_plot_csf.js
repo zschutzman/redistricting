@@ -178,13 +178,13 @@ async function demoanimate_comps3(c){
 
 				 demodrawcomp(demovissteps[2],3)
 				demovissteps[2]++;
-				await sleep(150)
+				await sleep(50)
 			}
 
 			if (demodirections[2] ==-1){
 				 demodrawcomp(demovissteps[2],3)
 				demovissteps[2]--;
-				await sleep(150)
+				await sleep(50)
 
 			}
 
