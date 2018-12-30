@@ -65,11 +65,11 @@ onload="renderMathInElement(document.body, {delimiters: [
   </div> -->
   <header>
 
-        <img width="450" src="imgs/gerryconstruct.png?raw=true" alt="A 7-by-7 grid" >
+  	<img width="450" src="imgs/gerryconstruct.png?raw=true" alt="A 7-by-7 grid" >
 
-        <summary>
-          THIS PAGE IS UNDER CONSTRUCTION
-        </summary>
+  	<summary>
+  		THIS PAGE IS UNDER CONSTRUCTION
+  	</summary>
 
 
 
@@ -162,239 +162,240 @@ onload="renderMathInElement(document.body, {delimiters: [
   		<h3> Curve-Shortening Flow </h3>
 
   		<p>
-  		What is curve-shortening flow? For those who care about such things, we'll restrict our attention to simple, closed 
-  		curves in the plane.  Given such a curve, curve-shortening flow is a process which shrinks the region so that its 
-  		<em> area </em> decreases at a constant rate and its <em> length </em> (<em>perimeter</em>) decreases as quickly as possible.  
-  		This process will transform the boundary of any kind of region we might think of to a "round point" (the limit of a circle as 
-  		you take its radius to zero).  We can intuitively think of curve-shortening flow as slowly "ironing out" the boundary of our region,
-  		where it eliminates small wrinkles very quickly and takes a little bit longer to adjust large deformities.  Our small twist 
-  		is that we also rescale the region at every step so that the area remains fixed.  Therefore, this process will slowly transform any shape 
-  		into a circle of the same area.
-  	</p>
-  	<p>
-  		Here's a brief animation of this transformation applied to MD-03, played forwards (district to circle) and backwards (circle to district).
-</p>
+  			What is curve-shortening flow? For those who care about such things, we'll restrict our attention to simple, closed 
+  			curves in the plane.  Given such a curve, curve-shortening flow is a process which shrinks the region so that its 
+  			<em> area </em> decreases at a constant rate and its <em> length </em> (<em>perimeter</em>) decreases as quickly as possible.  
+  			This process will transform the boundary of any kind of region we might think of to a "round point" (the limit of a circle as 
+  			you take its radius to zero).  We can intuitively think of curve-shortening flow as slowly "ironing out" the boundary of our region,
+  			where it eliminates small wrinkles very quickly and takes a little bit longer to adjust large deformities.  Our small twist 
+  			is that we also rescale the region at every step so that the area remains fixed.  Therefore, this process will slowly transform any shape 
+  			into a circle of the same area.
+  		</p>
+  		<p>
+  			Here's a brief animation of this transformation applied to MD-03, played forwards (district to circle) and backwards (circle to district).
+  		</p>
 
 
-  	<div class="chart center" style="max-width:250px;max-height:250px;background:none;border:none">
+  		<div class="chart center" style="max-width:250px;max-height:250px;background:none;border:none">
+
+  			<div>
+  				<svg height="200" width="200" id='animbox'>
+  					<polygon id="animflow" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+  				</svg>
+
+  			</div>
+
+
+  		</div>
+
+
+
+  		<p>
+  			The procedure to perform curve-shortening flow is pretty straightforward. At each point on the boundary of our region, 
+  			we'll find the tangent line and move that point inward in the direction perpendicular to the tangent. How far to move it 
+  			will depend on the <em> curvature </em> of the boundary at the point.  The last missing piece is to articulate a defintion 
+  			of curvature.  Intuitively, curvature measures how "bendy" the boundary is at a particular point.  If our point lies in a very 
+  			squiggly portion of the boundary, then the curvature is large. If our point is in a portion that looks like a straight line, 
+  			then the curvature is small.  
+  		</p>
+
+  		<p>
+  			Formally, we measure curvature in the following way. First, we can look at the neighborhood of our point on the boundary 
+  			and imagine that it's a small segment on the circumference of a circle with some radius $r$, called the <em>osculating circle</em>.
+  			<p>
+  				In this small illustration, a step of curve-shortening flow will move the point with the small blue circle outward and the point with the large yellow circle inward, i the directions of the arrows.
+  				Since the blue circle is smaller than the yellow circle, the first point will be moved <em>further</em> than the second.
+  			</p>
+  			<svg width="500" height="500" style="display:block;margin:auto">
+  				<marker id="arrow10-8-right" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
+  				<marker id="arrow15-12-right" markerHeight="12" markerUnits="strokeWidth" markerWidth="15" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
+  				<marker id="arrow10-8-left" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="3" refY="0" viewBox="0 -5 20 20"><path d="M 15 -5 L 0 0 L 15 5 z" fill="black"></path></marker>
+  				<path d="M212,159c-27.888475542099997,13.992692090399999,-69.68871306930001,68.4430015008,-76,99s89.61905540859999,170.43824234020002,146,172s204.0812088449,-164.5476653,150,-193s-144.7883684341,86.7144426754,-166,49s94.67112781549997,-103.9538692097,70,-132s-96.4359509484,-9.240284403099992,-124,5Z" style="stroke: black; stroke-width: 2px;fill:#ddd;" id="e2_areaS3"></path>
+  				<circle id="e3_circle" cx="280" cy="277" style="fill:#2272e0;fill-opacity:.3;stroke:black;stroke-width:1px;" r="17.2429" transform=""></circle>
+  				<line id="e4_line" x1="266.539" y1="287.937" x2="302.539" y2="257.812" style="stroke:black;fill:none;stroke-width:1px;marker-end:url(#arrow10-8-right);" transform=""></line>
+  				<line id="e5_line" x1="258.164" y1="278.437" x2="274.914" y2="298.687" style="stroke:black;fill:none;stroke-width:1px;" transform=""></line>	
+  				<circle id="e6_circle" cx="282.414" cy="388.812" style="fill:khaki;stroke:black;stroke-width:1px;" r="40.9228" transform=""></circle>
+  				<line id="e7_line" x1="280.414" y1="336.562" x2="282.414" y2="429.562" style="stroke: black; fill: none; stroke-width: 1px;marker-start:url(#arrow10-8-left);" transform=""></line>
+  				<line id="e8_line" x1="315.719" y1="430.594" x2="246.719" y2="430.219" style="stroke:black;fill:none;stroke-width:1px;" transform=""></line>
+  			</svg>
+  			Then, the curvature at that point is $1/r$ if it's a point of <em>positive curvature</em> or $-1/r$ if it's a point of 
+  			<em>negative curvature</em>.  If we're truly looking at a point on a line segment, then we say that the curvature is zero.
+  		</p>
+  		<p>
+  			We can make two observations about the behavior of curve-shortening flow on a shape.  First, since points on really 
+  			curvy portions of the boundary are moved further, it should smooth out the boundary very quickly.  Second, since indentations 
+  			in the shape are pushed outward and appendages sticking out get pulled inward, the shape will get progressively "nicer" as we 
+  			run the process; it should never grow a new appendage or suddenly develop a jagged boundary. 
+  		</p>
+
+
+
+
+  	</section>
+
+
+
+  	<section>
+
+  		<h3> Algorithmics </h3>
+  		<p>
+  			The next concern is whether we can actually run curve-shortening flow on a real shape, or if 
+  			it just exists as a theoretical construct.  The procedure we described above applies to smooth 
+  			curves and technically requires we compute the curvature at every one of an infinite number of points, 
+  			which is no-good if we're concerned with developing something practical.  Furthermore, we conveniently 
+  			ignored how the procedure operates at points on the boundary which are not smooth, such as vertices of a 
+  			polygon.  Since the boundaries of districts are described as polygons in geographic shapefiles, 
+  			this behavior is more than simply a technicality.
+  		</p>
+  		<p>
+  			To solve this, we need both a sensible replacement for the tangent line at a point as well as a good 
+  			way to define curvature for things that aren't, well, <em>curved</em>.  The first is easy.  Recall from 
+  			differential calculus that the tangent line at a point is the limit of secant lines through pairs of points, 
+  			one on each side of our point, as these two points move closer to our point.  So, instead of using a tangent line, 
+  			we can use the line passing through two points very close to our point.  As we use more and more points to describe 
+  			the boundary of our shape, this secant becomes a better and better approximation of the true tangent line.
+  		</p>
+  		<p>
+  			For curvature, we're going to do something similar.  If we're close enough to our point, these secant lines are 
+  			chords of the osculating circle which meet the radius perpendicularly.  Since we can measure both the length of this 
+  			chord, which is the distance between our two nearby points, as well as the distance of our point from the chord, we can 
+  			recover the radius of the osculating circle.  Now, even if we can no longer define such a circle at the vertex of a polygon, 
+  			both of these distances are still well-defined, so there is some number we can assign to that point which is analogous 
+  			to curvature.
+  		</p>
+  		<p>
+  			All of this sounds a little complicated, but once we go through this construction, we can convince ourselves of the fact that 
+  			these substitutions mean that we move each vertex along the line which bisects its angle at a distance proportional to $\pi$ minus 
+  			the measure of that angle.
+  		</p>
+  	</section>
+
+  	<section>
+  		<h3> Turining Curve-Shortening Flow into a Compactness Measure </h3>
+  		<p>
+  			We've given an explanation of curve-shortening flow and described how one might be able to implement an 
+  			algorithm to compute it, we can move on to designing a <em> compactness score </em> which can be derived 
+  			from it.  First, since we're playing around with things that depend on distances, we're going to assume that 
+  			all of the regions we might want to examine have the same area.  In our version of curve-shortening flow, 
+  			we keep the area of the region fixed and the perimeter decreases monotonically until the region becomes 
+  			a circle, we might conjecture that regions which are more compact become circles more quickly than non-compact ones.  
+  			Let's fix our area to be $\frac{1}{4\pi}$, which seems an odd choice, except that it makes the circle we get at the 
+  			end of the process have circumference equal to one.
+  		</p>
+  		<p>
+  			Our measure will be the plot of "number of curve-shortening flow steps" against the "perimeter of the figure at each step". 
+  			We'll take a second to argue that this satisfies all four of our desiderata.  This page serves as explanation and in the 
+  			previous section, we described a method to compute the curve-shortening flow procedure, which covers the first two items.  
+  			The measure is stable since any small perturbation in a shape will be quickly smoothed out by the curve-shortening flow procedure, 
+  			meaning that we get almost identical plots for two very similar shapes.  The final criterion is that the measure be discriminative, 
+  			and we can at the very least argue semi-formally that it's <em>at least </em> as discriminative as the Polsby-Popper score, since this 
+  			plot lets us recover the Polsby-Popper score.  Since we've normalized the area of these shapes very particularly, the Polsby-Popper score 
+  			of a region is exactly $1/\mathrm{Perimeter}$ after we've run zero steps of curve-shortening flow.  We'll see below that we can glean 
+  			much more information that just the Polsby-Popper score from these plots, but since it's at least as good as a standard measure, 
+  			we can be satisfied that our plots are not meaningless.
+
+  		</p>
+  	</section>
+
+  	<section>
+  		<h3>Comparing Plots</h3>
+  		<p>
+  			To demonstrate this measure, we'll compare the plots of three districts.  Below are images of the three districts as well as animations showing 
+  			the progress of the curve-shortening flow procedure.  The plots on the right have the number of steps on the horizontal axis and the perimeter 
+  			of the figure at that step on the vertical axis.  From left to right, these are "worst offenders" MD-03 and TX-35, 
+  			as well as OK-01.  There are a few things to observe here.  First, the plot for OK-01 is below the other two at every point, and it requires 
+  			far fewer steps of curve-shortening flow to become something (almost) circular.  These demonstrate that, with respect to our measure, OK-01 is 
+  			much more compact than the other two districts. 
+
+  		</p>
+
+  	</section>
+
+  	<div class="chart two-columns center">
+
 
   		<div>
-  			<svg height="200" width="200" id='animbox'>
-  			<polygon id="animflow" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			<svg height="200" width="200" id='demoflowcomp1'>
+  				<polygon id="demodflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
 
+
+
+  			<svg height="200" width="200" id='demoflowcomp2'>
+  				<polygon id="demodflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
+
+
+
+  			<svg height="200" width="200" id='demoflowcomp3'>
+  				<polygon id="demodflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg> <br />
+
+
+  			<svg height="200" width="200" id='demoshowcomp1'>
+  				<polygon id="demodshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
+
+  			<svg height="200" width="200" id='demoshowcomp2'>
+  				<polygon id="demodshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
+
+  			<svg height="200" width="200" id='demoshowcomp3'>
+  				<polygon id="demodshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
   			</svg>
 
   		</div>
 
 
-  	</div>
-
-
-
-<p>
-The procedure to perform curve-shortening flow is pretty straightforward. At each point on the boundary of our region, 
-we'll find the tangent line and move that point inward in the direction perpendicular to the tangent. How far to move it 
-will depend on the <em> curvature </em> of the boundary at the point.  The last missing piece is to articulate a defintion 
-of curvature.  Intuitively, curvature measures how "bendy" the boundary is at a particular point.  If our point lies in a very 
-squiggly portion of the boundary, then the curvature is large. If our point is in a portion that looks like a straight line, 
-then the curvature is small.  
-</p>
-
-<p>
-Formally, we measure curvature in the following way. First, we can look at the neighborhood of our point on the boundary 
-and imagine that it's a small segment on the circumference of a circle with some radius $r$, called the <em>osculating circle</em>.
-<p>
-	In this small illustration, a step of curve-shortening flow will move the point with the small blue circle outward and the point with the large yellow circle inward, i the directions of the arrows.
-	Since the blue circle is smaller than the yellow circle, the first point will be moved <em>further</em> than the second.
-</p>
-<svg width="500" height="500" style="display:block;margin:auto">
-<marker id="arrow10-8-right" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
-<marker id="arrow15-12-right" markerHeight="12" markerUnits="strokeWidth" markerWidth="15" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
-<marker id="arrow10-8-left" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="3" refY="0" viewBox="0 -5 20 20"><path d="M 15 -5 L 0 0 L 15 5 z" fill="black"></path></marker>
-<path d="M212,159c-27.888475542099997,13.992692090399999,-69.68871306930001,68.4430015008,-76,99s89.61905540859999,170.43824234020002,146,172s204.0812088449,-164.5476653,150,-193s-144.7883684341,86.7144426754,-166,49s94.67112781549997,-103.9538692097,70,-132s-96.4359509484,-9.240284403099992,-124,5Z" style="stroke: black; stroke-width: 2px;fill:#ddd;" id="e2_areaS3"></path>
-<circle id="e3_circle" cx="280" cy="277" style="fill:#2272e0;fill-opacity:.3;stroke:black;stroke-width:1px;" r="17.2429" transform=""></circle>
-<line id="e4_line" x1="266.539" y1="287.937" x2="302.539" y2="257.812" style="stroke:black;fill:none;stroke-width:1px;marker-end:url(#arrow10-8-right);" transform=""></line>
-<line id="e5_line" x1="258.164" y1="278.437" x2="274.914" y2="298.687" style="stroke:black;fill:none;stroke-width:1px;" transform=""></line>	
-<circle id="e6_circle" cx="282.414" cy="388.812" style="fill:khaki;stroke:black;stroke-width:1px;" r="40.9228" transform=""></circle>
-<line id="e7_line" x1="280.414" y1="336.562" x2="282.414" y2="429.562" style="stroke: black; fill: none; stroke-width: 1px;marker-start:url(#arrow10-8-left);" transform=""></line>
-<line id="e8_line" x1="315.719" y1="430.594" x2="246.719" y2="430.219" style="stroke:black;fill:none;stroke-width:1px;" transform=""></line>
-</svg>
-Then, the curvature at that point is $1/r$ if it's a point of <em>positive curvature</em> or $-1/r$ if it's a point of 
-<em>negative curvature</em>.  If we're truly looking at a point on a line segment, then we say that the curvature is zero.
-</p>
-<p>
-	We can make two observations about the behavior of curve-shortening flow on a shape.  First, since points on really 
-	curvy portions of the boundary are moved further, it should smooth out the boundary very quickly.  Second, since indentations 
-	in the shape are pushed outward and appendages sticking out get pulled inward, the shape will get progressively "nicer" as we 
-	run the process; it should never grow a new appendage or suddenly develop a jagged boundary.
-
-
-
-</p>
-
-
-
-
- 	</section>
-
-
-
-<section>
-
-<h3> Algorithmics </h3>
-<p>
-	The next concern is whether we can actually run curve-shortening flow on a real shape, or if 
-	it just exists as a theoretical construct.  The procedure we described above applies to smooth 
-	curves and technically requires we compute the curvature at every one of an infinite number of points, 
-	which is no-good if we're concerned with developing something practical.  Furthermore, we conveniently 
-	ignored how the procedure operates at points on the boundary which are not smooth, such as vertices of a 
-	polygon.  Since the boundaries of districts are described as polygons in geographic shapefiles, 
-	this behavior is more than simply a technicality.
-</p>
-<p>
-	To solve this, we need both a sensible replacement for the tangent line at a point as well as a good 
-	way to define curvature for things that aren't, well, <em>curved</em>.  The first is easy.  Recall from 
-	differential calculus that the tangent line at a point is the limit of secant lines through pairs of points, 
-	one on each side of our point, as these two points move closer to our point.  So, instead of using a tangent line, 
-	we can use the line passing through two points very close to our point.  As we use more and more points to describe 
-	the boundary of our shape, this secant becomes a better and better approximation of the true tangent line.
-</p>
-<p>
-	For curvature, we're going to do something similar.  If we're close enough to our point, these secant lines are 
-	chords of the osculating circle which meet the radius perpendicularly.  Since we can measure both the length of this 
-	chord, which is the distance between our two nearby points, as well as the distance of our point from the chord, we can 
-	recover the radius of the osculating circle.  Now, even if we can no longer define such a circle at the vertex of a polygon, 
-	both of these distances are still well-defined, so there is some number we can assign to that point which is analogous 
-	to curvature in the smooth case.  It's also easy to see that this number will still be zero if we look at a straight line 
-	segment and it grows as the angle becomes more and more acute.
-	</p>
-</section>
-
-<section>
-	<h3> Turining Curve-Shortening Flow into a Compactness Measure </h3>
-	<p>
-		We've given an explanation of curve-shortening flow and described how one might be able to implement an 
-		algorithm to compute it, we can move on to designing a <em> compactness score </em> which can be derived 
-		from it.  First, since we're playing around with things that depend on distances, we're going to assume that 
-		all of the regions we might want to examine have the same area.  In our version of curve-shortening flow, 
-		we keep the area of the region fixed and the perimeter decreases monotonically until the region becomes 
-		a circle, we might conjecture that regions which are more compact become circles more quickly than non-compact ones.  
-		Let's fix our area to be $\frac{1}{4\pi}$, which seems an odd choice, except that it makes the circle we get at the 
-		end of the process have circumference equal to one.
-	</p>
-	<p>
-		Our measure will be the plot of "number of curve-shortening flow steps" against the "perimeter of the figure at each step". 
-		We'll take a second to argue that this satisfies all four of our desiderata.  This page serves as explanation and in the 
-		previous section, we described a method to compute the curve-shortening flow procedure, which covers the first two items.  
-		The measure is stable since any small perturbation in a shape will be quickly smoothed out by the curve-shortening flow procedure, 
-		meaning that we get almost identical plots for two very similar shapes.  The final criterion is that the measure be discriminative, 
-		and we can at the very least argue semi-formally that it's <em>at least </em> as discriminative as the Polsby-Popper score, since this 
-		plot lets us recover the Polsby-Popper score.  Since we've normalized the area of these shapes very particularly, the Polsby-Popper score 
-		of a region is exactly $1/\mathrm{Perimeter}$ after we've run zero steps of curve-shortening flow.  We'll see below that we can glean 
-		much more information that just the Polsby-Popper score from these plots, but since it's at least as good as a standard measure, 
-		we can be satisfied that our plots are not meaningless.
-
-	</p>
-</section>
-
-<section>
-	<h3>Comparing Plots</h3>
-	<p>
-	To demonstrate this measure, we'll compare the plots of three districts.  Below are images of the three districts as well as animations showing 
-	the progress of the curve-shortening flow procedure.  The plots on the right have the number of steps on the horizontal axis and the perimeter 
-	of the figure at that step on the vertical axis.  From left to right, these are "worst offenders" MD-03 and TX-35, 
-	as well as OK-01.  There are a few things to observe here.  First, the plot for OK-01 is below the other two at every point, and it requires 
-	far fewer steps of curve-shortening flow to become something (almost) circular.  These demonstrate that, with respect to our measure, OK-01 is 
-	much more compact than the other two districts. 
-
-</p>
-
-</section>
-
-	<div class="chart two-columns center">
-
 
   		<div>
-			<svg height="200" width="200" id='demoflowcomp1'>
-			<polygon id="demodflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
+  			<svg height="530" width = "500" id="demoplotspace">
+  				<polyline id="demoflowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
+  				<polyline id="demoflowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
+  				<polyline id="demoflowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
+
+  				<circle id="demotrack1" cx="0" cy="0" r="5" stroke="black" stroke-width="3" />
+  				<circle id="demotrack2" cx="0" cy="0" r="5" stroke="black" stroke-width="3"/>
+  				<circle id="demotrack3" cx="0" cy="0" r="5" stroke="black" stroke-width="3"/>
+
+
+  				<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+  				<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  				<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  				<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> 
+  				<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" />
+  				<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  				<text x="0" y="499" fill="black">perimeter = 1</text>
+  				<text x="0" y="399" fill="black">perimeter = 2</text>
+  				<text x="0" y="299" fill="black">perimeter = 3</text>
+  				<text x="0" y="199" fill="black">perimeter = 4</text>
+  				<text x="0" y="99" fill="black">perimeter = 5</text>
+
+  				<text x="75" y="515" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
+  			</svg>
+  		</div>
 
 
 
-				<svg height="200" width="200" id='demoflowcomp2'>
-			<polygon id="demodflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
+  	</div>
+  	<section>
+  		<p>
+  			Second, we can look at the <em>shapes</em> of the three plots.  We observed that OK-01's plot drops very quickly 
+  			as it takes relatively few curve-shortening flow steps to transform it into a circle.  It's original form 
+  			can be described as two joined rectangles with some irregularities at the boundary.  MD-03's plot falls 
+  			at a slower rate, which reflects the fact that the bizarreness of its geometry is not limited to its boundary, 
+  			as once the curve-shortening flow smooths it out, what we're left with is something that looks like a snakey 'Y'. 
+  			TX-35's plot falls quickly at the beginning but then slows down, being outpaced by MD-03.  This is because the 
+  			boundary smoothing reduces a lot of the district's perimeter, but the long, thin strip which stretches to the southwest 
+  			requires many steps to pull inward.
+  		</p>
 
 
-
-				<svg height="200" width="200" id='demoflowcomp3'>
-			<polygon id="demodflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg> <br />
-
-
-			<svg height="200" width="200" id='demoshowcomp1'>
-			<polygon id="demodshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
-
-			<svg height="200" width="200" id='demoshowcomp2'>
-			<polygon id="demodshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
-
-			<svg height="200" width="200" id='demoshowcomp3'>
-			<polygon id="demodshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
-
-		</div>
-
-
-
-		<div>
-			<svg height="530" width = "500" id="demoplotspace">
-			<polyline id="demoflowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
-			<polyline id="demoflowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
-			<polyline id="demoflowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
-
-			<circle id="demotrack1" cx="0" cy="0" r="5" stroke="black" stroke-width="3" />
-			<circle id="demotrack2" cx="0" cy="0" r="5" stroke="black" stroke-width="3"/>
-			<circle id="demotrack3" cx="0" cy="0" r="5" stroke="black" stroke-width="3"/>
-
-
-			<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-			<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-			<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-			<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> 
-			<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" />
-			<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-			<text x="0" y="499" fill="black">perimeter = 1</text>
-			<text x="0" y="399" fill="black">perimeter = 2</text>
-			<text x="0" y="299" fill="black">perimeter = 3</text>
-			<text x="0" y="199" fill="black">perimeter = 4</text>
-			<text x="0" y="99" fill="black">perimeter = 5</text>
-
-			<text x="75" y="515" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
-			</svg>
-		</div>
-
-
-
-	</div>
-<section>
-<p>
-	Second, we can look at the <em>shapes</em> of the three plots.  We observed that OK-01's plot drops very quickly 
-	as it takes relatively few curve-shortening flow steps to transform it into a circle.  It's original form 
-	can be described as two joined rectangles with some irregularities at the boundary.  MD-03's plot falls 
-	at a slower rate, which reflects the fact that the bizarreness of its geometry is not limited to its boundary, 
-	as once the curve-shortening flow smooths it out, what we're left with is something that looks like a snakey 'Y'. 
-	TX-35's plot falls quickly at the beginning but then slows down, being outpaced by MD-03.  This is because the 
-	boundary smoothing reduces a lot of the district's perimeter, but the long, thin strip which stretches to the southwest 
-	requires many steps to pull inward.
-</p>
-
-
-</section>
+  	</section>
 
 
 
@@ -412,75 +413,75 @@ Then, the curvature at that point is $1/r$ if it's a point of <em>positive curva
 
 
 
-	<div class="chart three-columns center">
+  	<div class="chart three-columns center">
 
-		<div>
-			<button onclick="compdist('12-3701',1);"> NC-01 </button> <br />
+  		<div>
+  			<button onclick="compdist('12-3701',1);"> NC-01 </button> <br />
   			<button onclick="compdist('12-3712',2);"> NC-02 </button>  <br />
   			<button onclick="compdist('2403',3);"> NC-03 </button> <br />
   		</div>
   		<div>
-			<svg height="200" width="200" id='flowcomp1'>
-			<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
+  			<svg height="200" width="200" id='flowcomp1'>
+  				<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
 
 
 
-				<svg height="200" width="200" id='flowcomp2'>
-			<polygon id="dflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
+  			<svg height="200" width="200" id='flowcomp2'>
+  				<polygon id="dflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
 
 
 
-				<svg height="200" width="200" id='flowcomp3'>
-			<polygon id="dflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg> <br />
+  			<svg height="200" width="200" id='flowcomp3'>
+  				<polygon id="dflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg> <br />
 
 
-			<svg height="200" width="200" id='showcomp1'>
-			<polygon id="dshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
+  			<svg height="200" width="200" id='showcomp1'>
+  				<polygon id="dshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
 
-			<svg height="200" width="200" id='showcomp2'>
-			<polygon id="dshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
+  			<svg height="200" width="200" id='showcomp2'>
+  				<polygon id="dshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
 
-			<svg height="200" width="200" id='showcomp3'>
-			<polygon id="dshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-			</svg>
+  			<svg height="200" width="200" id='showcomp3'>
+  				<polygon id="dshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
 
-		</div>
-
-
-
-		<div>
-			<svg height="530" width = "500" id="plotspace">
-			<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
-			<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
-			<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
-
-			<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-			<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-			<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-			<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> 
-			<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-			<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-			<text x="0" y="499" fill="black">perimeter = 1</text>
-			<text x="0" y="399" fill="black">perimeter = 2</text>
-			<text x="0" y="299" fill="black">perimeter = 3</text>
-			<text x="0" y="199" fill="black">perimeter = 4</text>
-			<text x="0" y="99" fill="black">perimeter = 5</text>
-
-			<text x="75" y="515" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
-			</svg>
-		</div>
+  		</div>
 
 
 
-	</div>
+  		<div>
+  			<svg height="530" width = "500" id="plotspace">
+  				<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
+  				<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
+  				<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
+
+  				<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+  				<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  				<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  				<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> 
+  				<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+  				<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  				<text x="0" y="499" fill="black">perimeter = 1</text>
+  				<text x="0" y="399" fill="black">perimeter = 2</text>
+  				<text x="0" y="299" fill="black">perimeter = 3</text>
+  				<text x="0" y="199" fill="black">perimeter = 4</text>
+  				<text x="0" y="99" fill="black">perimeter = 5</text>
+
+  				<text x="75" y="515" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
+  			</svg>
+  		</div>
+
+
+
+  	</div>
 
   	<div class="chart center">
   		<div>

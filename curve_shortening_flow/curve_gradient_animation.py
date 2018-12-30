@@ -35,7 +35,7 @@ plt.plot([], [])
 cds = gpd.read_file(os.path.join('shapefiles','uscd','cd_us.shp')).to_crs({'init': 'epsg:3395'})
 for countdists in range(len(cds)):
     
-    if cds.loc[countdists]['STATEFP'] in ["dontskip"]: continue #['23', '42', '36', '24', 
+    if cds.loc[countdists]['STATEFP'] ==0: continue #['23', '42', '36', '24', 
     elif type(curve_utils.curve_from_dataframe(cds, countdists, tolerance = 1000)) == shapely.geometry.multipolygon.MultiPolygon: 
         print(cds.loc[countdists]['GEOID'])
     #     continue
@@ -56,7 +56,7 @@ for countdists in range(len(cds)):
         print(coords)
 
     else:
-        
+        districtname = cds.loc[countdists]['GEOID']
         tolct = 0
         curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = 0)
 
