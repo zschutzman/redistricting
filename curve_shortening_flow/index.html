@@ -250,21 +250,17 @@ onload="renderMathInElement(document.body, {delimiters: [
   		</p>
   		<p>
   			To solve this, we need both a sensible replacement for the tangent line at a point as well as a good 
-  			way to define curvature for things that aren't, well, <em>curved</em>.  The first is easy.  Recall from 
+  			way to define curvature for things that aren't, well, <em>curved</em>.  Recall from 
   			differential calculus that the tangent line at a point is the limit of secant lines through pairs of points, 
   			one on each side of our point, as these two points move closer to our point.  So, instead of using a tangent line, 
-  			we can use the line passing through two points very close to our point.  As we use more and more points to describe 
-  			the boundary of our shape, this secant becomes a better and better approximation of the true tangent line.
+  			we can use the line passing through two points very close to our point.
   		</p>
   		<p>
   			For curvature, we're going to do something similar.  If we're close enough to our point, these secant lines are 
   			chords of the osculating circle which meet the radius perpendicularly.  Since we can measure both the length of this 
   			chord, which is the distance between our two nearby points, as well as the distance of our point from the chord, we can 
-  			recover the radius of the osculating circle.  Now, even if we can no longer define such a circle at the vertex of a polygon, 
-  			both of these distances are still well-defined, so there is some number we can assign to that point which is analogous 
-  			to curvature.
-  		</p>
-  		<p>
+  			recover the radius of the osculating circle. It turns out (somewhat sensibly) that the radius of this circle is larger the 
+  			wider the angle formed by our three points.
   			All of this sounds a little complicated, but once we go through this construction, we can convince ourselves of the fact that 
   			these substitutions mean that we move each vertex along the line which bisects its angle at a distance proportional to $\pi$ minus 
   			the measure of that angle.
