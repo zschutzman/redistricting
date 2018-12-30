@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--     <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-128973402-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-128973402-1");
+  </script> -->
+  <title>
+  	District-Shortening Flow <!-- | Metric Geometry and Gerrymandering Group -->
+  </title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--     <meta
+      name="description"
+      content="A nonpartisan research organization studying applications of geometry and computing to U.S. redistricting."
+      /> -->
+<!--     <link rel="canonical" href="https://www.mggg.org/metagraph/" />
+-->    <link
+href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Lora:400,400i,700|Source+Sans+Pro:300,400"
+rel="stylesheet"
+/>
+<link rel="stylesheet" href="style.css" />
+<link
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv"
+crossorigin="anonymous"
+/>
+<script
+defer
+src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+crossorigin="anonymous"
+></script>
+<script
+defer
+src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF"
+crossorigin="anonymous"
+onload="renderMathInElement(document.body, {delimiters: [
+	{left: '$', right: '$', display: false}
+	]});"
+	></script>
+</head>
+
+<body>
+<!--     <div class="banner">
+      <a href="/">
+        <img
+          class="logo"
+          src="favicon"
+          alt="Metric Geometry and Gerrymandering Group"
+        />
+      </a>
+  </div> -->
+  <header>
+
+  	<img width="450" src="imgs/gerryconstruct.png?raw=true" alt="A 7-by-7 grid" >
+
+  	<summary>
+  		THIS PAGE IS UNDER CONSTRUCTION
+  	</summary>
+
+
+
+
+  	<h1>District-Shortening Flow</h1>
+  	<p class="subtitle">
+  		using differential geometry to analyze compactness
+  	</p>
+  	<!--       <img width="200" src="imgs/blankgrid.png?raw=true" alt="A 4-by-4 grid" /> -->
+  	<summary>
+  		This project uses interactive widgets and visualizations to explore the 
+  		use of <em> curve-shortening flow </em> to analyze the geometric shape of 
+  		electoral districts.
+  	</summary>
+  </header>
+
+  <main>
+
+
+  	<div class="chart three-columns center">
+
+  		<div>
+  			<h3> Select First District to Compare </h3>
+  			<select id="state_ddm1" onchange="populate_dist_dd(1)">
+  				<option value="0">Select a State</option>
+  				<option value="01">Alabama</option>
+  				<option value="02">Alaska</option>
+  				<option value="04">Arizona</option>
+  				<option value="05">Arkansas</option>
+  				<option value="06">California</option>
+  				<option value="08">Colorado</option>
+  				<option value="09">Connecticut</option>
+  				<option value="10">Delaware</option>
+  				<!-- <option value="11">District of Columbia</option> -->
+  				<option value="12">Florida</option>
+  				<option value="13">Georgia</option>
+  				<option value="15">Hawaii</option>
+  				<option value="16">Idaho</option>
+  				<option value="17">Illinois</option>
+  				<option value="18">Indiana</option>
+  				<option value="19">Iowa</option>
+  				<option value="20">Kansas</option>
+  				<option value="21">Kentucky</option>
+  				<option value="22">Louisiana</option>
+  				<option value="23">Maine</option>
+  				<option value="24">Maryland</option>
+  				<option value="25">Massachusetts</option>
+  				<option value="26">Michigan</option>
+  				<option value="27">Minnesota</option>
+  				<option value="28">Mississippi</option>
+  				<option value="29">Missouri</option>
+  				<option value="30">Montana</option>
+  				<option value="31">Nebraska</option>
+  				<option value="32">Nevada</option>
+  				<option value="33">New Hampshire</option>
+  				<option value="34">New Jersey</option>
+  				<option value="35">New Mexico</option>
+  				<option value="36">New York</option>
+  				<option value="37">North Carolina</option>
+  				<option value="38">North Dakota</option>
+  				<option value="39">Ohio</option>
+  				<option value="40">Oklahoma</option>
+  				<option value="41">Oregon</option>
+  				<option value="42">Pennsylvania</option>
+  				<!-- <option value="72">Puerto Rico</option> -->
+  				<option value="44">Rhode Island</option>
+  				<option value="45">South Carolina</option>
+  				<option value="46">South Dakota</option>
+  				<option value="47">Tennessee</option>
+  				<option value="48">Texas</option>
+  				<option value="49">Utah</option>
+  				<option value="50">Vermont</option>
+  				<option value="51">Virginia</option>
+  				<option value="53">Washington</option>
+  				<option value="54">West Virginia</option>
+  				<option value="55">Wisconsin</option>
+  				<option value="56">Wyoming</option>
+  			</select>
+  				<br />
+
+  				<select id="dist_dd1" onchange="set_dist(1)">
+  					
+  				</select>
+  				<br />
+  			<h3> Select Second District to Compare </h3>
+
+  				<select id="state_ddm2" onchange="populate_dist_dd(2)">
+  					<option value="0">Select a State</option>
+  					<option value="01">Alabama</option>
+  					<option value="02">Alaska</option>
+  					<option value="04">Arizona</option>
+  					<option value="05">Arkansas</option>
+  					<option value="06">California</option>
+  					<option value="08">Colorado</option>
+  					<option value="09">Connecticut</option>
+  					<option value="10">Delaware</option>
+  					<!-- <option value="11">District of Columbia</option> -->
+  					<option value="12">Florida</option>
+  					<option value="13">Georgia</option>
+  					<option value="15">Hawaii</option>
+  					<option value="16">Idaho</option>
+  					<option value="17">Illinois</option>
+  					<option value="18">Indiana</option>
+  					<option value="19">Iowa</option>
+  					<option value="20">Kansas</option>
+  					<option value="21">Kentucky</option>
+  					<option value="22">Louisiana</option>
+  					<option value="23">Maine</option>
+  					<option value="24">Maryland</option>
+  					<option value="25">Massachusetts</option>
+  					<option value="26">Michigan</option>
+  					<option value="27">Minnesota</option>
+  					<option value="28">Mississippi</option>
+  					<option value="29">Missouri</option>
+  					<option value="30">Montana</option>
+  					<option value="31">Nebraska</option>
+  					<option value="32">Nevada</option>
+  					<option value="33">New Hampshire</option>
+  					<option value="34">New Jersey</option>
+  					<option value="35">New Mexico</option>
+  					<option value="36">New York</option>
+  					<option value="37">North Carolina</option>
+  					<option value="38">North Dakota</option>
+  					<option value="39">Ohio</option>
+  					<option value="40">Oklahoma</option>
+  					<option value="41">Oregon</option>
+  					<option value="42">Pennsylvania</option>
+  					<!-- <option value="72">Puerto Rico</option> -->
+  					<option value="44">Rhode Island</option>
+  					<option value="45">South Carolina</option>
+  					<option value="46">South Dakota</option>
+  					<option value="47">Tennessee</option>
+  					<option value="48">Texas</option>
+  					<option value="49">Utah</option>
+  					<option value="50">Vermont</option>
+  					<option value="51">Virginia</option>
+  					<option value="53">Washington</option>
+  					<option value="54">West Virginia</option>
+  					<option value="55">Wisconsin</option>
+  					<option value="56">Wyoming</option>
+  				</select>
+
+  					<br />
+
+  					<select id="dist_dd2" onchange="set_dist(2)"></select>
+
+  					<br />
+  			<h3> Select Third District to Compare </h3>
+
+  					<select id="state_ddm3" onchange="populate_dist_dd(3)">
+  						<option value="0">Select a State</option>
+  						<option value="01">Alabama</option>
+  						<option value="02">Alaska</option>
+  						<option value="04">Arizona</option>
+  						<option value="05">Arkansas</option>
+  						<option value="06">California</option>
+  						<option value="08">Colorado</option>
+  						<option value="09">Connecticut</option>
+  						<option value="10">Delaware</option>
+  						<!-- <option value="11">District of Columbia</option> -->
+  						<option value="12">Florida</option>
+  						<option value="13">Georgia</option>
+  						<option value="15">Hawaii</option>
+  						<option value="16">Idaho</option>
+  						<option value="17">Illinois</option>
+  						<option value="18">Indiana</option>
+  						<option value="19">Iowa</option>
+  						<option value="20">Kansas</option>
+  						<option value="21">Kentucky</option>
+  						<option value="22">Louisiana</option>
+  						<option value="23">Maine</option>
+  						<option value="24">Maryland</option>
+  						<option value="25">Massachusetts</option>
+  						<option value="26">Michigan</option>
+  						<option value="27">Minnesota</option>
+  						<option value="28">Mississippi</option>
+  						<option value="29">Missouri</option>
+  						<option value="30">Montana</option>
+  						<option value="31">Nebraska</option>
+  						<option value="32">Nevada</option>
+  						<option value="33">New Hampshire</option>
+  						<option value="34">New Jersey</option>
+  						<option value="35">New Mexico</option>
+  						<option value="36">New York</option>
+  						<option value="37">North Carolina</option>
+  						<option value="38">North Dakota</option>
+  						<option value="39">Ohio</option>
+  						<option value="40">Oklahoma</option>
+  						<option value="41">Oregon</option>
+  						<option value="42">Pennsylvania</option>
+  						<!-- <option value="72">Puerto Rico</option> -->
+  						<option value="44">Rhode Island</option>
+  						<option value="45">South Carolina</option>
+  						<option value="46">South Dakota</option>
+  						<option value="47">Tennessee</option>
+  						<option value="48">Texas</option>
+  						<option value="49">Utah</option>
+  						<option value="50">Vermont</option>
+  						<option value="51">Virginia</option>
+  						<option value="53">Washington</option>
+  						<option value="54">West Virginia</option>
+  						<option value="55">Wisconsin</option>
+  						<option value="56">Wyoming</option></select>
+  						<br />
+
+
+  						<select id="dist_dd3" onchange="set_dist(3)"></select>
+  						<br />
+
+
+  					</div>
+  					<div style="margin:15px">
+  						<svg height="200" width="200" id='flowcomp1'>
+  							<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  						</svg>
+
+
+
+  						<svg height="200" width="200" id='flowcomp2'>
+  							<polygon id="dflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  						</svg>
+
+
+
+  						<svg height="200" width="200" id='flowcomp3'>
+  							<polygon id="dflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  						</svg> <br />
+
+
+  						<svg height="200" width="200" id='showcomp1'>
+  							<polygon id="dshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  						</svg>
+
+  						<svg height="200" width="200" id='showcomp2'>
+  							<polygon id="dshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  						</svg>
+
+  						<svg height="200" width="200" id='showcomp3'>
+  							<polygon id="dshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  						</svg> <br />
+  						<button onclick="decrement(1)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider1">
+  						<button onclick="increment(1)"> NEXT </button> 
+  						<button onclick="decrement(2)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider2">
+  						<button onclick="increment(2)"> NEXT </button> 
+  						<button onclick="decrement(3)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider3">
+  						<button onclick="increment(3)"> NEXT </button> 
+
+  					</div>
+
+
+
+  					<div>
+  						<svg height="530" width = "500" id="plotspace">
+  							<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
+  							<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
+  							<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
+
+  							<circle id="track1" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3" />
+  							<circle id="track2" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3"/>
+  							<circle id="track3" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3"/>
+
+
+  							<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+  							<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  							<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  							<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> 
+  							<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" />
+  							<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  							<text x="0" y="499" fill="black">perimeter = 1</text>
+  							<text x="0" y="399" fill="black">perimeter = 2</text>
+  							<text x="0" y="299" fill="black">perimeter = 3</text>
+  							<text x="0" y="199" fill="black">perimeter = 4</text>
+  							<text x="0" y="99" fill="black">perimeter = 5</text>
+  						</svg>
+  					</div>
+
+
+
+  				</div>
+<!-- 
+  	<div class="chart center">
+  		<div>
+  			<button onclick="decrement()"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider">
+  			<button onclick="increment()"> NEXT </button> 
+  			<button onclick="bwd()"> PLAY BACK </button> <button onclick="fwd()"> PLAY FWD </button>  <div id = "flowcount"></div></p>
+  			<svg height="400" width="400" id='flowbox'>
+  				<polygon id="distflow" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg>
+  		</div>
+  		<div>
+  			<button onclick="loadfile('12-3701');"> NC-01 </button> 
+  			<button onclick="loadfile('12-3702');"> NC-02 </button> 
+  			<button onclick="loadfile('12-3703');"> NC-03 </button> 
+  			<button onclick="loadfile('12-3704');"> NC-04 </button> <br /> <br />
+  			<button onclick="loadfile('12-3705');"> NC-05 </button> 
+  			<button onclick="loadfile('12-3706');"> NC-06 </button> 
+  			<button onclick="loadfile('12-3707');"> NC-07 </button> 
+  			<button onclick="loadfile('12-3708');"> NC-08 </button> 
+  			<button onclick="loadfile('12-3709');"> NC-09 </button> <br /> <br />
+  			<button onclick="loadfile('12-3710');"> NC-10 </button> 
+  			<button onclick="loadfile('12-3711');"> NC-11 </button> 
+  			<button onclick="loadfile('12-3712');"> NC-12 </button> 
+  			<button onclick="loadfile('12-3713');"> NC-13 </button> <br /> <br />
+  		</div>
+  	</div>
+
+
+  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+<footer>
+	<p>
+		This page was created by
+		<a href="http://zachschutzman.com/"><b>Zachary Schutzman</b></a> based
+		on work at the
+        <a href="http://gerrydata.org">Voting Rights Data Institute</a><!--,  and is
+        being edited and maintained by MGGG -->. The code to generate the figures is 
+        based on Patrick Girardet's implementation of Curve-Shortening Flow and the 
+        project includes joint work with Michelle Feng, Patrick, Natalia Hajlasz, 
+        Sloan Nietert, and Justin Solomon.
+    </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script id = "districtfn" src="flow_shapes/0200_curve.js"></script>
+<script id = "loadfn" src=""></script>
+<!-- <script src="md03.js"></script>
+<script src="tx35.js"></script>
+<script src="ok01.js"></script> -->
+<script src="curve_files_list.js"></script>
+
+<script src="csf_utils.js"></script>
+<!-- <script src="demo_plot_csf.js"></script>>
+<script src="csf.js"></script>
+<script src="animate.js"></script> -->
+<script src="plot_csf.js"></script>
+<script src="dropdowns.js"></script>
+
+</body>
+</html>
