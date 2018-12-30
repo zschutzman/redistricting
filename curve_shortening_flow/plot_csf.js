@@ -37,7 +37,8 @@ function compdist(fn,ind){
 		compcurves[ind-1] = curve_anim.slice();
 		maxsteps[ind-1] = curve_anim.length-1
 
-		document.getElementById('track'+ind + "t").innerHTML = fips_dict[fn.slice(0,2)].toUpperCase() + "-" + (fn.slice(2,4) == "00" ? "AL":fn.slice(2,4));
+		document.getElementById('track'+ind + "t").innerHTML = fips_dict[fn.slice(0,2)].toUpperCase() + "-" + ordinal(parseInt(fn.slice(2,4)));//(fn.slice(2,4) == "00" ? "AL":fn.slice(2,4));
+		document.getElementById('distlabel'+ind).innerHTML = fips_dict[fn.slice(0,2)].toUpperCase() + "-" + ordinal(parseInt(fn.slice(2,4)));
 		document.getElementById("slider"+ind).setAttribute("max",curve_anim.length-1);
 
 		document.getElementById("slider"+ind).value = 0;

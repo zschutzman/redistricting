@@ -311,7 +311,21 @@ onload="renderMathInElement(document.body, {delimiters: [
   	<div class="chart two-columns center">
 
 
-  		<div>
+  		<div style="margin:15px">
+
+  						<svg width="200" height="50">
+  							<text y="50" x="100" text-anchor="middle" font-size="24" >MD-3rd</text>
+  						</svg>
+
+  						<svg width="200" height="50">
+  							<text y="50" x="100" text-anchor="middle" font-size="24">TX-35th</text>
+  						</svg>
+  						<svg width="200" height="50">
+  							<text y="50" x="100" text-anchor="middle" font-size="24">OK-1st</text>
+  						</svg> <br />  
+
+
+
   			<svg height="200" width="200" id='demoflowcomp1'>
   				<polygon id="demodflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
   			</svg>
@@ -347,17 +361,23 @@ onload="renderMathInElement(document.body, {delimiters: [
 
   		<div>
   			<svg height="530" width = "500" id="demoplotspace">
+
+
+
+
+
+
   				<polyline id="demoflowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
   				<polyline id="demoflowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
   				<polyline id="demoflowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
 
   				<circle id="demotrack1" cx="0" cy="0" r="5" stroke="#9911ee" stroke-width="3" fill="#9911ee" stroke-opacity=".4" fill-opacity=".4"/>
-  				<text id = "demotrack1t" x = "0" y="0" font-size="24">MD-3</text>
+  				<text id = "demotrack1t" x = "0" y="0" font-size="24">MD-3rd</text>
   				<circle id="demotrack2" cx="0" cy="0" r="5" stroke="#99ee11" stroke-width="3" fill="#99ee11" stroke-opacity=".4" fill-opacity=".4"/>
-  				  				<text id = "demotrack2t" x = "0" y="0" font-size="24">TX-35</text>
+  				  				<text id = "demotrack2t" x = "0" y="0" font-size="24">TX-35th</text>
 
   				<circle id="demotrack3" cx="0" cy="0" r="5" stroke="#ee1199" stroke-width="3" fill="#ee1199" stroke-opacity=".4" fill-opacity=".4"/>
-  				  				<text id = "demotrack3t" x = "0" y="0" font-size="24">OK-1</text>
+  				  				<text id = "demotrack3t" x = "0" y="0" font-size="24">OK-1st</text>
 
 
 
@@ -370,11 +390,11 @@ onload="renderMathInElement(document.body, {delimiters: [
   				<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" />
   				<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
 
-  				<text x="0" y="499" fill="black">perimeter = 1</text>
-  				<text x="0" y="399" fill="black">perimeter = 2</text>
-  				<text x="0" y="299" fill="black">perimeter = 3</text>
-  				<text x="0" y="199" fill="black">perimeter = 4</text>
-  				<text x="0" y="99" fill="black">perimeter = 5</text>
+  				<text x="0" y="499" fill="black">1</text>
+  				<text x="0" y="399" fill="black">2</text>
+  				<text x="0" y="299" fill="black">3</text>
+  				<text x="0" y="199" fill="black">4</text>
+  				<text x="0" y="99"  fill="black">5</text>
 
   				<text x="75" y="515" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
   			</svg>
@@ -407,312 +427,10 @@ onload="renderMathInElement(document.body, {delimiters: [
 
 
 
-
-
-
-<!-- 
-
-
-
   	<div class="chart three-columns center">
 
   		<div>
-  			<h3> Select First District to Compare </h3>
-  			<select id="state_ddm1" onchange="populate_dist_dd(1)">
-  				<option value="0">Select a State</option>
-  				<option value="01">Alabama</option>
-  				<option value="02">Alaska</option>
-  				<option value="04">Arizona</option>
-  				<option value="05">Arkansas</option>
-  				<option value="06">California</option>
-  				<option value="08">Colorado</option>
-  				<option value="09">Connecticut</option>
-  				<option value="10">Delaware</option>
-  				<option value="12">Florida</option>
-  				<option value="13">Georgia</option>
-  				<option value="15">Hawaii</option>
-  				<option value="16">Idaho</option>
-  				<option value="17">Illinois</option>
-  				<option value="18">Indiana</option>
-  				<option value="19">Iowa</option>
-  				<option value="20">Kansas</option>
-  				<option value="21">Kentucky</option>
-  				<option value="22">Louisiana</option>
-  				<option value="23">Maine</option>
-  				<option value="24">Maryland</option>
-  				<option value="25">Massachusetts</option>
-  				<option value="26">Michigan</option>
-  				<option value="27">Minnesota</option>
-  				<option value="28">Mississippi</option>
-  				<option value="29">Missouri</option>
-  				<option value="30">Montana</option>
-  				<option value="31">Nebraska</option>
-  				<option value="32">Nevada</option>
-  				<option value="33">New Hampshire</option>
-  				<option value="34">New Jersey</option>
-  				<option value="35">New Mexico</option>
-  				<option value="36">New York</option>
-  				<option value="37">North Carolina</option>
-  				<option value="38">North Dakota</option>
-  				<option value="39">Ohio</option>
-  				<option value="40">Oklahoma</option>
-  				<option value="41">Oregon</option>
-  				<option value="42">Pennsylvania</option>
-  				<option value="44">Rhode Island</option>
-  				<option value="45">South Carolina</option>
-  				<option value="46">South Dakota</option>
-  				<option value="47">Tennessee</option>
-  				<option value="48">Texas</option>
-  				<option value="49">Utah</option>
-  				<option value="50">Vermont</option>
-  				<option value="51">Virginia</option>
-  				<option value="53">Washington</option>
-  				<option value="54">West Virginia</option>
-  				<option value="55">Wisconsin</option>
-  				<option value="56">Wyoming</option>
-  			</select>
-  				<br />
-
-  				<select id="dist_dd1" onchange="set_dist(1)">
-  					
-  				</select>
-  				<br />
-  			<h3> Select Second District to Compare </h3>
-
-  				<select id="state_ddm2" onchange="populate_dist_dd(2)">
-  					<option value="0">Select a State</option>
-  					<option value="01">Alabama</option>
-  					<option value="02">Alaska</option>
-  					<option value="04">Arizona</option>
-  					<option value="05">Arkansas</option>
-  					<option value="06">California</option>
-  					<option value="08">Colorado</option>
-  					<option value="09">Connecticut</option>
-  					<option value="10">Delaware</option>
-  					<option value="12">Florida</option>
-  					<option value="13">Georgia</option>
-  					<option value="15">Hawaii</option>
-  					<option value="16">Idaho</option>
-  					<option value="17">Illinois</option>
-  					<option value="18">Indiana</option>
-  					<option value="19">Iowa</option>
-  					<option value="20">Kansas</option>
-  					<option value="21">Kentucky</option>
-  					<option value="22">Louisiana</option>
-  					<option value="23">Maine</option>
-  					<option value="24">Maryland</option>
-  					<option value="25">Massachusetts</option>
-  					<option value="26">Michigan</option>
-  					<option value="27">Minnesota</option>
-  					<option value="28">Mississippi</option>
-  					<option value="29">Missouri</option>
-  					<option value="30">Montana</option>
-  					<option value="31">Nebraska</option>
-  					<option value="32">Nevada</option>
-  					<option value="33">New Hampshire</option>
-  					<option value="34">New Jersey</option>
-  					<option value="35">New Mexico</option>
-  					<option value="36">New York</option>
-  					<option value="37">North Carolina</option>
-  					<option value="38">North Dakota</option>
-  					<option value="39">Ohio</option>
-  					<option value="40">Oklahoma</option>
-  					<option value="41">Oregon</option>
-  					<option value="42">Pennsylvania</option>
-  					<option value="44">Rhode Island</option>
-  					<option value="45">South Carolina</option>
-  					<option value="46">South Dakota</option>
-  					<option value="47">Tennessee</option>
-  					<option value="48">Texas</option>
-  					<option value="49">Utah</option>
-  					<option value="50">Vermont</option>
-  					<option value="51">Virginia</option>
-  					<option value="53">Washington</option>
-  					<option value="54">West Virginia</option>
-  					<option value="55">Wisconsin</option>
-  					<option value="56">Wyoming</option>
-  				</select>
-
-  					<br />
-
-  					<select id="dist_dd2" onchange="set_dist(2)"></select>
-
-  					<br />
-  			<h3> Select Third District to Compare </h3>
-
-  					<select id="state_ddm3" onchange="populate_dist_dd(3)">
-  						<option value="0">Select a State</option>
-  						<option value="01">Alabama</option>
-  						<option value="02">Alaska</option>
-  						<option value="04">Arizona</option>
-  						<option value="05">Arkansas</option>
-  						<option value="06">California</option>
-  						<option value="08">Colorado</option>
-  						<option value="09">Connecticut</option>
-  						<option value="10">Delaware</option>
-  						<option value="12">Florida</option>
-  						<option value="13">Georgia</option>
-  						<option value="15">Hawaii</option>
-  						<option value="16">Idaho</option>
-  						<option value="17">Illinois</option>
-  						<option value="18">Indiana</option>
-  						<option value="19">Iowa</option>
-  						<option value="20">Kansas</option>
-  						<option value="21">Kentucky</option>
-  						<option value="22">Louisiana</option>
-  						<option value="23">Maine</option>
-  						<option value="24">Maryland</option>
-  						<option value="25">Massachusetts</option>
-  						<option value="26">Michigan</option>
-  						<option value="27">Minnesota</option>
-  						<option value="28">Mississippi</option>
-  						<option value="29">Missouri</option>
-  						<option value="30">Montana</option>
-  						<option value="31">Nebraska</option>
-  						<option value="32">Nevada</option>
-  						<option value="33">New Hampshire</option>
-  						<option value="34">New Jersey</option>
-  						<option value="35">New Mexico</option>
-  						<option value="36">New York</option>
-  						<option value="37">North Carolina</option>
-  						<option value="38">North Dakota</option>
-  						<option value="39">Ohio</option>
-  						<option value="40">Oklahoma</option>
-  						<option value="41">Oregon</option>
-  						<option value="42">Pennsylvania</option>
-  						<option value="44">Rhode Island</option>
-  						<option value="45">South Carolina</option>
-  						<option value="46">South Dakota</option>
-  						<option value="47">Tennessee</option>
-  						<option value="48">Texas</option>
-  						<option value="49">Utah</option>
-  						<option value="50">Vermont</option>
-  						<option value="51">Virginia</option>
-  						<option value="53">Washington</option>
-  						<option value="54">West Virginia</option>
-  						<option value="55">Wisconsin</option>
-  						<option value="56">Wyoming</option></select>
-  						<br />
-
-
-  						<select id="dist_dd3" onchange="set_dist(3)"></select>
-  						<br />
-
-
-  					</div>
-  					<div style="margin:15px">
-  						<svg height="200" width="200" id='flowcomp1'>
-  							<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  						</svg>
-
-
-
-  						<svg height="200" width="200" id='flowcomp2'>
-  							<polygon id="dflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  						</svg>
-
-
-
-  						<svg height="200" width="200" id='flowcomp3'>
-  							<polygon id="dflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  						</svg> <br />
-
-
-  						<svg height="200" width="200" id='showcomp1'>
-  							<polygon id="dshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  						</svg>
-
-  						<svg height="200" width="200" id='showcomp2'>
-  							<polygon id="dshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  						</svg>
-
-  						<svg height="200" width="200" id='showcomp3'>
-  							<polygon id="dshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  						</svg> <br />
-  						<button onclick="decrement(1)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider1">
-  						<button onclick="increment(1)"> NEXT </button> 
-  						<button onclick="decrement(2)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider2">
-  						<button onclick="increment(2)"> NEXT </button> 
-  						<button onclick="decrement(3)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider3">
-  						<button onclick="increment(3)"> NEXT </button> 
-
-  					</div>
-
-
-
-  					<div>
-  						<svg height="530" width = "500" id="plotspace">
-  							<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
-  							<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
-  							<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
-
-  							<circle id="track1" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3" />
-  							<circle id="track2" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3"/>
-  							<circle id="track3" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3"/>
-
-
-  							<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-  							<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-  							<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-  							<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> 
-  							<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" />
-  							<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-  							<text x="0" y="499" fill="black">perimeter = 1</text>
-  							<text x="0" y="399" fill="black">perimeter = 2</text>
-  							<text x="0" y="299" fill="black">perimeter = 3</text>
-  							<text x="0" y="199" fill="black">perimeter = 4</text>
-  							<text x="0" y="99" fill="black">perimeter = 5</text>
-  						</svg>
-  					</div>
-
-
-
-  				</div> -->
-<!-- 
-  	<div class="chart center">
-  		<div>
-  			<button onclick="decrement()"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider">
-  			<button onclick="increment()"> NEXT </button> 
-  			<button onclick="bwd()"> PLAY BACK </button> <button onclick="fwd()"> PLAY FWD </button>  <div id = "flowcount"></div></p>
-  			<svg height="400" width="400" id='flowbox'>
-  				<polygon id="distflow" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  			</svg>
-  		</div>
-  		<div>
-  			<button onclick="loadfile('12-3701');"> NC-01 </button> 
-  			<button onclick="loadfile('12-3702');"> NC-02 </button> 
-  			<button onclick="loadfile('12-3703');"> NC-03 </button> 
-  			<button onclick="loadfile('12-3704');"> NC-04 </button> <br /> <br />
-  			<button onclick="loadfile('12-3705');"> NC-05 </button> 
-  			<button onclick="loadfile('12-3706');"> NC-06 </button> 
-  			<button onclick="loadfile('12-3707');"> NC-07 </button> 
-  			<button onclick="loadfile('12-3708');"> NC-08 </button> 
-  			<button onclick="loadfile('12-3709');"> NC-09 </button> <br /> <br />
-  			<button onclick="loadfile('12-3710');"> NC-10 </button> 
-  			<button onclick="loadfile('12-3711');"> NC-11 </button> 
-  			<button onclick="loadfile('12-3712');"> NC-12 </button> 
-  			<button onclick="loadfile('12-3713');"> NC-13 </button> <br /> <br />
-  		</div>
-  	</div>
-
-
-  -->
-
-
-
-
-
-
-
-
-
-  	<div class="chart three-columns center">
-
-  		<div>
-  			<h3> Select First District to Compare </h3>
+  			<h3> First District to Compare </h3>
   			<select id="state_ddm1" onchange="populate_dist_dd(1)">
   				<option value="0">Select a State</option>
   				<option value="01">Alabama</option>
@@ -774,7 +492,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   					
   				</select>
   				<br />
-  			<h3> Select Second District to Compare </h3>
+  			<h3> Second District to Compare </h3>
 
   				<select id="state_ddm2" onchange="populate_dist_dd(2)">
   					<option value="0">Select a State</option>
@@ -837,7 +555,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   					<select id="dist_dd2" onchange="set_dist(2)"></select>
 
   					<br />
-  			<h3> Select Third District to Compare </h3>
+  			<h3> Third District to Compare </h3>
 
   					<select id="state_ddm3" onchange="populate_dist_dd(3)">
   						<option value="0">Select a State</option>
@@ -902,6 +620,18 @@ onload="renderMathInElement(document.body, {delimiters: [
               <button onclick="clearcomp()" style="background: #cd0099;">Reset</button>
   					</div>
   					<div style="margin:15px">
+
+  						<svg width="200" height="50">
+  							<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel1"></text>
+  						</svg>
+
+  						<svg width="200" height="50">
+  							<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel2"></text>
+  						</svg>
+  						<svg width="200" height="50">
+  							<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel3"></text>
+  						</svg> <br />  						
+
   						<svg height="200" width="200" id='flowcomp1'>
   							<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
   						</svg>
@@ -966,11 +696,11 @@ onload="renderMathInElement(document.body, {delimiters: [
   							<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" />
   							<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
 
-  							<text x="0" y="499" fill="black">perimeter = 1</text>
-  							<text x="0" y="399" fill="black">perimeter = 2</text>
-  							<text x="0" y="299" fill="black">perimeter = 3</text>
-  							<text x="0" y="199" fill="black">perimeter = 4</text>
-  							<text x="0" y="99" fill="black">perimeter = 5</text>
+  				<text x="0" y="499" fill="black">1</text>
+  				<text x="0" y="399" fill="black">2</text>
+  				<text x="0" y="299" fill="black">3</text>
+  				<text x="0" y="199" fill="black">4</text>
+  				<text x="0" y="99"  fill="black">5</text>
   						</svg>
   					</div>
 
