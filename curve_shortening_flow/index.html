@@ -96,292 +96,635 @@ onload="renderMathInElement(document.body, {delimiters: [
   			gerrymandering is defined, it often drives the popular narrative around 
   			what districts are and are not gerrymandered.  A quick Google search for 
   			a term like "most gerrymandered districts" will return a litany of articles 
-  			naming-and-shaming districts like the Illinois-4th ("The Earmuffs"), the 
-  			previous iteration of the North Carolina-12th ("The River"), and the 
-  			Maryland-3rd ("The Praying Mantis").  While all three of these districts 
+  			naming-and-shaming districts like the Illinois-4th, the 
+  			previous iteration of the North Carolina-12th, and the 
+  			Maryland-3rd.  While all three of these districts 
   			were (allegedly) drawn with some electoral intent, most of the press 
   			surrounding them is about their contorted shapes rather than their 
   			effect on the outcomes of elections.
   		</p>
-  		<p>
-  			One of the most popular measures of compactness is called the <em>Polsby-Popper score</em>. 
-  			One formulation of this is as $ \frac{4\pi \mathrm{Area}}{\mathrm{Perimeter}^2}$, and it has 
-  			several attractive mathematical properties.  It's always a number 
-  			between zero and one, and it's one exactly when the shape we're looking at is a circle. 
-  			This score also varies continuously as the boundary of the shape is pulled and stretched.  
-  			In other words, two shapes which differ by a microscopic amount will have almost the same score.  
-  			Another nice property is that it is <em> scale-invariant </em>, meaning that blowing up a shape 
-  			doesn't change it's Polsby-Popper score.  This means that it's appropriate to use this score to examine 
-  			districts of different sizes.
-  		</p>
-  		<p>
-  			However, this score has some drawbacks which make its use in redistricting applications 
-  			somewhat questionable.  First, it's very sensitive to small changes in the shape's boundary. 
-  			A circle with a ragged boundary will have a much worse Polsby-Popper score than a snakey shape. 
-  			<h1> do figure </h1>
-  			This is a problem because many boundaries in political geography, such as city lines as 
-  			well as coastlines and rivers are natural choices to use as district borders, but they tend to 
-  			be jagged, which distorts the Polsby-Popper score.  This also means that the score is sensitive 
-  			to the <em> resolution of measurement </em>.  As maps become more detailled, things like coastlines 
-  			look more and more rough, and so the same district's Polsby-Popper score may vary by a factor of 
-  			as much as three depending on how precise the geographic measurements are. Richard Barnes and Justin Solomon explore this in more detail 
-  			<a href="https://arxiv.org/abs/1803.02857"> in their paper, here</a>.
-  		</p>
-  		<p>
-  			One way to avoid some of these issues is to try to keep more information about the shape 
-  			of the district in our compactness score.  The Polsby-Popper score (and others) assign a single 
-  			number to each district, but we can use some more sophisticated math to develop methods which 
-  			assign a <em> vector </em> of numbers to each district and satisfy a few reasonable properties:
-
-
-  			<ul>
-  				<li>
-  					<h4>Discrimative</h4> There should be a meaningful way of <em> ordering </em> districts based on the entries of the vector. 
-  					For example, if we sort all of our districts by the first entry, the resulting order should say something 
-  					about the relative compactness of the districts.
-  				</li>
-  				<li>
-  					<h4>Explainable</h4> The measure should be easy to communicate to the parties invested in the redistricting process, 
-  					including lawyers, politicians, interestd citizens, as well as mathematicians.
-  				</li>
-  				<li>
-  					<h4>Stable</h4> Two similar shapes should be assigned similar vectors.
-  				</li>				
-  				<li>
-  					<h4>Computable</h4> There should be an efficient algorithm for computing these scores, ideally from 
-  					data available to the public.
-  				</li>
-  			</ul>
-  			<h1> cite tv paper? </h1>
-  			We'll use a small twist on a technique from differential geometry called <em>curve-shortening flow</em> to develop a 
-  			multiscale compactness measure which satisfies these criteria.
-  		</p>
-
-
-  	</section>
-  	<section>
-  		<h3> Curve-Shortening Flow </h3>
-
-  		<p>
-  			What is curve-shortening flow? For those who care about such things, we'll restrict our attention to simple, closed 
-  			curves in the plane.  Given such a curve, curve-shortening flow is a process which shrinks the region so that its 
-  			<em> area </em> decreases at a constant rate and its <em> length </em> (<em>perimeter</em>) decreases as quickly as possible.  
-  			This process will transform the boundary of any kind of region we might think of to a "round point" (the limit of a circle as 
-  			you take its radius to zero).  We can intuitively think of curve-shortening flow as slowly "ironing out" the boundary of our region,
-  			where it eliminates small wrinkles very quickly and takes a little bit longer to adjust large deformities.  Our small twist 
-  			is that we also rescale the region at every step so that the area remains fixed.  Therefore, this process will slowly transform any shape 
-  			into a circle of the same area.
-  		</p>
-  		<p>
-  			Here's a brief animation of this transformation applied to MD-3rd, played forwards (district to circle) and backwards (circle to district).
-  		</p>
-
-
-  		<div class="chart center" style="max-width:250px;max-height:250px;background:none;border:none;display:block;margin:auto ;padding:3px 3px 3px 3px;">
+  		<div class="chart three-columns" style="max-width:600px;background:none;border:none;margin:auto;padding:3px 3px 3px 3px;">
 
   			<div>
-  				<svg height="200" width="200" id='animbox'>
-  					<polygon id="animflow" points="" style="fill:#1199ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  				<svg height="150" width="150" id="il4svg">
+  					<polygon id="il4" points="" style="fill:#999999;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  				</svg>
+  				<br />
+  				<svg height="35" width = "150">
+  					<text font-size="24" text-anchor = "middle" x="75" y="18">IL-4th</text>
+  				</svg>
+  			</div>
+  			<div style="margin-left:20px;margin-right:20px">
+  				<svg height="150" width="150" id = "nc12svg">
+  					<polygon id = "nc12" points="" style="fill:#999999;stroke:#000;stroke-width:2;fill-opacity:.3" />
 
   				</svg>
-
+  				  				<br />
+  				<svg height="35" width = "150">
+  					<text font-size="16" text-anchor = "middle" x="75" y="18">NC-12th (RIP 2016)</text>
+  				</svg>
   			</div>
+  			<div>
+  			<svg height="150" width="150" id = "md03svg">
+  				<polygon id = "md03draw"  points="" style="fill:#999999;stroke:#000;stroke-width:2;fill-opacity:.3" />
 
+  			</svg>
+  			  				<br />
+  				<svg height="35" width = "150">
+  					<text font-size="24" text-anchor = "middle" x="75" y="18">MD-3rd</text>
+  				</svg>
+  			</div>
 
   		</div>
 
 
 
-  		<p>
-  			The procedure to perform curve-shortening flow is pretty straightforward. At each point on the boundary of our region, 
-  			we'll find the tangent line and move that point inward in the direction perpendicular to the tangent. How far to move it 
-  			will depend on the <em> curvature </em> of the boundary at the point.  The last missing piece is to articulate a defintion 
-  			of curvature.  Intuitively, curvature measures how "bendy" the boundary is at a particular point.  If our point lies in a very 
-  			squiggly portion of the boundary, then the curvature is large. If our point is in a portion that looks like a straight line, 
-  			then the curvature is small.  
-  		</p>
 
-  		<p>
-  			Formally, we measure curvature in the following way. First, we can look at the neighborhood of our point on the boundary 
-  			and imagine that it's a small segment on the circumference of a circle with some radius $r$, called the <em>osculating circle</em>.
-  			<p>
-  				In this small illustration, a step of curve-shortening flow will move the point with the small blue circle outward and the point with the large yellow circle inward, i the directions of the arrows.
-  				Since the blue circle is smaller than the yellow circle, the first point will be moved <em>further</em> than the second.
-  			</p>
-  			<svg width="325" height="325" style="display:block;margin:auto">
-  				<marker id="arrow10-8-right" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
-  				<marker id="arrow15-12-right" markerHeight="12" markerUnits="strokeWidth" markerWidth="15" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black" ></path></marker>
-  				<marker id="arrow10-8-left" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="3" refY="0" viewBox="0 -5 20 20"><path d="M 15 -5 L 0 0 L 15 5 z" fill="black"></path></marker>
-  				<path d="M212,159c-27.888475542099997,13.992692090399999,-69.68871306930001,68.4430015008,-76,99s89.61905540859999,170.43824234020002,146,172s204.0812088449,-164.5476653,150,-193s-144.7883684341,86.7144426754,-166,49s94.67112781549997,-103.9538692097,70,-132s-96.4359509484,-9.240284403099992,-124,5Z" style="stroke: black; stroke-width: 2px;fill:#ddd;" id="e2_areaS3" transform="translate(-135,-135)"></path>
-  				<circle id="e3_circle" cx="280" cy="277" style="fill:#2272e0;fill-opacity:.3;stroke:black;stroke-width:1px;" r="17.2429" transform="translate(-135,-135)"></circle>
-  				<line id="e4_line" x1="266.539" y1="287.937" x2="302.539" y2="257.812" style="stroke:black;fill:none;stroke-width:3px;marker-end:url(#arrow10-8-right);" transform="translate(-135,-135)"></line>
-  				<line id="e5_line" x1="258.164" y1="278.437" x2="274.914" y2="298.687" style="stroke:black;fill:none;stroke-width:1px;" transform="translate(-135,-135)"></line>	
-  				<circle id="e6_circle" cx="282.414" cy="388.812" style="fill:khaki;stroke:black;stroke-width:1px;" r="40.9228" transform="translate(-135,-135)"></circle>
-  				<line id="e7_line" x1="282.414" y1="406.562" x2="282.414" y2="429.562" style="stroke: black; fill: none; stroke-width: 3px;marker-start:url(#arrow10-8-left);" transform="translate(-135,-135)"></line>
-  				<line id="e8_line" x1="315.719" y1="430.594" x2="246.719" y2="430.219" style="stroke:black;fill:none;stroke-width:1px;" transform="translate(-135,-135)"></line>
-  			</svg>
-  			Then, the curvature at that point is $1/r$ if it's a point of <em>positive curvature</em> or $-1/r$ if it's a point of 
-  			<em>negative curvature</em>.  If we're truly looking at a point on a line segment, then we say that the curvature is zero.
-  		</p>
-  		<p>
-  			We can make two observations about the behavior of curve-shortening flow on a shape.  First, since points on really 
-  			curvy portions of the boundary are moved further, it should smooth out the boundary very quickly.  Second, since indentations 
-  			in the shape are pushed outward and appendages sticking out get pulled inward, the shape will get progressively "nicer" as we 
-  			run the process; it should never grow a new appendage or suddenly develop a jagged boundary. 
-  		</p>
+  	<p>
+  		One of the most popular measures of compactness is called the <em>Polsby-Popper score</em>. 
+  		One formulation of this is as $ \frac{4\pi \mathrm{Area}}{\mathrm{Perimeter}^2}$, and it has 
+  		several attractive mathematical properties.  It's always a number 
+  		between zero and one, and it's one exactly when the shape we're looking at is a circle. 
+  		This score also varies continuously as the boundary of the shape is pulled and stretched.  
+  		In other words, two shapes which differ by a microscopic amount will have almost the same score.  
+  		Another nice property is that it is <em> scale-invariant </em>, meaning that blowing up a shape 
+  		doesn't change it's Polsby-Popper score.  This means that it's appropriate to use this score to examine 
+  		districts of different sizes.
+  	</p>
+  	<p>
+  		However, this score has some drawbacks which make its use in redistricting applications 
+  		somewhat questionable.  First, it's very sensitive to small changes in the shape's boundary. 
+  		A circle with a ragged boundary will have a much worse Polsby-Popper score than a snakey shape. 
+  		<h1> do figure </h1>
+  		This is a problem because many boundaries in political geography, such as city lines as 
+  		well as coastlines and rivers are natural choices to use as district borders, but they tend to 
+  		be jagged, which distorts the Polsby-Popper score.  This also means that the score is sensitive 
+  		to the <em> resolution of measurement </em>.  As maps become more detailled, things like coastlines 
+  		look more and more rough, and so the same district's Polsby-Popper score may vary by a factor of 
+  		as much as three depending on how precise the geographic measurements are. Richard Barnes and Justin Solomon explore this in more detail 
+  		<a href="https://arxiv.org/abs/1803.02857"> in their paper, here</a>.
+  	</p>
+  	<p>
+  		One way to avoid some of these issues is to try to keep more information about the shape 
+  		of the district in our compactness score.  The Polsby-Popper score (and others) assign a single 
+  		number to each district, but we can use some more sophisticated math to develop methods which 
+  		assign a <em> vector </em> of numbers to each district and satisfy a few reasonable properties:
 
 
+  		<ul>
+  			<li>
+  				<h4>Discrimative</h4> There should be a meaningful way of <em> ordering </em> districts based on the entries of the vector. 
+  				For example, if we sort all of our districts by the first entry, the resulting order should say something 
+  				about the relative compactness of the districts.
+  			</li>
+  			<li>
+  				<h4>Explainable</h4> The measure should be easy to communicate to the parties invested in the redistricting process, 
+  				including lawyers, politicians, interestd citizens, as well as mathematicians.
+  			</li>
+  			<li>
+  				<h4>Stable</h4> Two similar shapes should be assigned similar vectors.
+  			</li>				
+  			<li>
+  				<h4>Computable</h4> There should be an efficient algorithm for computing these scores, ideally from 
+  				data available to the public.
+  			</li>
+  		</ul>
+  		<h1> cite tv paper? </h1>
+  		We'll use a small twist on a technique from differential geometry called <em>curve-shortening flow</em> to develop a 
+  		multiscale compactness measure which satisfies these criteria.
+  	</p>
 
 
-  	</section>
+  </section>
+  <section>
+  	<h3> Curve-Shortening Flow </h3>
+
+  	<p>
+  		What is curve-shortening flow? For those who care about such things, we'll restrict our attention to simple, closed 
+  		curves in the plane.  Given such a curve, curve-shortening flow is a process which shrinks the region so that its 
+  		<em> area </em> decreases at a constant rate and its <em> length </em> (<em>perimeter</em>) decreases as quickly as possible.  
+  		This process will transform the boundary of any kind of region we might think of to a "round point" (the limit of a circle as 
+  		you take its radius to zero).  We can intuitively think of curve-shortening flow as slowly "ironing out" the boundary of our region,
+  		where it eliminates small wrinkles very quickly and takes a little bit longer to adjust large deformities.  Our small twist 
+  		is that we also rescale the region at every step so that the area remains fixed.  Therefore, this process will slowly transform any shape 
+  		into a circle of the same area.
+  	</p>
+  	<p>
+  		Here's a brief animation of this transformation applied to MD-3rd, played forwards (district to circle) and backwards (circle to district).
+  	</p>
 
 
-
-  	<section>
-
-  		<h3> Algorithmics </h3>
-  		<p>
-  			The next concern is whether we can actually run curve-shortening flow on a real shape, or if 
-  			it just exists as a theoretical construct.  The procedure we described above applies to smooth 
-  			curves and technically requires we compute the curvature at every one of an infinite number of points, 
-  			which is no-good if we're concerned with developing something practical.  Furthermore, we conveniently 
-  			ignored how the procedure operates at points on the boundary which are not smooth, such as vertices of a 
-  			polygon.  Since the boundaries of districts are described as polygons in geographic shapefiles, 
-  			this behavior is more than simply a technicality.
-  		</p>
-  		<p>
-  			To solve this, we need both a sensible replacement for the tangent line at a point as well as a good 
-  			way to define curvature for things that aren't, well, <em>curved</em>.  Recall from 
-  			differential calculus that the tangent line at a point is the limit of secant lines through pairs of points, 
-  			one on each side of our point, as these two points move closer to our point.  So, instead of using a tangent line, 
-  			we can use the line passing through two points very close to our point.
-  		</p>
-  		<p>
-  			For curvature, we're going to do something similar.  If we're close enough to our point, these secant lines are 
-  			chords of the osculating circle which meet the radius perpendicularly.  Since we can measure both the length of this 
-  			chord, which is the distance between our two nearby points, as well as the distance of our point from the chord, we can 
-  			recover the radius of the osculating circle. It turns out (somewhat sensibly) that the radius of this circle is larger the 
-  			wider the angle formed by our three points.
-  			All of this sounds a little complicated, but once we go through this construction, we can convince ourselves of the fact that 
-  			these substitutions mean that we move each vertex along the line which bisects its angle at a distance proportional to $\pi$ minus 
-  			the measure of that angle.
-  		</p>
-  	</section>
-
-  	<section>
-  		<h3> Turining Curve-Shortening Flow into a Compactness Measure </h3>
-  		<p>
-  			We've given an explanation of curve-shortening flow and described how one might be able to implement an 
-  			algorithm to compute it, we can move on to designing a <em> compactness score </em> which can be derived 
-  			from it.  First, since we're playing around with things that depend on distances, we're going to assume that 
-  			all of the regions we might want to examine have the same area.  In our version of curve-shortening flow, 
-  			we keep the area of the region fixed and the perimeter decreases monotonically until the region becomes 
-  			a circle, we might conjecture that regions which are more compact become circles more quickly than non-compact ones.  
-  			Let's fix our area to be $\frac{1}{4\pi}$, which seems an odd choice, except that it makes the circle we get at the 
-  			end of the process have circumference equal to one.
-  		</p>
-  		<p>
-  			Our measure will be the plot of "number of curve-shortening flow steps" against the "perimeter of the figure at each step". 
-  			We'll take a second to argue that this satisfies all four of our desiderata.  This page serves as explanation and in the 
-  			previous section, we described a method to compute the curve-shortening flow procedure, which covers the first two items.  
-  			The measure is stable since any small perturbation in a shape will be quickly smoothed out by the curve-shortening flow procedure, 
-  			meaning that we get almost identical plots for two very similar shapes.  The final criterion is that the measure be discriminative, 
-  			and we can at the very least argue semi-formally that it's <em>at least </em> as discriminative as the Polsby-Popper score, since this 
-  			plot lets us recover the Polsby-Popper score.  Since we've normalized the area of these shapes very particularly, the Polsby-Popper score 
-  			of a region is exactly $1/\mathrm{Perimeter}$ after we've run zero steps of curve-shortening flow.  We'll see below that we can glean 
-  			much more information that just the Polsby-Popper score from these plots, but since it's at least as good as a standard measure, 
-  			we can be satisfied that our plots are not meaningless.
-
-  		</p>
-  	</section>
-
-  	<section>
-  		<h3>Comparing Plots</h3>
-  		<p>
-  			To demonstrate this measure, we'll compare the plots of three districts.  Below are images of the three districts as well as animations showing 
-  			the progress of the curve-shortening flow procedure.  The plots on the right have the number of steps on the horizontal axis and the perimeter 
-  			of the figure at that step on the vertical axis.  From left to right, these are "worst offenders" MD-3rd and TX-35th, 
-  			as well as OK-1st.  There are a few things to observe here.  First, the plot for OK-01 is below the other two at every point, and it requires 
-  			far fewer steps of curve-shortening flow to become something (almost) circular.  These demonstrate that, with respect to our measure, OK-01 is 
-  			much more compact than the other two districts. 
-
-  		</p>
-
-  	</section>
-
-  	<div class="chart three-columns center">
+  	<div class="chart center" style="max-width:250px;max-height:250px;background:none;border:none;display:block;margin:auto ;padding:3px 3px 3px 3px;">
 
   		<div>
+  			<svg height="200" width="200" id='animbox'>
+  				<polygon id="animflow" points="" style="fill:#1199ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+  			</svg>
+
+  		</div>
+
+
+  	</div>
+
+
+
+  	<p>
+  		The procedure to perform curve-shortening flow is pretty straightforward. At each point on the boundary of our region, 
+  		we'll find the tangent line and move that point inward in the direction perpendicular to the tangent. How far to move it 
+  		will depend on the <em> curvature </em> of the boundary at the point.  The last missing piece is to articulate a defintion 
+  		of curvature.  Intuitively, curvature measures how "bendy" the boundary is at a particular point.  If our point lies in a very 
+  		squiggly portion of the boundary, then the curvature is large. If our point is in a portion that looks like a straight line, 
+  		then the curvature is small.  
+  	</p>
+
+  	<p>
+  		Formally, we measure curvature in the following way. First, we can look at the neighborhood of our point on the boundary 
+  		and imagine that it's a small segment on the circumference of a circle with some radius $r$, called the <em>osculating circle</em>.
+  		<p>
+  			In this small illustration, a step of curve-shortening flow will move the point with the small blue circle outward and the point with the large yellow circle inward, i the directions of the arrows.
+  			Since the blue circle is smaller than the yellow circle, the first point will be moved <em>further</em> than the second.
+  		</p>
+  		<svg width="325" height="325" style="display:block;margin:auto">
+  			<marker id="arrow10-8-right" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
+  			<marker id="arrow15-12-right" markerHeight="12" markerUnits="strokeWidth" markerWidth="15" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black" ></path></marker>
+  			<marker id="arrow10-8-left" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="3" refY="0" viewBox="0 -5 20 20"><path d="M 15 -5 L 0 0 L 15 5 z" fill="black"></path></marker>
+  			<path d="M212,159c-27.888475542099997,13.992692090399999,-69.68871306930001,68.4430015008,-76,99s89.61905540859999,170.43824234020002,146,172s204.0812088449,-164.5476653,150,-193s-144.7883684341,86.7144426754,-166,49s94.67112781549997,-103.9538692097,70,-132s-96.4359509484,-9.240284403099992,-124,5Z" style="stroke: black; stroke-width: 2px;fill:#ddd;" id="e2_areaS3" transform="translate(-135,-135)"></path>
+  			<circle id="e3_circle" cx="280" cy="277" style="fill:#2272e0;fill-opacity:.3;stroke:black;stroke-width:1px;" r="17.2429" transform="translate(-135,-135)"></circle>
+  			<line id="e4_line" x1="266.539" y1="287.937" x2="302.539" y2="257.812" style="stroke:black;fill:none;stroke-width:3px;marker-end:url(#arrow10-8-right);" transform="translate(-135,-135)"></line>
+  			<line id="e5_line" x1="258.164" y1="278.437" x2="274.914" y2="298.687" style="stroke:black;fill:none;stroke-width:1px;" transform="translate(-135,-135)"></line>	
+  			<circle id="e6_circle" cx="282.414" cy="388.812" style="fill:khaki;stroke:black;stroke-width:1px;" r="40.9228" transform="translate(-135,-135)"></circle>
+  			<line id="e7_line" x1="282.414" y1="406.562" x2="282.414" y2="429.562" style="stroke: black; fill: none; stroke-width: 3px;marker-start:url(#arrow10-8-left);" transform="translate(-135,-135)"></line>
+  			<line id="e8_line" x1="315.719" y1="430.594" x2="246.719" y2="430.219" style="stroke:black;fill:none;stroke-width:1px;" transform="translate(-135,-135)"></line>
+  		</svg>
+  		Then, the curvature at that point is $1/r$ if it's a point of <em>positive curvature</em> or $-1/r$ if it's a point of 
+  		<em>negative curvature</em>.  If we're truly looking at a point on a line segment, then we say that the curvature is zero.
+  	</p>
+  	<p>
+  		We can make two observations about the behavior of curve-shortening flow on a shape.  First, since points on really 
+  		curvy portions of the boundary are moved further, it should smooth out the boundary very quickly.  Second, since indentations 
+  		in the shape are pushed outward and appendages sticking out get pulled inward, the shape will get progressively "nicer" as we 
+  		run the process; it should never grow a new appendage or suddenly develop a jagged boundary. 
+  	</p>
+
+
+
+
+  </section>
+
+
+
+  <section>
+
+  	<h3> Algorithmics </h3>
+  	<p>
+  		The next concern is whether we can actually run curve-shortening flow on a real shape, or if 
+  		it just exists as a theoretical construct.  The procedure we described above applies to smooth 
+  		curves and technically requires we compute the curvature at every one of an infinite number of points, 
+  		which is no-good if we're concerned with developing something practical.  Furthermore, we conveniently 
+  		ignored how the procedure operates at points on the boundary which are not smooth, such as vertices of a 
+  		polygon.  Since the boundaries of districts are described as polygons in geographic shapefiles, 
+  		this behavior is more than simply a technicality.
+  	</p>
+  	<p>
+  		To solve this, we need both a sensible replacement for the tangent line at a point as well as a good 
+  		way to define curvature for things that aren't, well, <em>curved</em>.  Recall from 
+  		differential calculus that the tangent line at a point is the limit of secant lines through pairs of points, 
+  		one on each side of our point, as these two points move closer to our point.  So, instead of using a tangent line, 
+  		we can use the line passing through two points very close to our point.
+  	</p>
+  	<p>
+  		For curvature, we're going to do something similar.  If we're close enough to our point, these secant lines are 
+  		chords of the osculating circle which meet the radius perpendicularly.  Since we can measure both the length of this 
+  		chord, which is the distance between our two nearby points, as well as the distance of our point from the chord, we can 
+  		recover the radius of the osculating circle. It turns out (somewhat sensibly) that the radius of this circle is larger the 
+  		wider the angle formed by our three points.
+  		All of this sounds a little complicated, but once we go through this construction, we can convince ourselves of the fact that 
+  		these substitutions mean that we move each vertex along the line which bisects its angle at a distance proportional to $\pi$ minus 
+  		the measure of that angle.
+  	</p>
+  </section>
+
+  <section>
+  	<h3> Turining Curve-Shortening Flow into a Compactness Measure </h3>
+  	<p>
+  		We've given an explanation of curve-shortening flow and described how one might be able to implement an 
+  		algorithm to compute it, we can move on to designing a <em> compactness score </em> which can be derived 
+  		from it.  First, since we're playing around with things that depend on distances, we're going to assume that 
+  		all of the regions we might want to examine have the same area.  In our version of curve-shortening flow, 
+  		we keep the area of the region fixed and the perimeter decreases monotonically until the region becomes 
+  		a circle, we might conjecture that regions which are more compact become circles more quickly than non-compact ones.  
+  		Let's fix our area to be $\frac{1}{4\pi}$, which seems an odd choice, except that it makes the circle we get at the 
+  		end of the process have circumference equal to one.
+  	</p>
+  	<p>
+  		Our measure will be the plot of "number of curve-shortening flow steps" against the "perimeter of the figure at each step". 
+  		We'll take a second to argue that this satisfies all four of our desiderata.  This page serves as explanation and in the 
+  		previous section, we described a method to compute the curve-shortening flow procedure, which covers the first two items.  
+  		The measure is stable since any small perturbation in a shape will be quickly smoothed out by the curve-shortening flow procedure, 
+  		meaning that we get almost identical plots for two very similar shapes.  The final criterion is that the measure be discriminative, 
+  		and we can at the very least argue semi-formally that it's <em>at least </em> as discriminative as the Polsby-Popper score, since this 
+  		plot lets us recover the Polsby-Popper score.  Since we've normalized the area of these shapes very particularly, the Polsby-Popper score 
+  		of a region is exactly $1/\mathrm{Perimeter}$ after we've run zero steps of curve-shortening flow.  We'll see below that we can glean 
+  		much more information that just the Polsby-Popper score from these plots, but since it's at least as good as a standard measure, 
+  		we can be satisfied that our plots are not meaningless.
+
+  	</p>
+  </section>
+
+  <section>
+  	<h3>Comparing Plots</h3>
+  	<p>
+  		To demonstrate this measure, we'll compare the plots of three districts.  Below are images of the three districts as well as animations showing 
+  		the progress of the curve-shortening flow procedure.  The plots on the right have the number of steps on the horizontal axis and the perimeter 
+  		of the figure at that step on the vertical axis.  From left to right, these are "worst offenders" MD-3rd and TX-35th, 
+  		as well as OK-1st.  
+
+  	</p>
+
+  </section>
+
+  <div class="chart three-columns center">
+
+  	<div>
+  	</div>
+  	<div style="margin:15px">
+
+  		<svg width="200" height="50">
+  			<text y="50" x="100" text-anchor="middle" font-size="24" >MD-3rd</text>
+  		</svg>
+
+  		<svg width="200" height="50">
+  			<text y="50" x="100" text-anchor="middle" font-size="24">TX-35th</text>
+  		</svg>
+  		<svg width="200" height="50">
+  			<text y="50" x="100" text-anchor="middle" font-size="24">OK-1st</text>
+  		</svg> <br />  
+
+
+
+  		<svg height="200" width="200" id='demoflowcomp1'>
+  			<polygon id="demodflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  		</svg>
+
+
+
+  		<svg height="200" width="200" id='demoflowcomp2'>
+  			<polygon id="demodflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  		</svg>
+
+
+
+  		<svg height="200" width="200" id='demoflowcomp3'>
+  			<polygon id="demodflowc3" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  		</svg> <br />
+
+
+  		<svg height="200" width="200" id='demoshowcomp1'>
+  			<polygon id="demodshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  		</svg>
+
+  		<svg height="200" width="200" id='demoshowcomp2'>
+  			<polygon id="demodshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  		</svg>
+
+  		<svg height="200" width="200" id='demoshowcomp3'>
+  			<polygon id="demodshowc3" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  		</svg>
+
+  	</div>
+
+
+
+  	<div>
+
+  		<svg height="530" width = "25">
+  			<text x="20" y="280" text-anchor="middle" fill="black" transform="rotate(270,20,280)">Perimeter</text>
+  		</svg>
+
+  		<svg height="530" width = "500" id="demoplotspace">
+
+
+  			<polyline id="demoflowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
+  			<polyline id="demoflowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
+  			<polyline id="demoflowplot3" points="" style="stroke:#ee9911;stroke-width:3;fill:none;stroke-opacity:.5" />
+
+  			<circle id="demotrack1" cx="0" cy="0" r="5" stroke="#9911ee" stroke-width="3" fill="#9911ee" stroke-opacity=".4" fill-opacity=".4"/>
+  			<text id = "demotrack1t" x = "0" y="0" font-size="24">MD-3rd</text>
+  			<circle id="demotrack2" cx="0" cy="0" r="5" stroke="#99ee11" stroke-width="3" fill="#99ee11" stroke-opacity=".4" fill-opacity=".4"/>
+  			<text id = "demotrack2t" x = "0" y="0" font-size="24">TX-35th</text>
+
+  			<circle id="demotrack3" cx="0" cy="0" r="5" stroke="#ee9911" stroke-width="3" fill="#ee9911" stroke-opacity=".4" fill-opacity=".4"/>
+  			<text id = "demotrack3t" x = "0" y="0" font-size="24">OK-1st</text>
+
+
+
+  			<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+  			<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  			<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  			<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> 
+  			<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" />
+  			<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
+
+  			<text x="0" y="499" fill="black">1</text>
+  			<text x="0" y="399" fill="black">2</text>
+  			<text x="0" y="299" fill="black">3</text>
+  			<text x="0" y="199" fill="black">4</text>
+  			<text x="0" y="99"  fill="black">5</text>
+
+  			<text x="250" y="515" text-anchor="middle" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
+  		</svg>
+  	</div>
+
+
+
+  </div>
+  <section>
+  	<p>
+  		There are a few things to observe here.  First, the plot for OK-1st is below the other two at every point, and it requires 
+  		far fewer steps of curve-shortening flow to become something (almost) circular.  These demonstrate that, with respect to our measure, OK-1st is 
+  		much more compact than the other two districts. 
+  	</p>
+  	<p>
+  		Second, we can look at the <em>shapes</em> of the three plots.  We observed that OK-1st's plot drops very quickly 
+  		as it takes relatively few curve-shortening flow steps to transform it into a circle.  It's original form 
+  		can be described as two joined rectangles with some irregularities at the boundary.  MD-3rd's plot falls 
+  		at a slower rate, which reflects the fact that the bizarreness of its geometry is not limited to its boundary, 
+  		as once the curve-shortening flow smooths it out, what we're left with is something that looks like a snakey 'Y'. 
+  		TX-35th's plot falls quickly at the beginning but then slows down, being outpaced by MD-3rd.  This is because the 
+  		boundary smoothing reduces a lot of the district's perimeter, but the long, thin strip which stretches to the southwest 
+  		requires many steps to pull inward.
+  	</p>
+
+
+  </section>
+
+
+
+  <div class="chart three-columns center">
+
+  	<div>
+  		<h3> First District to Compare </h3>
+  		<select id="state_ddm1" onchange="populate_dist_dd(1)">
+  			<option value="0">Select a State</option>
+  			<option value="01">Alabama</option>
+  			<option value="02">Alaska</option>
+  			<option value="04">Arizona</option>
+  			<option value="05">Arkansas</option>
+  			<option value="06">California</option>
+  			<option value="08">Colorado</option>
+  			<option value="09">Connecticut</option>
+  			<option value="10">Delaware</option>
+  			<!-- <option value="11">District of Columbia</option> -->
+  			<option value="12">Florida</option>
+  			<option value="13">Georgia</option>
+  			<option value="15">Hawaii</option>
+  			<option value="16">Idaho</option>
+  			<option value="17">Illinois</option>
+  			<option value="18">Indiana</option>
+  			<option value="19">Iowa</option>
+  			<option value="20">Kansas</option>
+  			<option value="21">Kentucky</option>
+  			<option value="22">Louisiana</option>
+  			<option value="23">Maine</option>
+  			<option value="24">Maryland</option>
+  			<option value="25">Massachusetts</option>
+  			<option value="26">Michigan</option>
+  			<option value="27">Minnesota</option>
+  			<option value="28">Mississippi</option>
+  			<option value="29">Missouri</option>
+  			<option value="30">Montana</option>
+  			<option value="31">Nebraska</option>
+  			<option value="32">Nevada</option>
+  			<option value="33">New Hampshire</option>
+  			<option value="34">New Jersey</option>
+  			<option value="35">New Mexico</option>
+  			<option value="36">New York</option>
+  			<option value="37">North Carolina</option>
+  			<option value="38">North Dakota</option>
+  			<option value="39">Ohio</option>
+  			<option value="40">Oklahoma</option>
+  			<option value="41">Oregon</option>
+  			<option value="42">Pennsylvania</option>
+  			<!-- <option value="72">Puerto Rico</option> -->
+  			<option value="44">Rhode Island</option>
+  			<option value="45">South Carolina</option>
+  			<option value="46">South Dakota</option>
+  			<option value="47">Tennessee</option>
+  			<option value="48">Texas</option>
+  			<option value="49">Utah</option>
+  			<option value="50">Vermont</option>
+  			<option value="51">Virginia</option>
+  			<option value="53">Washington</option>
+  			<option value="54">West Virginia</option>
+  			<option value="55">Wisconsin</option>
+  			<option value="56">Wyoming</option>
+  		</select>
+  		<br />
+
+  		<select id="dist_dd1" onchange="set_dist(1)">
+
+  		</select>
+  		<br />
+  		<h3> Second District to Compare </h3>
+
+  		<select id="state_ddm2" onchange="populate_dist_dd(2)">
+  			<option value="0">Select a State</option>
+  			<option value="01">Alabama</option>
+  			<option value="02">Alaska</option>
+  			<option value="04">Arizona</option>
+  			<option value="05">Arkansas</option>
+  			<option value="06">California</option>
+  			<option value="08">Colorado</option>
+  			<option value="09">Connecticut</option>
+  			<option value="10">Delaware</option>
+  			<!-- <option value="11">District of Columbia</option> -->
+  			<option value="12">Florida</option>
+  			<option value="13">Georgia</option>
+  			<option value="15">Hawaii</option>
+  			<option value="16">Idaho</option>
+  			<option value="17">Illinois</option>
+  			<option value="18">Indiana</option>
+  			<option value="19">Iowa</option>
+  			<option value="20">Kansas</option>
+  			<option value="21">Kentucky</option>
+  			<option value="22">Louisiana</option>
+  			<option value="23">Maine</option>
+  			<option value="24">Maryland</option>
+  			<option value="25">Massachusetts</option>
+  			<option value="26">Michigan</option>
+  			<option value="27">Minnesota</option>
+  			<option value="28">Mississippi</option>
+  			<option value="29">Missouri</option>
+  			<option value="30">Montana</option>
+  			<option value="31">Nebraska</option>
+  			<option value="32">Nevada</option>
+  			<option value="33">New Hampshire</option>
+  			<option value="34">New Jersey</option>
+  			<option value="35">New Mexico</option>
+  			<option value="36">New York</option>
+  			<option value="37">North Carolina</option>
+  			<option value="38">North Dakota</option>
+  			<option value="39">Ohio</option>
+  			<option value="40">Oklahoma</option>
+  			<option value="41">Oregon</option>
+  			<option value="42">Pennsylvania</option>
+  			<!-- <option value="72">Puerto Rico</option> -->
+  			<option value="44">Rhode Island</option>
+  			<option value="45">South Carolina</option>
+  			<option value="46">South Dakota</option>
+  			<option value="47">Tennessee</option>
+  			<option value="48">Texas</option>
+  			<option value="49">Utah</option>
+  			<option value="50">Vermont</option>
+  			<option value="51">Virginia</option>
+  			<option value="53">Washington</option>
+  			<option value="54">West Virginia</option>
+  			<option value="55">Wisconsin</option>
+  			<option value="56">Wyoming</option>
+  		</select>
+
+  		<br />
+
+  		<select id="dist_dd2" onchange="set_dist(2)"></select>
+
+  		<br />
+  		<h3> Third District to Compare </h3>
+
+  		<select id="state_ddm3" onchange="populate_dist_dd(3)">
+  			<option value="0">Select a State</option>
+  			<option value="01">Alabama</option>
+  			<option value="02">Alaska</option>
+  			<option value="04">Arizona</option>
+  			<option value="05">Arkansas</option>
+  			<option value="06">California</option>
+  			<option value="08">Colorado</option>
+  			<option value="09">Connecticut</option>
+  			<option value="10">Delaware</option>
+  			<!-- <option value="11">District of Columbia</option> -->
+  			<option value="12">Florida</option>
+  			<option value="13">Georgia</option>
+  			<option value="15">Hawaii</option>
+  			<option value="16">Idaho</option>
+  			<option value="17">Illinois</option>
+  			<option value="18">Indiana</option>
+  			<option value="19">Iowa</option>
+  			<option value="20">Kansas</option>
+  			<option value="21">Kentucky</option>
+  			<option value="22">Louisiana</option>
+  			<option value="23">Maine</option>
+  			<option value="24">Maryland</option>
+  			<option value="25">Massachusetts</option>
+  			<option value="26">Michigan</option>
+  			<option value="27">Minnesota</option>
+  			<option value="28">Mississippi</option>
+  			<option value="29">Missouri</option>
+  			<option value="30">Montana</option>
+  			<option value="31">Nebraska</option>
+  			<option value="32">Nevada</option>
+  			<option value="33">New Hampshire</option>
+  			<option value="34">New Jersey</option>
+  			<option value="35">New Mexico</option>
+  			<option value="36">New York</option>
+  			<option value="37">North Carolina</option>
+  			<option value="38">North Dakota</option>
+  			<option value="39">Ohio</option>
+  			<option value="40">Oklahoma</option>
+  			<option value="41">Oregon</option>
+  			<option value="42">Pennsylvania</option>
+  			<!-- <option value="72">Puerto Rico</option> -->
+  			<option value="44">Rhode Island</option>
+  			<option value="45">South Carolina</option>
+  			<option value="46">South Dakota</option>
+  			<option value="47">Tennessee</option>
+  			<option value="48">Texas</option>
+  			<option value="49">Utah</option>
+  			<option value="50">Vermont</option>
+  			<option value="51">Virginia</option>
+  			<option value="53">Washington</option>
+  			<option value="54">West Virginia</option>
+  			<option value="55">Wisconsin</option>
+  			<option value="56">Wyoming</option></select>
+  			<br />
+
+
+  			<select id="dist_dd3" onchange="set_dist(3)"></select>
+  			<br />
+
+  			<button onclick="clearcomp()" style="background: #cd0099;">Reset</button>
   		</div>
   		<div style="margin:15px">
 
   			<svg width="200" height="50">
-  				<text y="50" x="100" text-anchor="middle" font-size="24" >MD-3rd</text>
+  				<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel1"></text>
   			</svg>
 
   			<svg width="200" height="50">
-  				<text y="50" x="100" text-anchor="middle" font-size="24">TX-35th</text>
+  				<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel2"></text>
   			</svg>
   			<svg width="200" height="50">
-  				<text y="50" x="100" text-anchor="middle" font-size="24">OK-1st</text>
-  			</svg> <br />  
+  				<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel3"></text>
+  			</svg> <br />  						
 
-
-
-  			<svg height="200" width="200" id='demoflowcomp1'>
-  				<polygon id="demodflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			<svg height="200" width="200" id='flowcomp1'>
+  				<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
   			</svg>
 
 
 
-  			<svg height="200" width="200" id='demoflowcomp2'>
-  				<polygon id="demodflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			<svg height="200" width="200" id='flowcomp2'>
+  				<polygon id="dflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
   			</svg>
 
 
 
-  			<svg height="200" width="200" id='demoflowcomp3'>
-  				<polygon id="demodflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			<svg height="200" width="200" id='flowcomp3'>
+  				<polygon id="dflowc3" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
   			</svg> <br />
 
 
-  			<svg height="200" width="200" id='demoshowcomp1'>
-  				<polygon id="demodshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			<svg height="200" width="200" id='showcomp1'>
+  				<polygon id="dshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
   			</svg>
 
-  			<svg height="200" width="200" id='demoshowcomp2'>
-  				<polygon id="demodshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			<svg height="200" width="200" id='showcomp2'>
+  				<polygon id="dshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
   			</svg>
 
-  			<svg height="200" width="200" id='demoshowcomp3'>
-  				<polygon id="demodshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  			</svg>
+  			<svg height="200" width="200" id='showcomp3'>
+  				<polygon id="dshowc3" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</svg> <br />
+  			<button onclick="decrement(1)" style="margin-left:15px;"> &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider1" style="width:100px">
+  			<button onclick="increment(1)" style="margin-right:15px"> &rarr; </button> 
+  			<button onclick="decrement(2)" style="margin-left:15px"> &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider2" style="width:100px">
+  			<button onclick="increment(2)" style="margin-right:15px"> &rarr; </button> 
+  			<button onclick="decrement(3)" style="margin-left:15px" > &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider3" style="width:100px">
+  			<button onclick="increment(3)" style="margin-right:15px"> &rarr; </button> 
 
   		</div>
 
 
 
   		<div>
-
   			<svg height="530" width = "25">
   				<text x="20" y="280" text-anchor="middle" fill="black" transform="rotate(270,20,280)">Perimeter</text>
+
   			</svg>
+  			<svg height="530" width = "500" id="plotspace">
+  				<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
+  				<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
+  				<polyline id="flowplot3" points="" style="stroke:#ee9911;stroke-width:3;fill:none;stroke-opacity:.5" />
 
-  			<svg height="530" width = "500" id="demoplotspace">
 
+  				<circle id="track1" cx="-10" cy="0" r="5" stroke="#9911ee" stroke-width="3" fill="#9911ee" stroke-opacity=".4" fill-opacity=".4"/>
+  				<text id = "track1t" x = "0" y="0" font-size="24"></text>
+  				<circle id="track2" cx="-10" cy="0" r="5" stroke="#99ee11" stroke-width="3" fill="#99ee11" stroke-opacity=".4" fill-opacity=".4"/>
+  				<text id = "track2t" x = "0" y="0" font-size="24"></text>
 
-				<polyline id="demoflowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
-  				<polyline id="demoflowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
-  				<polyline id="demoflowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
-
-  				<circle id="demotrack1" cx="0" cy="0" r="5" stroke="#9911ee" stroke-width="3" fill="#9911ee" stroke-opacity=".4" fill-opacity=".4"/>
-  				<text id = "demotrack1t" x = "0" y="0" font-size="24">MD-3rd</text>
-  				<circle id="demotrack2" cx="0" cy="0" r="5" stroke="#99ee11" stroke-width="3" fill="#99ee11" stroke-opacity=".4" fill-opacity=".4"/>
-  				<text id = "demotrack2t" x = "0" y="0" font-size="24">TX-35th</text>
-
-  				<circle id="demotrack3" cx="0" cy="0" r="5" stroke="#ee1199" stroke-width="3" fill="#ee1199" stroke-opacity=".4" fill-opacity=".4"/>
-  				<text id = "demotrack3t" x = "0" y="0" font-size="24">OK-1st</text>
-
+  				<circle id="track3" cx="-10" cy="0" r="5" stroke="#ee9911" stroke-width="3" fill="#ee9911" stroke-opacity=".4" fill-opacity=".4"/>
+  				<text id = "track3t" x = "0" y="0" font-size="24"></text>
 
 
   				<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
@@ -399,331 +742,28 @@ onload="renderMathInElement(document.body, {delimiters: [
   				<text x="0" y="199" fill="black">4</text>
   				<text x="0" y="99"  fill="black">5</text>
 
-  				<text x="250" y="515" text-anchor="middle" fill="black"> &ndash; Curve-Shortening Flow Steps  &rarr;</text>
+  				<text x="250" y="515" text-anchor="middle" fill="black"> &ndash; Curve-Shortening Flow Steps &rarr;</text>
+
+
+
+
   			</svg>
   		</div>
 
 
 
   	</div>
-  	<section>
-  		<p>
-  			Second, we can look at the <em>shapes</em> of the three plots.  We observed that OK-01's plot drops very quickly 
-  			as it takes relatively few curve-shortening flow steps to transform it into a circle.  It's original form 
-  			can be described as two joined rectangles with some irregularities at the boundary.  MD-3rd's plot falls 
-  			at a slower rate, which reflects the fact that the bizarreness of its geometry is not limited to its boundary, 
-  			as once the curve-shortening flow smooths it out, what we're left with is something that looks like a snakey 'Y'. 
-  			TX-35's plot falls quickly at the beginning but then slows down, being outpaced by MD-3rd.  This is because the 
-  			boundary smoothing reduces a lot of the district's perimeter, but the long, thin strip which stretches to the southwest 
-  			requires many steps to pull inward.
-  		</p>
-
-
-  	</section>
 
 
 
-  	<div class="chart three-columns center">
-
-  		<div>
-  			<h3> First District to Compare </h3>
-  			<select id="state_ddm1" onchange="populate_dist_dd(1)">
-  				<option value="0">Select a State</option>
-  				<option value="01">Alabama</option>
-  				<option value="02">Alaska</option>
-  				<option value="04">Arizona</option>
-  				<option value="05">Arkansas</option>
-  				<option value="06">California</option>
-  				<option value="08">Colorado</option>
-  				<option value="09">Connecticut</option>
-  				<option value="10">Delaware</option>
-  				<!-- <option value="11">District of Columbia</option> -->
-  				<option value="12">Florida</option>
-  				<option value="13">Georgia</option>
-  				<option value="15">Hawaii</option>
-  				<option value="16">Idaho</option>
-  				<option value="17">Illinois</option>
-  				<option value="18">Indiana</option>
-  				<option value="19">Iowa</option>
-  				<option value="20">Kansas</option>
-  				<option value="21">Kentucky</option>
-  				<option value="22">Louisiana</option>
-  				<option value="23">Maine</option>
-  				<option value="24">Maryland</option>
-  				<option value="25">Massachusetts</option>
-  				<option value="26">Michigan</option>
-  				<option value="27">Minnesota</option>
-  				<option value="28">Mississippi</option>
-  				<option value="29">Missouri</option>
-  				<option value="30">Montana</option>
-  				<option value="31">Nebraska</option>
-  				<option value="32">Nevada</option>
-  				<option value="33">New Hampshire</option>
-  				<option value="34">New Jersey</option>
-  				<option value="35">New Mexico</option>
-  				<option value="36">New York</option>
-  				<option value="37">North Carolina</option>
-  				<option value="38">North Dakota</option>
-  				<option value="39">Ohio</option>
-  				<option value="40">Oklahoma</option>
-  				<option value="41">Oregon</option>
-  				<option value="42">Pennsylvania</option>
-  				<!-- <option value="72">Puerto Rico</option> -->
-  				<option value="44">Rhode Island</option>
-  				<option value="45">South Carolina</option>
-  				<option value="46">South Dakota</option>
-  				<option value="47">Tennessee</option>
-  				<option value="48">Texas</option>
-  				<option value="49">Utah</option>
-  				<option value="50">Vermont</option>
-  				<option value="51">Virginia</option>
-  				<option value="53">Washington</option>
-  				<option value="54">West Virginia</option>
-  				<option value="55">Wisconsin</option>
-  				<option value="56">Wyoming</option>
-  			</select>
-  			<br />
-
-  			<select id="dist_dd1" onchange="set_dist(1)">
-
-  			</select>
-  			<br />
-  			<h3> Second District to Compare </h3>
-
-  			<select id="state_ddm2" onchange="populate_dist_dd(2)">
-  				<option value="0">Select a State</option>
-  				<option value="01">Alabama</option>
-  				<option value="02">Alaska</option>
-  				<option value="04">Arizona</option>
-  				<option value="05">Arkansas</option>
-  				<option value="06">California</option>
-  				<option value="08">Colorado</option>
-  				<option value="09">Connecticut</option>
-  				<option value="10">Delaware</option>
-  				<!-- <option value="11">District of Columbia</option> -->
-  				<option value="12">Florida</option>
-  				<option value="13">Georgia</option>
-  				<option value="15">Hawaii</option>
-  				<option value="16">Idaho</option>
-  				<option value="17">Illinois</option>
-  				<option value="18">Indiana</option>
-  				<option value="19">Iowa</option>
-  				<option value="20">Kansas</option>
-  				<option value="21">Kentucky</option>
-  				<option value="22">Louisiana</option>
-  				<option value="23">Maine</option>
-  				<option value="24">Maryland</option>
-  				<option value="25">Massachusetts</option>
-  				<option value="26">Michigan</option>
-  				<option value="27">Minnesota</option>
-  				<option value="28">Mississippi</option>
-  				<option value="29">Missouri</option>
-  				<option value="30">Montana</option>
-  				<option value="31">Nebraska</option>
-  				<option value="32">Nevada</option>
-  				<option value="33">New Hampshire</option>
-  				<option value="34">New Jersey</option>
-  				<option value="35">New Mexico</option>
-  				<option value="36">New York</option>
-  				<option value="37">North Carolina</option>
-  				<option value="38">North Dakota</option>
-  				<option value="39">Ohio</option>
-  				<option value="40">Oklahoma</option>
-  				<option value="41">Oregon</option>
-  				<option value="42">Pennsylvania</option>
-  				<!-- <option value="72">Puerto Rico</option> -->
-  				<option value="44">Rhode Island</option>
-  				<option value="45">South Carolina</option>
-  				<option value="46">South Dakota</option>
-  				<option value="47">Tennessee</option>
-  				<option value="48">Texas</option>
-  				<option value="49">Utah</option>
-  				<option value="50">Vermont</option>
-  				<option value="51">Virginia</option>
-  				<option value="53">Washington</option>
-  				<option value="54">West Virginia</option>
-  				<option value="55">Wisconsin</option>
-  				<option value="56">Wyoming</option>
-  			</select>
-
-  			<br />
-
-  			<select id="dist_dd2" onchange="set_dist(2)"></select>
-
-  			<br />
-  			<h3> Third District to Compare </h3>
-
-  			<select id="state_ddm3" onchange="populate_dist_dd(3)">
-  				<option value="0">Select a State</option>
-  				<option value="01">Alabama</option>
-  				<option value="02">Alaska</option>
-  				<option value="04">Arizona</option>
-  				<option value="05">Arkansas</option>
-  				<option value="06">California</option>
-  				<option value="08">Colorado</option>
-  				<option value="09">Connecticut</option>
-  				<option value="10">Delaware</option>
-  				<!-- <option value="11">District of Columbia</option> -->
-  				<option value="12">Florida</option>
-  				<option value="13">Georgia</option>
-  				<option value="15">Hawaii</option>
-  				<option value="16">Idaho</option>
-  				<option value="17">Illinois</option>
-  				<option value="18">Indiana</option>
-  				<option value="19">Iowa</option>
-  				<option value="20">Kansas</option>
-  				<option value="21">Kentucky</option>
-  				<option value="22">Louisiana</option>
-  				<option value="23">Maine</option>
-  				<option value="24">Maryland</option>
-  				<option value="25">Massachusetts</option>
-  				<option value="26">Michigan</option>
-  				<option value="27">Minnesota</option>
-  				<option value="28">Mississippi</option>
-  				<option value="29">Missouri</option>
-  				<option value="30">Montana</option>
-  				<option value="31">Nebraska</option>
-  				<option value="32">Nevada</option>
-  				<option value="33">New Hampshire</option>
-  				<option value="34">New Jersey</option>
-  				<option value="35">New Mexico</option>
-  				<option value="36">New York</option>
-  				<option value="37">North Carolina</option>
-  				<option value="38">North Dakota</option>
-  				<option value="39">Ohio</option>
-  				<option value="40">Oklahoma</option>
-  				<option value="41">Oregon</option>
-  				<option value="42">Pennsylvania</option>
-  				<!-- <option value="72">Puerto Rico</option> -->
-  				<option value="44">Rhode Island</option>
-  				<option value="45">South Carolina</option>
-  				<option value="46">South Dakota</option>
-  				<option value="47">Tennessee</option>
-  				<option value="48">Texas</option>
-  				<option value="49">Utah</option>
-  				<option value="50">Vermont</option>
-  				<option value="51">Virginia</option>
-  				<option value="53">Washington</option>
-  				<option value="54">West Virginia</option>
-  				<option value="55">Wisconsin</option>
-  				<option value="56">Wyoming</option></select>
-  				<br />
+  </main>
 
 
-  				<select id="dist_dd3" onchange="set_dist(3)"></select>
-  				<br />
-
-  				<button onclick="clearcomp()" style="background: #cd0099;">Reset</button>
-  			</div>
-  			<div style="margin:15px">
-
-  				<svg width="200" height="50">
-  					<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel1"></text>
-  				</svg>
-
-  				<svg width="200" height="50">
-  					<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel2"></text>
-  				</svg>
-  				<svg width="200" height="50">
-  					<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel3"></text>
-  				</svg> <br />  						
-
-  				<svg height="200" width="200" id='flowcomp1'>
-  					<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  				</svg>
-
-
-
-  				<svg height="200" width="200" id='flowcomp2'>
-  					<polygon id="dflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  				</svg>
-
-
-
-  				<svg height="200" width="200" id='flowcomp3'>
-  					<polygon id="dflowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  				</svg> <br />
-
-
-  				<svg height="200" width="200" id='showcomp1'>
-  					<polygon id="dshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  				</svg>
-
-  				<svg height="200" width="200" id='showcomp2'>
-  					<polygon id="dshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  				</svg>
-
-  				<svg height="200" width="200" id='showcomp3'>
-  					<polygon id="dshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  				</svg> <br />
-  				<button onclick="decrement(1)" style="margin-left:15px;"> &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider1" style="width:100px">
-  				<button onclick="increment(1)" style="margin-right:15px"> &rarr; </button> 
-  				<button onclick="decrement(2)" style="margin-left:15px"> &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider2" style="width:100px">
-  				<button onclick="increment(2)" style="margin-right:15px"> &rarr; </button> 
-  				<button onclick="decrement(3)" style="margin-left:15px" > &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider3" style="width:100px">
-  				<button onclick="increment(3)" style="margin-right:15px"> &rarr; </button> 
-
-  			</div>
-
-
-
-  			<div>
-  				<svg height="530" width = "25">
-  					<text x="20" y="280" text-anchor="middle" fill="black" transform="rotate(270,20,280)">Perimeter</text>
-
-  				</svg>
-  				<svg height="530" width = "500" id="plotspace">
-  					<polyline id="flowplot1" points="" style="stroke:#9911ee;stroke-width:3;fill:none;stroke-opacity:.5" />
-  					<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
-  					<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
-
-
-  					<circle id="track1" cx="-10" cy="0" r="5" stroke="#9911ee" stroke-width="3" fill="#9911ee" stroke-opacity=".4" fill-opacity=".4"/>
-  					<text id = "track1t" x = "0" y="0" font-size="24"></text>
-  					<circle id="track2" cx="-10" cy="0" r="5" stroke="#99ee11" stroke-width="3" fill="#99ee11" stroke-opacity=".4" fill-opacity=".4"/>
-  					<text id = "track2t" x = "0" y="0" font-size="24"></text>
-
-  					<circle id="track3" cx="-10" cy="0" r="5" stroke="#ee1199" stroke-width="3" fill="#ee1199" stroke-opacity=".4" fill-opacity=".4"/>
-  					<text id = "track3t" x = "0" y="0" font-size="24"></text>
-
-
-  					<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-  					<polyline points="10 498 498 498" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-  					<polyline points="10 398 398 398" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-  					<polyline points="10 298 298 298" style="stroke:#000;stroke-width:2;stroke-opacity:.3"/> 
-  					<polyline points="10 198 198 198" style="stroke:#000;stroke-width:2;stroke-opacity:.3" />
-  					<polyline points="10 98 98 98" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
-
-  					<text x="0" y="499" fill="black">1</text>
-  					<text x="0" y="399" fill="black">2</text>
-  					<text x="0" y="299" fill="black">3</text>
-  					<text x="0" y="199" fill="black">4</text>
-  					<text x="0" y="99"  fill="black">5</text>
-
-  					<text x="250" y="515" text-anchor="middle" fill="black"> &ndash; Curve-Shortening Flow Steps &rarr;</text>
-
-
-
-
-  				</svg>
-  			</div>
-
-
-
-  		</div>
-
-
-
-  	</main>
-
-
-  	<footer>
-  		<p>
-  			This page was created by
-  			<a href="http://zachschutzman.com/"><b>Zachary Schutzman</b></a> based
-  			on work at the
+  <footer>
+  	<p>
+  		This page was created by
+  		<a href="http://zachschutzman.com/"><b>Zachary Schutzman</b></a> based
+  		on work at the
         <a href="http://gerrydata.org">Voting Rights Data Institute</a><!--,  and is
         being edited and maintained by MGGG -->. The code to generate the figures is 
         based on Patrick Girardet's implementation of Curve-Shortening Flow and the 
@@ -735,6 +775,7 @@ onload="renderMathInElement(document.body, {delimiters: [
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script id = "loadfn" src=""></script>
+<script src="src/static_imgs.js"></script>
 <script src="src/md03.js"></script>
 <script src="src/tx35.js"></script>
 <script src="src/ok01.js"></script>

@@ -43,6 +43,7 @@ for countdists in range(len(cds)):
     # else:
     #     continue
         districtname = cds.loc[countdists]['GEOID']
+
         curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = 0)
         biggest = 0
         for i in range(len(curve)):
@@ -57,6 +58,8 @@ for countdists in range(len(cds)):
 
     else:
         districtname = cds.loc[countdists]['GEOID']
+
+
         tolct = 0
         curve = curve_utils.curve_from_dataframe(cds, countdists, tolerance = 0)
 
@@ -85,7 +88,7 @@ for countdists in range(len(cds)):
 
 
     tightdim = max(xmax,ymax)
-    scalefactor = 400/tightdim
+    scalefactor = 140/tightdim
     print("SCALING: ",tightdim,scalefactor,xmin,xmax,ymin,ymax)
     pp_data = np.empty((0,2), float)
 
