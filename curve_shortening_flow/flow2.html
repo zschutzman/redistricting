@@ -279,7 +279,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   						<select id="dist_dd3" onchange="set_dist(3)"></select>
   						<br />
 
-
+              <button onclick="clearcomp()" style="background: #cd0099;">Reset</button>
   					</div>
   					<div style="margin:15px">
   						<svg height="200" width="200" id='flowcomp1'>
@@ -310,12 +310,12 @@ onload="renderMathInElement(document.body, {delimiters: [
   						<svg height="200" width="200" id='showcomp3'>
   							<polygon id="dshowc3" points="" style="fill:#ee1199;stroke:#000;stroke-width:2;fill-opacity:.3" />
   						</svg> <br />
-  						<button onclick="decrement(1)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider1">
-  						<button onclick="increment(1)"> NEXT </button> 
-  						<button onclick="decrement(2)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider2">
-  						<button onclick="increment(2)"> NEXT </button> 
-  						<button onclick="decrement(3)"> PREV </button>    <input type="range" min="0" value="0" class="slider" id="slider3">
-  						<button onclick="increment(3)"> NEXT </button> 
+  						<button onclick="decrement(1)" style="margin-left:15px"> &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider1" style="width:100px">
+  						<button onclick="increment(1)" style="margin-right:15px"> &rarr; </button> 
+  						<button onclick="decrement(2)" style="margin-left:15px"> &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider2" style="width:100px">
+  						<button onclick="increment(2)" style="margin-right:15px"> &rarr; </button> 
+  						<button onclick="decrement(3)" style="margin-left:15px" > &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider3" style="width:100px">
+  						<button onclick="increment(3)" style="margin-right:15px"> &rarr; </button> 
 
   					</div>
 
@@ -327,9 +327,14 @@ onload="renderMathInElement(document.body, {delimiters: [
   							<polyline id="flowplot2" points="" style="stroke:#99ee11;stroke-width:3;fill:none;stroke-opacity:.5" />
   							<polyline id="flowplot3" points="" style="stroke:#ee1199;stroke-width:3;fill:none;stroke-opacity:.5" />
 
-  							<circle id="track1" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3" />
-  							<circle id="track2" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3"/>
-  							<circle id="track3" cx="-10" cy="-10" r="5" stroke="black" stroke-width="3"/>
+
+          <circle id="track1" cx="-10" cy="0" r="5" stroke="#9911ee" stroke-width="3" fill="#9911ee" stroke-opacity=".4" fill-opacity=".4"/>
+          <text id = "track1t" x = "0" y="0" font-size="24"></text>
+          <circle id="track2" cx="-10" cy="0" r="5" stroke="#99ee11" stroke-width="3" fill="#99ee11" stroke-opacity=".4" fill-opacity=".4"/>
+                    <text id = "track2t" x = "0" y="0" font-size="24"></text>
+
+          <circle id="track3" cx="-10" cy="0" r="5" stroke="#ee1199" stroke-width="3" fill="#ee1199" stroke-opacity=".4" fill-opacity=".4"/>
+                    <text id = "track3t" x = "0" y="0" font-size="24"></text>
 
 
   							<polyline points="10 598 598 598" style="stroke:#000;stroke-width:2;stroke-opacity:.3" /> 
@@ -420,7 +425,7 @@ onload="renderMathInElement(document.body, {delimiters: [
 <script src="curve_files_list.js"></script>
 
 <script src="csf_utils.js"></script>
-<!-- <script src="demo_plot_csf.js"></script>>
+<!-- <script src="_plot_csf.js"></script>>
 <script src="csf.js"></script>
 <script src="animate.js"></script> -->
 <script src="plot_csf.js"></script>
