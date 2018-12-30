@@ -36,6 +36,8 @@ function compdist(fn,ind){
 	script.onload = function () {
 		compcurves[ind-1] = curve_anim.slice();
 		maxsteps[ind-1] = curve_anim.length-1
+
+		document.getElementById('track'+ind + "t").innerHTML = fips_dict[fn.slice(0,2)].toUpperCase() + "-" + fn.slice(2,4);
 		document.getElementById("slider"+ind).setAttribute("max",curve_anim.length-1);
 
 		document.getElementById("slider"+ind).value = 0;
@@ -85,7 +87,13 @@ if (compcurves[2] != -2){
 
 
 function draw_init(k,ind){
-	comppolys[ind-1].points.clear()
+
+	drawcomp(k,ind);
+
+
+
+
+
 	comppolyshows[ind-1].points.clear()
 	plotlines[ind-1].points.clear()
 
@@ -95,12 +103,6 @@ function draw_init(k,ind){
 		var c = compcurves[ind-1][k][0][i]
 
 
-		var point = compsvgs[ind-1].createSVGPoint();
-		point.x = (c[0]*.45) -centroid[0]*.45 + 100;
-		point.y = (c[1] * .45) - centroid[1] * .45 + 100;	
-
-
-		comppolys[ind-1].points.appendItem(point);
 
 		var point = compsvgshows[ind-1].createSVGPoint();
 		point.x = (c[0]*.45) -centroid[0]*.45 + 100;
@@ -158,6 +160,8 @@ function drawcomp(k,ind){
 
 	document.getElementById('track'+ind).setAttribute("cx",Math.min(500,3+compcurves[ind-1][k][1]/30 ));
 	document.getElementById('track'+ind).setAttribute("cy",600-(100*(1/Math.sqrt(compcurves[ind-1][k][2]))));
+	   document.getElementById('track'+ind + "t").setAttribute("x",Math.min(500,-2+compcurves[ind-1][k][1]/30 ));
+  document.getElementById('track'+ind + "t").setAttribute("y",2+600-(100*(1/Math.sqrt(compcurves[ind-1][k][2]))));
 
 
 }
@@ -295,6 +299,14 @@ function clearcomp(){
 
 			document.getElementById('track'+(ind)).setAttribute("cx",-10);
 			document.getElementById('track'+(ind)).setAttribute("cy",-10);
+
+
+		document.getElementById('track'+ind + "t").innerHTML = "";
+
+
+
+		document.getElementById('state_ddm'+ind).getElementsByTagName('option')[0].selected = true;
+		populate_dist_dd(ind);
 
 
 

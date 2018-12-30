@@ -110,7 +110,11 @@ function demodrawcomp(k,ind){
 
 
  document.getElementById('demotrack'+ind).setAttribute("cx",Math.min(500,3+democompcurves[ind-1][k][1]/30 ));
+
  document.getElementById('demotrack'+ind).setAttribute("cy",600-(100*(1/Math.sqrt(democompcurves[ind-1][k][2]))));
+   document.getElementById('demotrack'+ind + "t").setAttribute("x",Math.min(500,-2+democompcurves[ind-1][k][1]/30 ));
+  document.getElementById('demotrack'+ind + "t").setAttribute("y",2+600-(100*(1/Math.sqrt(democompcurves[ind-1][k][2]))));
+
 
 
 
