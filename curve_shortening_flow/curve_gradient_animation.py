@@ -32,7 +32,7 @@ plt.plot([], [])
 # curve = np.array([[0,0],[1,1],[1,2],[0,3],[-1,2],[-1,1]])
 #texas = curve_utils.curve_from_shapefile(os.path.join('shapefiles','Texas outline','Texas_State_Boundary.shp'), tolerance=.00)
 #cds = gpd.read_file(os.path.join('shapefiles','nc12','nc12.shp')).to_crs({'init': 'epsg:3395'})
-cds = gpd.read_file(os.path.join('shapefiles','uscd','cd_us.shp')).to_crs({'init': 'epsg:3395'})
+cds = gpd.read_file(os.path.join('shapefiles','cd116','tl_2018_us_cd116.shp')).to_crs({'init': 'epsg:3395'})
 for countdists in range(len(cds)):
     
     if cds.loc[countdists]['STATEFP'] ==0: continue #['23', '42', '36', '24', 
