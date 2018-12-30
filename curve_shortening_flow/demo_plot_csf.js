@@ -76,7 +76,7 @@ for (var i=0;i<democompcurves[ind-1].length;i++){
 
 	var point = demoplotspace.createSVGPoint();
 
-	point.x = democompcurves[ind-1][i][1]/30;
+	point.x = 3+democompcurves[ind-1][i][1]/30;
 	point.y = 600-(100*(1/Math.sqrt(democompcurves[ind-1][i][2])));
 	demoplotlines[ind-1].points.appendItem(point);
 
@@ -109,7 +109,7 @@ function demodrawcomp(k,ind){
 }
 
 
- document.getElementById('demotrack'+ind).setAttribute("cx",Math.min(500,democompcurves[ind-1][k][1]/30 ));
+ document.getElementById('demotrack'+ind).setAttribute("cx",Math.min(500,3+democompcurves[ind-1][k][1]/30 ));
  document.getElementById('demotrack'+ind).setAttribute("cy",600-(100*(1/Math.sqrt(democompcurves[ind-1][k][2]))));
 
 

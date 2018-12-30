@@ -119,7 +119,7 @@ function draw_init(k,ind){
 
 		var point = plotspace.createSVGPoint();
 
-		point.x = compcurves[ind-1][i][1]/30;
+		point.x = 3+compcurves[ind-1][i][1]/30;
 		point.y = 600-(100*(1/Math.sqrt(compcurves[ind-1][i][2])));
 		plotlines[ind-1].points.appendItem(point);
 
@@ -156,7 +156,7 @@ function drawcomp(k,ind){
 
 	}
 
-	document.getElementById('track'+ind).setAttribute("cx",Math.min(500,compcurves[ind-1][k][1]/30 ));
+	document.getElementById('track'+ind).setAttribute("cx",Math.min(500,3+compcurves[ind-1][k][1]/30 ));
 	document.getElementById('track'+ind).setAttribute("cy",600-(100*(1/Math.sqrt(compcurves[ind-1][k][2]))));
 
 
