@@ -174,7 +174,7 @@ function increment(i){
 	if (compcurves[i-1]==-2){return;}
 	if (vissteps[i-1] == maxsteps[i-1]){return;}
 	vissteps[i-1]++;
-	drawcomp(vissteps[0],i)
+	drawcomp(vissteps[i-1],i)
 }
 
 function decrement(i){
@@ -183,7 +183,7 @@ function decrement(i){
 
 	if (vissteps[i-1] == 0){return;}
 	vissteps[i-1]--;
-	drawcomp(vissteps[0],i)
+	drawcomp(vissteps[i-1],i)
 }
 
 
