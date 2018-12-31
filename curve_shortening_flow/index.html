@@ -92,7 +92,7 @@ onload="renderMathInElement(document.body, {delimiters: [
 
   		<h3> A case for "multiscale compactness" </h3>
   		<p>
-  			While the gemoetric shape of a district is not the measure by which 
+  			While the geometric shape of a district is not the measure by which 
   			gerrymandering is defined, it often drives the popular narrative around 
   			what districts are and are not gerrymandered.  A quick Google search for 
   			a term like "most gerrymandered districts" will return a litany of articles 
@@ -153,7 +153,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   	<p>
   		However, this score has some drawbacks which make its use in redistricting applications 
   		somewhat questionable.  First, it's very sensitive to small changes in the shape's boundary. 
-  		A circle with a ragged boundary may have the same Polsby-Popper score as a very snakey shape.
+  		A circle with a ragged boundary may have the same Polsby-Popper score as a very snaky shape.
   		</p>
   		<div class="chart two-columns" style="max-width:600px;background:none;border:none;margin:auto;padding:3px 3px 3px 3px;">
   <div>
@@ -166,7 +166,7 @@ onload="renderMathInElement(document.body, {delimiters: [
 </svg>
 <br />
 <svg height="35" width="200">
-	<text font-size="22" text-anchor="middle" x="90" y="17">PP=.25</text>
+	<text font-size="22" text-anchor="middle" x="90" y="17">PP=.4</text>
 </svg>
 </div>
 <div>
@@ -180,7 +180,7 @@ onload="renderMathInElement(document.body, {delimiters: [
    </svg>
 <br />
 <svg height="35" width="200">
-	<text text-anchor="middle" x="100" y="17" font-size="22">PP=.25</text>
+	<text text-anchor="middle" x="100" y="17" font-size="22">PP=.4</text>
 </svg>
 </div>
 </div>
@@ -188,7 +188,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   		This is a problem because many boundaries in political geography, such as city lines as 
   		well as coastlines and rivers are natural choices to use as district borders, but they tend to 
   		be jagged, which distorts the Polsby-Popper score.  This also means that the score is sensitive 
-  		to the <em> resolution of measurement </em>.  As maps become more detailled, things like coastlines 
+  		to the <em> resolution of measurement </em>.  As maps become more detailed, things like coastlines 
   		look more and more rough, and so the same district's Polsby-Popper score may vary by a factor of 
   		as much as three depending on how precise the geographic measurements are. Richard Barnes and Justin Solomon explore this in more detail 
   		<a href="https://arxiv.org/abs/1803.02857"> in their paper, here</a>.
@@ -206,13 +206,13 @@ onload="renderMathInElement(document.body, {delimiters: [
 
   		<ul>
   			<li>
-  				<h4>Discrimative</h4> There should be a meaningful way of <em> ordering </em> districts based on the entries of the vector. 
+  				<h4>Discriminative</h4> There should be a meaningful way of <em> ordering </em> districts based on the entries of the vector. 
   				For example, if we sort all of our districts by the first entry, the resulting order should say something 
   				about the relative compactness of the districts.
   			</li>
   			<li>
   				<h4>Explainable</h4> The measure should be easy to communicate to the parties invested in the redistricting process, 
-  				including lawyers, politicians, interestd citizens, as well as mathematicians.
+  				including lawyers, politicians, interested citizens, as well as mathematicians.
   			</li>
   			<li>
   				<h4>Stable</h4> Two similar shapes should be assigned similar vectors.
@@ -264,7 +264,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   	<p>
   		The procedure to perform curve-shortening flow is pretty straightforward. At each point on the boundary of our region, 
   		we'll find the tangent line and move that point inward in the direction perpendicular to the tangent. How far to move it 
-  		will depend on the <em> curvature </em> of the boundary at the point.  The last missing piece is to articulate a defintion 
+  		will depend on the <em> curvature </em> of the boundary at the point.  The last missing piece is to articulate a definition 
   		of curvature.  Intuitively, curvature measures how "bendy" the boundary is at a particular point.  If our point lies in a very 
   		squiggly portion of the boundary, then the curvature is large. If our point is in a portion that looks like a straight line, 
   		then the curvature is small.  
@@ -273,10 +273,10 @@ onload="renderMathInElement(document.body, {delimiters: [
   	<p>
   		Formally, we measure curvature in the following way. First, we can look at the neighborhood of our point on the boundary 
   		and imagine that it's a small segment on the circumference of a circle with some radius $r$, called the <em>osculating circle</em>.
-  		<p>
-  			In this small illustration, a step of curve-shortening flow will move the point with the small blue circle outward and the point with the large yellow circle inward, i the directions of the arrows.
-  			Since the blue circle is smaller than the yellow circle, the first point will be moved <em>further</em> than the second.
-  		</p>
+  		  		Then, the curvature at that point is $1/r$ if it's a point of <em>positive curvature</em> or $-1/r$ if it's a point of 
+  		<em>negative curvature</em>.  If we're looking at a point on a line segment, then we say that the curvature is zero.
+  			
+  		
   		<svg width="325" height="325" style="display:block;margin:auto">
   			<marker id="arrow10-8-right" markerHeight="8" markerUnits="strokeWidth" markerWidth="10" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black"></path></marker>
   			<marker id="arrow15-12-right" markerHeight="12" markerUnits="strokeWidth" markerWidth="15" orient="auto" refX="-3" refY="0" viewBox="-15 -5 20 20"><path d="M -15 -5 L 0 0 L -15 5 z" fill="black" ></path></marker>
@@ -289,8 +289,8 @@ onload="renderMathInElement(document.body, {delimiters: [
   			<line id="e7_line" x1="282.414" y1="406.562" x2="282.414" y2="429.562" style="stroke: black; fill: none; stroke-width: 3px;marker-start:url(#arrow10-8-left);" transform="translate(-135,-135)"></line>
   			<line id="e8_line" x1="315.719" y1="430.594" x2="246.719" y2="430.219" style="stroke:black;fill:none;stroke-width:1px;" transform="translate(-135,-135)"></line>
   		</svg>
-  		Then, the curvature at that point is $1/r$ if it's a point of <em>positive curvature</em> or $-1/r$ if it's a point of 
-  		<em>negative curvature</em>.  If we're truly looking at a point on a line segment, then we say that the curvature is zero.
+In this small illustration, a step of curve-shortening flow will move the point with the small blue circle outward and the point with the large yellow circle inward, i the directions of the arrows.
+  			Since the blue circle is smaller than the yellow circle, the first point will be moved <em>further</em> than the second.
   	</p>
   	<p>
   		We can make two observations about the behavior of curve-shortening flow on a shape.  First, since points on really 
@@ -338,7 +338,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   </section>
 
   <section>
-  	<h3> Turining Curve-Shortening Flow into a Compactness Measure </h3>
+  	<h3> Turning Curve-Shortening Flow into a Compactness Measure </h3>
   	<p>
   		We've given an explanation of curve-shortening flow and described how one might be able to implement an 
   		algorithm to compute it, we can move on to designing a <em> compactness score </em> which can be derived 
