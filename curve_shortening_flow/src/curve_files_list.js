@@ -1,3 +1,5 @@
+// the list of all district files
+
 var curvefiles=[
 '0101_curve.js',
 '0102_curve.js',
