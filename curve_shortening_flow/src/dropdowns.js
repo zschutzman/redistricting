@@ -34,7 +34,6 @@ function populate_dist_dd(ind){
 
    var options = distfiles.map(cf => [cf,ordinal(parseInt(cf.slice(2,4)))] );
    options.sort()
-   console.log(options)
 
    var dist_dd_html = '<option value="0">Select a District</option>'
 
@@ -48,6 +47,5 @@ function populate_dist_dd(ind){
 // calls the drawing things for the chosen district
 function set_dist(ind){
 	if (document.getElementById("dist_dd"+ind).value == 0){return;}
-	console.log("HERE",ind,document.getElementById("dist_dd"+ind).value);
 	compdist(document.getElementById("dist_dd"+ind).value.slice(0,4),ind)
 }
