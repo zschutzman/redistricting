@@ -38,7 +38,7 @@ function compdist(fn,ind){
 		maxsteps[ind-1] = curve_anim.length-1
 
 		document.getElementById('track'+ind + "t").innerHTML = fips_dict[fn.slice(0,2)].toUpperCase() + "-" + (parseInt(fn.slice(2,4)));//(fn.slice(2,4) == "00" ? "AL":fn.slice(2,4));
-		document.getElementById('distlabel'+ind).innerHTML = fips_dict[fn.slice(0,2)].toUpperCase() + "-" + (parseInt(fn.slice(2,4)));
+		document.getElementById('distlabel'+ind).innerHTML = fips_dict[fn.slice(0,2)].toUpperCase() + "-" + (fn.slice(2,4) == "00" ? "AL":fn.slice(2,4));
 		document.getElementById("slider"+ind).setAttribute("max",curve_anim.length-1);
 
 		document.getElementById("slider"+ind).value = 0;
@@ -270,8 +270,9 @@ await sleep(50)
 }
 
 //////////////////////////
-function clearcomp(){
+function clearcomp(sel){
 	for (var ind=1;ind<=3;ind++){
+		if (ind!= sel){continue;}
 		console.log(ind-1)
 		{
 
@@ -303,11 +304,14 @@ function clearcomp(){
 
 
 		document.getElementById('track'+ind + "t").innerHTML = "";
+				document.getElementById('distlabel'+ind ).innerHTML = "";
+
 
 
 
 		document.getElementById('state_ddm'+ind).getElementsByTagName('option')[0].selected = true;
 		populate_dist_dd(ind);
+
 
 
 
