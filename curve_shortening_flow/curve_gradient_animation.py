@@ -32,12 +32,12 @@ plt.plot([], [])
 # curve = np.array([[0,0],[1,1],[1,2],[0,3],[-1,2],[-1,1]])
 #texas = curve_utils.curve_from_shapefile(os.path.join('shapefiles','Texas outline','Texas_State_Boundary.shp'), tolerance=.00)
 #cds = gpd.read_file(os.path.join('shapefiles','nc12','nc12.shp')).to_crs({'init': 'epsg:3395'})
-#cds = gpd.read_file(os.path.join('shapefiles','cd116','tl_2018_us_cd116.shp')).to_crs({'init': 'epsg:3395'})
-cds = gpd.read_file(os.path.join('shapefiles','cb_2017_us_cd115_500k','cb_2017_us_cd115_500k.shp')).to_crs({'init': 'epsg:3395'})
+cds = gpd.read_file(os.path.join('shapefiles','cd116','tl_2018_us_cd116.shp')).to_crs({'init': 'epsg:3395'})
+#cds = gpd.read_file(os.path.join('shapefiles','cb_2017_us_cd115_5m','cb_2017_us_cd115_5m.shp')).to_crs({'init': 'epsg:3395'})
 
 for countdists in range(len(cds)):
     
-    if cds.loc[countdists]['GEOID'] not in ["2301","1226","0647"] and cds.loc[countdists]['STATEFP'] != "25": continue #['23', '42', '36', '24', 
+    if cds.loc[countdists]['GEOID'] not in ["0647","2301","2302","1226","2601","3601","2506","2509","2908"] and cds.loc[countdists]['STATEFP'] not in [ "44"]: continue #['23', '42', '36', '24', 
     elif type(curve_utils.curve_from_dataframe(cds, countdists, tolerance = 1000)) == shapely.geometry.multipolygon.MultiPolygon: 
         print(cds.loc[countdists]['GEOID'])
     #     continue
@@ -214,7 +214,7 @@ for countdists in range(len(cds)):
     curves = [c+[s] for (c,s) in zip(curves, pp_data[:,1].tolist())]
 
     print(len(curves[0]))
-
+    districtname = "coast_"+districtname
     #print(len(curves))
     with open("flow_shapes/{}_curve.js".format(districtname),'w') as outfile:
         json.dump(curves,outfile)

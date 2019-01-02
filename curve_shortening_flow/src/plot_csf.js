@@ -4,7 +4,7 @@ var comppolys = [document.getElementById('dflowc1'),document.getElementById('dfl
 
 
 
-var compsvgshows = [document.getElementById('showcomp1'),document.getElementById('showcomp2'),document.getElementById('showcomp3')]
+var compsvgshows = [document.getElementById('flowcomp1'),document.getElementById('flowcomp2'),document.getElementById('flowcomp3')]
 var comppolyshows = [document.getElementById('dshowc1'),document.getElementById('dshowc2'),document.getElementById('dshowc3')];
 
 var plotspace = document.getElementById('plotspace');

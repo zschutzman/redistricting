@@ -382,48 +382,28 @@ In this small illustration, a step of curve-shortening flow will move the point 
   	</div>
   	<div style="margin:15px">
 
-  		<svg width="200" height="50">
+  		<svg width="200" height="450" id = demoflowcomp1>
+  			<g>
   			<text y="50" x="100" text-anchor="middle" font-size="24" >MD-3</text>
+  			 <polygon id="demodflowc1" transform="translate(0,50)" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			 <polygon id="demodshowc1" transform="translate(0,250)" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</g>
   		</svg>
 
-  		<svg width="200" height="50">
-  			<text y="50" x="100" text-anchor="middle" font-size="24">TX-35</text>
+  		<svg width="200" height="450" id = demoflowcomp2>
+  			<g>
+  			<text y="50" x="100" text-anchor="middle" font-size="24" >TX-35</text>
+  			 <polygon id="demodflowc2" transform="translate(0,50)" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			 <polygon id="demodshowc2" transform="translate(0,250)" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</g>
   		</svg>
-  		<svg width="200" height="50">
-  			<text y="50" x="100" text-anchor="middle" font-size="24">OK-1</text>
-  		</svg> <br />  
-
-
-
-  		<svg height="200" width="200" id='demoflowcomp1'>
-  			<polygon id="demodflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  		<svg width="200" height="450" id = demoflowcomp3>
+  			<g>
+  			<text y="50" x="100" text-anchor="middle" font-size="24" >OK-1</text>
+  			 <polygon id="demodflowc3" transform="translate(0,50)" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			 <polygon id="demodshowc3" transform="translate(0,250)" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</g>
   		</svg>
-
-
-
-  		<svg height="200" width="200" id='demoflowcomp2'>
-  			<polygon id="demodflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  		</svg>
-
-
-
-  		<svg height="200" width="200" id='demoflowcomp3'>
-  			<polygon id="demodflowc3" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  		</svg> <br />
-
-
-  		<svg height="200" width="200" id='demoshowcomp1'>
-  			<polygon id="demodshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  		</svg>
-
-  		<svg height="200" width="200" id='demoshowcomp2'>
-  			<polygon id="demodshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  		</svg>
-
-  		<svg height="200" width="200" id='demoshowcomp3'>
-  			<polygon id="demodshowc3" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  		</svg>
-
   	</div>
 
 
@@ -699,54 +679,53 @@ In this small illustration, a step of curve-shortening flow will move the point 
 
   			<button onclick="clearcomp()" style="background: #cd0099;">Reset</button>
   		</div>
-  		<div style="margin:15px">
-
-  			<svg width="200" height="50">
-  				<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel1"></text>
-  			</svg>
-
-  			<svg width="200" height="50">
-  				<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel2"></text>
-  			</svg>
-  			<svg width="200" height="50">
-  				<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel3"></text>
-  			</svg> <br />  						
-
-  			<svg height="200" width="200" id='flowcomp1'>
-  				<polygon id="dflowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  			</svg>
 
 
+  		<div style="margin:15px;display:flex">
 
-  			<svg height="200" width="200" id='flowcomp2'>
-  				<polygon id="dflowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  			</svg>
+  		<div style="height:550px;width:220px">
+  		<svg width="200" height="450" id = flowcomp1>
+  			<g>
+			<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel1"></text>
+  			 <polygon id="dflowc1" transform="translate(0,50)" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			 <polygon id="dshowc1" transform="translate(0,250)" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  		</g>
+  		</svg>
 
-
-
-  			<svg height="200" width="200" id='flowcomp3'>
-  				<polygon id="dflowc3" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  			</svg> <br />
-
-
-  			<svg height="200" width="200" id='showcomp1'>
-  				<polygon id="dshowc1" points="" style="fill:#9911ee;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  			</svg>
-
-  			<svg height="200" width="200" id='showcomp2'>
-  				<polygon id="dshowc2" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  			</svg>
-
-  			<svg height="200" width="200" id='showcomp3'>
-  				<polygon id="dshowc3" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
-  			</svg> <br />
-  			<button onclick="decrement(1)" style="margin-left:15px;"> &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider1" style="width:100px">
+  			<button onclick="decrement(1)" style="margin-left:15px;"> &larr; </button>    
+  			<input type="range" min="0" value="0" class="slider" id="slider1" style="width:100px">
   			<button onclick="increment(1)" style="margin-right:15px"> &rarr; </button> 
-  			<button onclick="decrement(2)" style="margin-left:15px"> &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider2" style="width:100px">
-  			<button onclick="increment(2)" style="margin-right:15px"> &rarr; </button> 
-  			<button onclick="decrement(3)" style="margin-left:15px" > &larr; </button>    <input type="range" min="0" value="0" class="slider" id="slider3" style="width:100px">
-  			<button onclick="increment(3)" style="margin-right:15px"> &rarr; </button> 
+  	</div>
+  	  		<div style="height:550px;width:220px">
 
+  		<svg width="200" height="450" id = flowcomp2>
+  			<g>
+			<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel2"></text>
+  			 <polygon id="dflowc2" transform="translate(0,50)" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			 <polygon id="dshowc2" transform="translate(0,250)" points="" style="fill:#99ee11;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</g>
+  		</svg>
+
+  			<button onclick="decrement(2)" style="margin-left:15px"> &larr; </button>    
+  			<input type="range" min="0" value="0" class="slider" id="slider2" style="width:100px">
+  			<button onclick="increment(2)" style="margin-right:15px"> &rarr; </button> 
+  	</div>
+  		<div style="height:550px;width:220px">
+
+  		  		<svg width="200" height="450" id = flowcomp3>
+  			<g>
+			<text y="50" x="100" text-anchor="middle" font-size="24" id="distlabel3"></text>
+  			 <polygon id="dflowc3" transform="translate(0,50)" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			 <polygon id="dshowc3" transform="translate(0,250)" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
+  			</g>
+  		</svg>
+
+
+
+  			<button onclick="decrement(3)" style="margin-left:15px" > &larr; </button>    
+  			<input type="range" min="0" value="0" class="slider" id="slider3" style="width:100px">
+  			<button onclick="increment(3)" style="margin-right:15px"> &rarr; </button> 
+</div>
   		</div>
 
 

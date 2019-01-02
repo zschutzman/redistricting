@@ -1,6 +1,6 @@
 
 
-var democompsvgshows = [document.getElementById('demoshowcomp1'),document.getElementById('demoshowcomp2'),document.getElementById('demoshowcomp3')]
+var democompsvgshows = [document.getElementById('demoflowcomp1'),document.getElementById('demoflowcomp2'),document.getElementById('demoflowcomp3')]
 var democomppolyshows = [document.getElementById('demodshowc1'),document.getElementById('demodshowc2'),document.getElementById('demodshowc3')];
 var democomppolys = [document.getElementById('demodflowc1'),document.getElementById('demodflowc2'),document.getElementById('demodflowc3')];
 var democompsvgs = [document.getElementById('demoflowcomp1'),document.getElementById('demoflowcomp2'),document.getElementById('demoflowcomp3')];
