@@ -103,7 +103,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   			surrounding them is about their contorted shapes rather than their 
   			effect on the outcomes of elections.
   		</p>
-  		<div class="chart three-columns" style="max-width:600px;background:none;border:none;margin:auto;padding:3px 3px 3px 3px;">
+  		<div class="chart three-columns" style="max-width:600px;background:none;border:none;margin:auto;padding:3px 3px 3px 3px;justify-content: center">
 
   			<div>
   				<svg height="150" width="150" id="il4svg">
@@ -131,7 +131,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   				</svg>
   				<br />
   				<svg height="35" width = "150">
-  					<text font-size="24" text-anchor = "middle" x="75" y="18">MD-3</text>
+  					<text font-size="24" text-anchor = "middle" x="75" y="18"><span class="purple">MD-3</span>  </text>
   				</svg>
   			</div>
 
@@ -242,11 +242,11 @@ onload="renderMathInElement(document.body, {delimiters: [
   			into a circle of the same area.
   		</p>
   		<p>
-  			Here's a brief animation of this transformation applied to MD-3, played forwards (district to circle) and backwards (circle to district).
+  			Here's a brief animation of this transformation applied to <span class="purple">MD-3</span>  , played forwards (district to circle) and backwards (circle to district).
   		</p>
 
 
-  		<div class="chart center" style="max-width:250px;max-height:250px;background:none;border:none;display:block;margin:auto ;padding:3px 3px 3px 3px;">
+  		<div class="chart center" style="max-width:250px;max-height:250px;background:none;border:none;display:block;margin:auto ;padding:3px 3px 3px 3px;justify-content: center">
 
   			<div>
   				<svg height="200" width="200" id='animbox'>
@@ -368,10 +368,12 @@ onload="renderMathInElement(document.body, {delimiters: [
   	<section>
   		<h3>Comparing Plots</h3>
   		<p>
-  			To demonstrate this measure, we'll compare the plots of three districts.  Below are images of the three districts as well as animations showing 
+  			To demonstrate this measure, we'll examine the plots of three districts.  Below are images of the three districts as well as animations showing 
   			the progress of the curve-shortening flow procedure.  The plots on the right have the number of steps on the horizontal axis and the perimeter 
-  			of the figure at that step on the vertical axis.  From left to right, these are "worst offenders" MD-3 and TX-35, 
-  			as well as OK-1.  
+  			of the figure at that step on the vertical axis.  From left to right, these are "worst offenders" <span class="purple">MD-3</span>   
+        and <span class="teal">TX-35</span>, 
+  			as well as <span class="orange">OK-1</span>.  Since these districts all come from different states, we should be careful not to use 
+        this data to inform any judgment about whether or not these districts are part of a gerrymander.  This exercise is purely geometric.  
 
   		</p>
 
@@ -379,9 +381,7 @@ onload="renderMathInElement(document.body, {delimiters: [
 
   	<div class="chart two-columns center">
 
-  		<div>
-  		</div>
-  		<div style="margin:15px">
+      <div style="margin:15px;justify-content: center">
 
   			<svg width="200" height="450" id = demoflowcomp1>
   				<g>
@@ -400,7 +400,7 @@ onload="renderMathInElement(document.body, {delimiters: [
   			</svg>
   			<svg width="200" height="450" id = demoflowcomp3>
   				<g>
-  					<text y="50" x="100" text-anchor="middle" font-size="24" >OK-1</text>
+  					<text y="50" x="100" text-anchor="middle" font-size="24">OK-1</text>
   					<polygon id="demodflowc3" transform="translate(0,50)" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
   					<polygon id="demodshowc3" transform="translate(0,250)" points="" style="fill:#ee9911;stroke:#000;stroke-width:2;fill-opacity:.3" />
   				</g>
@@ -456,17 +456,17 @@ onload="renderMathInElement(document.body, {delimiters: [
   	</div>
   	<section>
   		<p>
-  			There are a few things to observe here.  First, the plot for OK-1 is below the other two at every point, and it requires 
-  			far fewer steps of curve-shortening flow to become something (almost) circular.  These demonstrate that, with respect to our measure, OK-1 is 
+  			There are a few things to observe here.  First, the plot for <span class="orange"><span class="orange">OK-1</span> </span> is below the other two at every point, and it requires 
+  			far fewer steps of curve-shortening flow to become something (almost) circular.  These demonstrate that, with respect to our measure, <span class="orange"><span class="orange">OK-1</span> </span> is 
   			much more compact than the other two districts. 
   		</p>
   		<p>
-  			Second, we can look at the <em>shapes</em> of the three plots.  We observed that OK-1's plot drops very quickly 
+  			Second, we can look at the <em>shapes</em> of the three plots.  We observed that <span class="orange"><span class="orange">OK-1</span> </span>'s plot drops very quickly 
   			as it takes relatively few curve-shortening flow steps to transform it into a circle.  It's original form 
-  			can be described as two joined rectangles with some irregularities at the boundary.  MD-3's plot falls 
+  			can be described as two joined rectangles with some irregularities at the boundary.  <span class="purple"><span class="purple">MD-3</span>  </span>'s plot falls 
   			at a slower rate, which reflects the fact that the bizarreness of its geometry is not limited to its boundary, 
   			as once the curve-shortening flow smooths it out, what we're left with is something that looks like a snakey 'Y'. 
-  			TX-35's plot falls quickly at the beginning but then slows down, being outpaced by MD-3.  This is because the 
+  			<span class="teal">TX-35</span>'s plot falls quickly at the beginning but then slows down, being outpaced by <span class="purple"><span class="purple">MD-3</span>  </span>.  This is because the 
   			boundary smoothing reduces a lot of the district's perimeter, but the long, thin strip which stretches to the southwest 
   			requires many steps to pull inward.
   		</p>
@@ -488,10 +488,10 @@ onload="renderMathInElement(document.body, {delimiters: [
       To examine a proper comparison of districting plans under the curve-shortening flow compactness measure, we've 
       computed the plots for the districts in three different plans for North Carolina.  The first is the plan which was 
       enacted in 2011 and ruled invalid in 2016 as a racial gerrymander, and its flow progressions are represented by the 
-      &&&RED&&& dashed plots.  The second is the plan enacted in 2016 as the replacement for the invalid one, which is 
+      <span class="purple">purple</span> dashed plots.  During the challenge to this plan, a non-partisan group of retired judges proposed a more "fair" 
+      plan which is represented below with the <span class="teal">teal</span> plots. The last is the plan enacted in 2016 as the replacement for the invalid one, which is 
       currently being challenged in the courts as a partisan gerrymander, and its flow progressions are plotted with solid 
-      &&&GREEN&&& lines.  Finally, a group of non-partisan, retired judges proposed an alternative plan in 2016 which was 
-      intended to be more fair than those enacted by the legislature.  These districts have dotted &&&BLUE&&& plots.
+      <span class="orange">orange</span>  lines.  
     </p>
 
 
@@ -499,146 +499,7 @@ onload="renderMathInElement(document.body, {delimiters: [
 
   	</section>
 <div class = "chart two-columns" id = "nccomp">
-
-      <div>
-      </div>
-      <div style="margin:15px">
-        <svg width="100" height="450" id = "ncdist1">
-          <g>
-            <text y="100" x="50" text-anchor="middle" font-size="16" >2011</text>
-            <text y="200" x="50" text-anchor="middle" font-size="16" >Judges</text>
-            <text y="300" x="50" text-anchor="middle" font-size="16" >2016</text>
-          </g>
-        </svg>
-        <svg width="100" height="450" id = "ncdist1">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-1</text>
-            <polygon id="nc1201" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1601" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd01" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-        <svg width="100" height="450" id = "ncdist2">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-2</text>
-            <polygon id="nc1202" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1602" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd02" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-        <svg width="100" height="450" id = "ncdist3">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-3</text>
-            <polygon id="nc1203" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1603" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd03" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-
-        <svg width="100" height="450" id = "ncdist4">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-4</text>
-            <polygon id="nc1204" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1604" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd04" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-
-        <svg width="100" height="450" id = "ncdist5">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-5</text>
-            <polygon id="nc1205" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1605" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd05" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-
-
-        <svg width="100" height="450" id = "ncdist6">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-6</text>
-            <polygon id="nc1206" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1606" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd06" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-
-        <svg width="100" height="450" id = "ncdist7">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-7</text>
-            <polygon id="nc1207" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1607" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd07" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-
-        <svg width="100" height="450" id = "ncdist8">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-8</text>
-            <polygon id="nc1208" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1608" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd08" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-
-        <svg width="100" height="450" id = "ncdist9">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-9</text>
-            <polygon id="nc1209" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1609" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd09" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-        <svg width="100" height="450" id = "ncdist10">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-10</text>
-            <polygon id="nc1210" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1610" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd10" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-
-        <svg width="100" height="450" id = "ncdist11">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-11</text>
-            <polygon id="nc1211" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1611" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd11" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-        <svg width="100" height="450" id = "ncdist12">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-12</text>
-            <polygon id="nc1212" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1612" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd12" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-
-
-        <svg width="100" height="450" id = "ncdist13">
-          <g>
-            <text y="35" x="50" text-anchor="middle" font-size="16" >NC-13</text>
-            <polygon id="nc1213" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="nc1613" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
-            <polygon id="ncjd13" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
-
-          </g>
-        </svg>
-      </div>
-      <div>
+ <div>
         <svg height="530" width = "25">
           <text x="20" y="280" text-anchor="middle" fill="black" transform="rotate(270,20,280)">Perimeter</text>
         </svg>
@@ -708,6 +569,144 @@ onload="renderMathInElement(document.body, {delimiters: [
         </svg>
       </div>
 
+      <div style="margin:auto;display:inline-block;justify-content:center;text-align:center">
+        <svg width="60" height="450" id = "ncdist1">
+          <g>
+            <text y="90" x="25" text-anchor="middle" font-size="16" >2011</text>
+            <text y="190" x="25" text-anchor="middle" font-size="16" >Judges</text>
+            <text y="290" x="25" text-anchor="middle" font-size="16" >2016</text>
+          </g>
+        </svg>
+        <svg width="100" height="450" id = "ncdist1">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-1</text>
+            <polygon id="nc1201" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1601" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd01" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+        <svg width="100" height="450" id = "ncdist2">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-2</text>
+            <polygon id="nc1202" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1602" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd02" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+        <svg width="100" height="450" id = "ncdist3">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-3</text>
+            <polygon id="nc1203" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1603" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd03" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+
+        <svg width="100" height="450" id = "ncdist4">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-4</text>
+            <polygon id="nc1204" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1604" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd04" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+
+        <svg width="100" height="450" id = "ncdist5">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-5</text>
+            <polygon id="nc1205" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1605" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd05" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+
+
+        <svg width="100" height="450" id = "ncdist6">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-6</text>
+            <polygon id="nc1206" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1606" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd06" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+
+        <svg width="100" height="450" id = "ncdist7">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-7</text>
+            <polygon id="nc1207" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1607" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd07" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+
+        <svg width="100" height="450" id = "ncdist8">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-8</text>
+            <polygon id="nc1208" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1608" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd08" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+
+        <svg width="100" height="450" id = "ncdist9">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-9</text>
+            <polygon id="nc1209" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1609" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd09" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+        <svg width="100" height="450" id = "ncdist10">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-10</text>
+            <polygon id="nc1210" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1610" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd10" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+
+        <svg width="100" height="450" id = "ncdist11">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-11</text>
+            <polygon id="nc1211" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1611" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd11" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+        <svg width="100" height="450" id = "ncdist12">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-12</text>
+            <polygon id="nc1212" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1612" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd12" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+
+
+        <svg width="100" height="450" id = "ncdist13">
+          <g>
+            <text y="35" x="45" text-anchor="middle" font-size="16" >NC-13</text>
+            <polygon id="nc1213" transform="translate(0,50) scale(.25)" points="" style="fill:#9911ee; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="nc1613" transform="translate(0,150) scale(.25)" points="" style="fill:#11ee99; stroke:#000;stroke-width:2;fill-opacity:.3" />
+            <polygon id="ncjd13" transform="translate(0,250) scale(.25)" points="" style="fill:#ee9911; stroke:#000;stroke-width:2;fill-opacity:.3" />
+
+          </g>
+        </svg>
+      </div>
+     
+
 
 
 
@@ -717,13 +716,18 @@ onload="renderMathInElement(document.body, {delimiters: [
   
 
 
-<p> In this figure we can see that the 2011 plan as a whole is far less compact than the other two, and this is not simply an 
-  artifact of noisy boundaries.  The 12th district, highlighted at the start of this page as a "worst offender" has its curve way above 
-  even the other districts in the same plan, making it quite clearly an outlier.  
-  The 2016 plan and judges' plan are both similarly compact, with the 2016 plan slightly more so.  However, the 2016 plan is, according 
+<p> In this figure we can see that the 2011 plan as a whole is less compact than the other two, and this is not simply an 
+  artifact of noisy boundaries, because we can see that many of the <span class="purple">purple</span> plots are above the 
+  others, even after many steps of curve-shortening flow.  The 12th district, highlighted at the start of this page as a 
+  "worst offender" has its plot way above 
+  even the other districts in the same plan, marking it quite clearly as a geometric outlier.  
+  The <span class="orange"> 2016 plan</span> and <span class= "teal">judges' plan</span> are both similarly compact, with the 
+  <span class="orange"> 2016 plan </span> 
+   slightly more so.  However, the <span class="orange"> 2016 plan</span>  is, according 
   to both the election results and the legislators who drew the map, a strong partisan gerrymander, whereas the judges' plan is not.  
-  This anecdotally demonstrates the distinction between "noncompactness" and "gerrymandering".  The 2016 map is more compact but less 
-  representative (with respect to partisanship) than the judges' map.
+  This anecdotally demonstrates the distinction between "noncompactness" and "gerrymandering".  The <span class="orange"> 2016 map</span> 
+  is more compact but less 
+  representative (with respect to partisanship) than the <span class="teal"> judges' map</span>.
 </p>
 
 
@@ -741,8 +745,8 @@ onload="renderMathInElement(document.body, {delimiters: [
   			Use the widget below to examine up to any three districts in the 116th Congress (those used for the 2018 elections) at a time.  The slider below each 
   			image controls the curve-shortening flow animation and you can use the buttons with arrows to move through one step at a time for a 
   			finer-grained view.  Can you find districts which appear to be non-compact because of their large perimeters but have plots which 
-  			drop off very rapidly?  Are there districts which the flow process sends to circles even more slowly than it does for TX-35 and 
-  			MD-3?
+  			drop off very rapidly?  Are there districts which the flow process sends to circles even more slowly than it does for <span class="teal">TX-35</span> and 
+  			<span class="purple"><span class="purple">MD-3</span>  </span>?
   		</p>
 
 
@@ -762,7 +766,6 @@ onload="renderMathInElement(document.body, {delimiters: [
   		<div style="margin:15px;display:flex;min-height:550px">
 
   			<div style="width:220px">
-  				<h3> First District to Compare </h3>
   				<select id="state_ddm1" onchange="populate_dist_dd(1)">
 
   				</select>
@@ -787,7 +790,6 @@ onload="renderMathInElement(document.body, {delimiters: [
   				<button onclick="increment(1)" style="margin-right:15px"> &rarr; </button> 
   			</div>
   			<div style="height:550px;width:220px">
-  				<h3> Second District to Compare </h3>
 
   				<select id="state_ddm2" onchange="populate_dist_dd(2)">
 
@@ -813,7 +815,6 @@ onload="renderMathInElement(document.body, {delimiters: [
   				<button onclick="increment(2)" style="margin-right:15px"> &rarr; </button> 
   			</div>
   			<div style="height:550px;width:220px">
-  				<h3> Third District to Compare </h3>
 
   				<select id="state_ddm3" onchange="populate_dist_dd(3)">
   					

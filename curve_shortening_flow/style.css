@@ -79,6 +79,25 @@ tt {
 
 /* specific */
 
+.orange {
+  font-weight: 600;
+  color: #ee9911;
+
+}
+
+.teal {
+  font-weight: 600;
+  color: #11ee99;
+
+}
+
+.purple {
+  font-weight: 600;
+  color: #9911ee;
+
+
+}
+
 .clubs,
 .blue,
 .green,
@@ -317,7 +336,7 @@ svg {
 .slider::-moz-range-thumb {
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: #2CAFFF; /* Green background */
+  background: #7C6FFF; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
