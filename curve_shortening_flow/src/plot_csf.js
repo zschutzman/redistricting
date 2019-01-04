@@ -86,7 +86,7 @@ function draw_init(k,ind){
 		var point = plotspace.createSVGPoint();
 
 		point.x = 12+compcurves[ind-1][i][1]/30;
-		point.y = 600-(100*(1/Math.sqrt(compcurves[ind-1][i][2])));
+		point.y = 599-(100*(1/Math.sqrt(compcurves[ind-1][i][2])));
 		plotlines[ind-1].points.appendItem(point);
 	}
 }
