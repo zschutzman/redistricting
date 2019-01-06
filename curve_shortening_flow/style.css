@@ -87,7 +87,7 @@ tt {
 
 .teal {
   font-weight: 600;
-  color: #11ee99;
+  color: #0BA66B;
 
 }
 
@@ -98,24 +98,47 @@ tt {
 
 }
 
+.brown {
+    color: #991111;
+  font-weight: 600;
+
+}
+
+.green{
+
+    font-weight: 600;
+    color: #119911;
+
+}
+
+.green{
+
+    font-weight: 600;
+    color: #119911;
+
+}
+.blue{
+
+    font-weight: 600;
+    color: #111199;
+
+}
+
+
+
+
+
 .clubs,
-.blue,
-.green,
 .hearts {
   font-weight: 600;
 }
 
-.blue {
-  color: #66abff;
-}
+
 
 .hearts {
   color: #9e2825;
 }
 
-.green {
-  color: #99cc9a;
-}
 
 .clubs {
   color: #1e1e26;

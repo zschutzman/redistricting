@@ -26,10 +26,13 @@ document.getElementById("ncjd13").setAttribute("points", "142.42229964678498 35.
 document.getElementById("ncplotjd13").setAttribute("points","7.0 416.0640584305457 12.0 462.15643471703055 17.0 468.09487017166634 22.0 471.62332958109585 27.0 474.25161881979454 32.0 476.3764779110315 37.0 478.1557091466663 42.0 479.6601947060479 47.0 480.94912011795776 52.0 482.0525968449152 57.0 483.01450192324035 62.0 483.86314459075544 67.0 484.61530241950834 72.0 485.3396659468355 77.0 485.970442109622 82.0 486.5529836263428 87.0 487.09816357952764 92.0 487.61337165684864 97.0 488.0990670375447 102.0 488.56362148399865 107.0 489.006722825753 112.0 489.4339801797026 117.0 489.8461264727599 122.0 490.2437851551434 127.0 490.6286201709521 132.0 491.0010672068894 137.0 491.36040506787856 142.0 491.70924100768997 147.0 492.0472833664972 152.0 492.37298745164696 157.0 492.68889734904866 162.0 492.99459491343833 167.0 493.2905192867726 172.0 493.57806747889197 177.0 493.85597194737875 182.0 494.12526006024723 187.0 494.38575228576724 192.0 494.65676786823906 197.0 494.9035199053065 202.0 495.14146865505785 207.0 495.37148293966123 212.0 495.5941838600563 217.0 495.81002988707786 222.0 496.018630451033 227.0 496.2206293280196 232.0 496.4160687773393 237.0 496.60509282442166 242.0 496.78796205036963 247.0 496.9646776838014 252.0 497.135780888784 257.0 497.30144695486655 262.0 497.4616118340511 267.0 497.61728616203595 272.0 497.76756406780044 277.0 497.91329323678553 282.0 498.0544211907042 287.0 498.19093884919073 292.0 498.32280580326716 297.0 498.45081450096154 302.0 498.57461761093725 307.0 498.6941949079487 312.0 498.8099801790004 317.0 498.92197940560106 322.0 499.0302364886956 327.0 499.1348212718313 332.0 499.23586053533785 337.0 499.3333585048088 342.0 499.4276389589674 347.0 499.51871062335294 352.0 499.6066936190749 357.0 499.69157986147184 362.0 499.77353109804733 367.0 499.8526120185153 372.0 499.92895349603214 377.0 500.00258489713246 382.0 500.0736874347996 387.0 500.14246100758817 392.0 500.20867353803214 397.0 500.27256056586555 402.0 500.3341911303372 407.0 500.3938096106024 412.0 500.45123649009656 417.0 500.5066963055141 422.0 500.56025973709325 427.0 500.6118619171705 432.0 500.6619024985751 437.0 500.71000557545426 442.0 500.7563503594491 447.0 500.8012364740031 452.0 500.84442305857226 457.0 500.88603038709357 462.0 500.9260014419045 467.0 500.96464794951424 472.0 501.0019667433829 477.0 501.03793889757503 482.0 501.07263909377 487.0 501.106242934647 492.0 501.13842680867117 497.0 501.1693742662478 500 501.19935237188355");
 
 
-var newpts = ""
-console.log(document.getElementById("ncplotjd05").points.length)
+var newpts = "";
+var upperrng = "";
+var lowerrng = "";
 for (var i=0;i<document.getElementById("ncplotjd05").points.length;i++){
 	newpts += document.getElementById("ncplotjd05").points[i].x;
+	lowerrng += document.getElementById("ncplotjd05").points[i].x;
+
 
 
 	var mean = 0;
@@ -39,8 +42,234 @@ for (var i=0;i<document.getElementById("ncplotjd05").points.length;i++){
 
 	}
 	newpts += " "+mean/13+" ";
+
+	var std = 0;
+	mean = mean/13
+	for (var j=1;j<=13;j++){
+		jl = j>=10?j:"0"+j;
+		std+= (1/12)*parseFloat((document.getElementById("ncplotjd"+jl).points[i]==null? 502: document.getElementById("ncplotjd"+jl).points[i].y)- mean)**2;
+	}
+	upperrng = " "+(mean+Math.sqrt(std))+" " + upperrng;
+	upperrng = document.getElementById("ncplotjd05").points[i].x + upperrng;
+
+	lowerrng += " " + (Math.min(mean-Math.sqrt(std),502))+ " ";
+
 }
 
 document.getElementById("ncplotjdavg").setAttribute("points",newpts);
-console.log(newpts)
+
+document.getElementById("ncplotjdstd").setAttribute("points",lowerrng+upperrng);
+
 newpts = "";
+lowerrng = ""
+upperrng = ""
+
+
+
+
+
+
+
+document.getElementById('ncdist1').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1601').style.strokeOpacity = 1
+	document.getElementById('ncplot1201').style.strokeOpacity = 1
+	document.getElementById('ncplotjd01').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist1').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1601').style.strokeOpacity = .1
+	document.getElementById('ncplot1201').style.strokeOpacity = .1
+	document.getElementById('ncplotjd01').style.strokeOpacity = .1
+
+});
+
+
+document.getElementById('ncdist2').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1602').style.strokeOpacity = 1
+	document.getElementById('ncplot1202').style.strokeOpacity = 1
+	document.getElementById('ncplotjd02').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist2').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1602').style.strokeOpacity = .1
+	document.getElementById('ncplot1202').style.strokeOpacity = .1
+	document.getElementById('ncplotjd02').style.strokeOpacity = .1
+
+});
+
+
+
+document.getElementById('ncdist3').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1603').style.strokeOpacity = 1
+	document.getElementById('ncplot1203').style.strokeOpacity = 1
+	document.getElementById('ncplotjd03').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist3').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1603').style.strokeOpacity = .1
+	document.getElementById('ncplot1203').style.strokeOpacity = .1
+	document.getElementById('ncplotjd03').style.strokeOpacity = .1
+
+});
+
+
+
+document.getElementById('ncdist4').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1604').style.strokeOpacity = 1
+	document.getElementById('ncplot1204').style.strokeOpacity = 1
+	document.getElementById('ncplotjd04').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist4').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1604').style.strokeOpacity = .1
+	document.getElementById('ncplot1204').style.strokeOpacity = .1
+	document.getElementById('ncplotjd04').style.strokeOpacity = .1
+
+});
+
+
+document.getElementById('ncdist5').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1605').style.strokeOpacity = 1
+	document.getElementById('ncplot1205').style.strokeOpacity = 1
+	document.getElementById('ncplotjd05').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist5').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1605').style.strokeOpacity = .1
+	document.getElementById('ncplot1205').style.strokeOpacity = .1
+	document.getElementById('ncplotjd05').style.strokeOpacity = .1
+
+});
+
+document.getElementById('ncdist6').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1606').style.strokeOpacity = 1
+	document.getElementById('ncplot1206').style.strokeOpacity = 1
+	document.getElementById('ncplotjd06').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist6').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1606').style.strokeOpacity = .1
+	document.getElementById('ncplot1206').style.strokeOpacity = .1
+	document.getElementById('ncplotjd06').style.strokeOpacity = .1
+
+});
+
+document.getElementById('ncdist7').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1607').style.strokeOpacity = 1
+	document.getElementById('ncplot1207').style.strokeOpacity = 1
+	document.getElementById('ncplotjd07').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist7').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1607').style.strokeOpacity = .1
+	document.getElementById('ncplot1207').style.strokeOpacity = .1
+	document.getElementById('ncplotjd07').style.strokeOpacity = .1
+
+});
+
+
+document.getElementById('ncdist8').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1608').style.strokeOpacity = 1
+	document.getElementById('ncplot1208').style.strokeOpacity = 1
+	document.getElementById('ncplotjd08').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist8').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1608').style.strokeOpacity = .1
+	document.getElementById('ncplot1208').style.strokeOpacity = .1
+	document.getElementById('ncplotjd08').style.strokeOpacity = .1
+
+});
+
+
+
+
+document.getElementById('ncdist9').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1609').style.strokeOpacity = 1
+	document.getElementById('ncplot1209').style.strokeOpacity = 1
+	document.getElementById('ncplotjd09').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist9').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1609').style.strokeOpacity = .1
+	document.getElementById('ncplot1209').style.strokeOpacity = .1
+	document.getElementById('ncplotjd09').style.strokeOpacity = .1
+
+});
+
+
+
+
+document.getElementById('ncdist10').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1610').style.strokeOpacity = 1
+	document.getElementById('ncplot1210').style.strokeOpacity = 1
+	document.getElementById('ncplotjd10').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist10').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1610').style.strokeOpacity = .1
+	document.getElementById('ncplot1210').style.strokeOpacity = .1
+	document.getElementById('ncplotjd10').style.strokeOpacity = .1
+
+});
+
+
+
+
+
+document.getElementById('ncdist11').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1611').style.strokeOpacity = 1
+	document.getElementById('ncplot1211').style.strokeOpacity = 1
+	document.getElementById('ncplotjd11').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist11').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1611').style.strokeOpacity = .1
+	document.getElementById('ncplot1211').style.strokeOpacity = .1
+	document.getElementById('ncplotjd11').style.strokeOpacity = .1
+
+});
+
+
+
+document.getElementById('ncdist12').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1612').style.strokeOpacity = 1
+	document.getElementById('ncplot1212').style.strokeOpacity = 1
+	document.getElementById('ncplotjd12').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist12').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1612').style.strokeOpacity = .1
+	document.getElementById('ncplot1212').style.strokeOpacity = .1
+	document.getElementById('ncplotjd12').style.strokeOpacity = .1
+
+});
+
+
+
+
+document.getElementById('ncdist13').addEventListener('mouseover', function() {
+	document.getElementById('ncplot1613').style.strokeOpacity = 1
+	document.getElementById('ncplot1213').style.strokeOpacity = 1
+	document.getElementById('ncplotjd13').style.strokeOpacity = 1
+
+});
+
+document.getElementById('ncdist13').addEventListener('mouseout', function() {
+	document.getElementById('ncplot1613').style.strokeOpacity = .1
+	document.getElementById('ncplot1213').style.strokeOpacity = .1
+	document.getElementById('ncplotjd13').style.strokeOpacity = .1
+
+});
