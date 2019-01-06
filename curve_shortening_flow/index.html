@@ -533,9 +533,9 @@ onload="renderMathInElement(document.body, {delimiters: [
       computed the plots for the districts in three different plans for North Carolina.  The first is the plan which was 
       enacted in 2011 and ruled invalid in 2016 as a racial gerrymander, and its flow progressions are represented by the 
       <span class="purple">purple</span> dashed plots.  During the challenge to this plan, a non-partisan group of retired judges proposed a more "fair" 
-      plan which is represented below with the <span class="teal">teal</span> plots. The last is the plan enacted in 2016 as the replacement for the invalid one, which is 
-      currently being challenged in the courts as a partisan gerrymander, and its flow progressions are plotted with solid 
-      <span class="orange">orange</span>  lines.  The darker lines are the average value across all the districts in that plan.
+      plan which is represented below with the solid <span class="teal">teal</span> plots. The last is the plan enacted in 2016 as the replacement for the invalid one, which is 
+      currently being challenged in the courts as a partisan gerrymander, and its flow progressions are plotted with dotted 
+      <span class="orange">orange</span>  lines.  
     </p>
 
 
@@ -544,8 +544,9 @@ onload="renderMathInElement(document.body, {delimiters: [
   	</section>
     <summary>
 
-      Mouse over a column of districts to highlight the three corresponding plots in the graph.  The three lines which are always visible are the 
-      averages across all thirteen districts in the corresponding plan.
+      Mouse over a column of districts to highlight the three corresponding plots in the graph.  
+      The shaded regions are the average plus/minus one standard deviation of the value of all 
+      districts in the plan after a particular number of rounds of curve-shortening flow.
     </summary>
 <div class = "chart two-columns" id = "nccomp">
  <div>
@@ -626,10 +627,10 @@ onload="renderMathInElement(document.body, {delimiters: [
           <polyline id="ncplotjdavg" points="" transform="translate(0,-5) scale(4,1)" vector-effect="non-scaling-stroke"  style="stroke:#0BA66B; stroke-width:3;fill:none;stroke-opacity:.8; " />
           <polygon id="ncplotjdstd" points = "" transform="translate(0,-5) scale(4,1)" vector-effect="non-scaling-stroke"  style="stroke:none; stroke-width:3;fill:#0BA66B;fill-opacity:.4"; />
           <polyline id="ncplot16avg" points="" transform="translate(0,-5) scale(4,1)" vector-effect="non-scaling-stroke"  stroke-linecap="round" stroke-dasharray="1, 5" style="stroke:#ee9911; stroke-width:4;fill:none;stroke-opacity:.8; " />
-                    <polygon id="ncplot16std" points = "" transform="translate(0,-5) scale(4,1)" vector-effect="non-scaling-stroke"  style="stroke:none; stroke-width:3;fill:#ee9911;fill-opacity:.4"; />
+                    <polygon id="ncplot16std" points = "" transform="translate(0,-5) scale(4,1)" vector-effect="non-scaling-stroke"  style="stroke:none; stroke-width:3;fill:#ee9911;fill-opacity:.3"; />
 
           <polyline id="ncplot12avg" points="" transform="translate(0,-5) scale(4,1)" vector-effect="non-scaling-stroke"  stroke-dasharray="5,5" style="stroke:#9911ee; stroke-width:3;fill:none; stroke-opacity:.8; " />
-          <polygon id="ncplot12std" points = "" transform="translate(0,-5) scale(4,1)" vector-effect="non-scaling-stroke"  style="stroke:none; stroke-width:3;fill:#9911ee;fill-opacity:.4"; />
+          <polygon id="ncplot12std" points = "" transform="translate(0,-5) scale(4,1)" vector-effect="non-scaling-stroke"  style="stroke:none; stroke-width:3;fill:#9911ee;fill-opacity:.2"; />
 
 
 
